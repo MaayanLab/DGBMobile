@@ -30,6 +30,10 @@ export default class HomeScreen extends Component {
     }
   }
 
+  _goToExpression = () => {
+    this.props.navigator.push('expression');
+  }
+
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
@@ -56,7 +60,7 @@ export default class HomeScreen extends Component {
               title="Next"
               icon={{name: "keyboard-arrow-right"}}
               backgroundColor="#00c28a"
-              onPress={() => console.log('hello')}
+              onPress={this._goToExpression}
             />
           </View>
         </View>
