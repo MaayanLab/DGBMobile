@@ -46,13 +46,15 @@ export default class HomeScreen extends Component {
           />
         </View>
         <View style={[AppStyles.flex1, styles.geneFormContainer]}>
-          <FormLabel>Gene Symbol</FormLabel>
-          <FormInput
-            style={styles.formInput}
-            placeholder="Enter a gene symbol e.g. AKT1."
-            onChangeText={(input) => this.setState({input: input})}
-            value={this.state.input}
-          />
+          <View style={AppStyles.flex1}>
+            <FormLabel>Gene Symbol</FormLabel>
+            <FormInput
+              style={styles.formInput}
+              placeholder="Enter a gene symbol e.g. AKT1."
+              onChangeText={(input) => this.setState({input: input})}
+              value={this.state.input}
+            />
+          </View>
           <View style={[AppStyles.flex1, AppStyles.justifyCenter]}>
             <Button
               raised

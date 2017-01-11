@@ -9,6 +9,6 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   geneFormContainer: {
-
+    justifyContent: 'center',
   },
 });
