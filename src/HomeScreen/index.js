@@ -35,6 +35,9 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+    // Perhaps remove next button and go forward when autocomplete is working.
+    // Leave button there for now for simple navigation
+    // Also add error handling
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
         <View style={[AppStyles.flex1, AppStyles.containerCentered]}>
