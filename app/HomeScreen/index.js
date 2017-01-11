@@ -1,11 +1,13 @@
+'use strict';
+
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   Button,
 } from 'react-native';
+import { GiftedForm, GiftedFormManager } from 'react-native-gifted-form';
 
 export default class HomeScreen extends Component {
   static route = {

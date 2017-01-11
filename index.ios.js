@@ -1,30 +1,10 @@
-import React, { Component } from 'react';
+'use strict';
+
+import React from 'react';
 import {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View,
 } from 'react-native';
-import HomeScreen from './app/HomeScreen';
 
-import {
-  createRouter,
-  NavigationProvider,
-  StackNavigation,
-} from '@exponent/ex-navigation';
+import app from './app';
 
-const Router = createRouter(() => ({
-  home: () => HomeScreen,
-}));
-
-class DGBMobile extends Component {
-  render() {
-    return (
-      <NavigationProvider router={Router}>
-        <StackNavigation initialRoute={Router.getRoute('home')} />
-      </NavigationProvider>
-    );
-  }
-}
-
-AppRegistry.registerComponent('DGBMobile', () => DGBMobile);
+AppRegistry.registerComponent('DGBMobile', () => app);
