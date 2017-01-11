@@ -2,38 +2,64 @@
 
 import React, { Component } from 'react';
 import {
-  StyleSheet,
   Text,
   View,
-  Button,
 } from 'react-native';
+import {
+  Button,
+  Icon,
+  FormLabel,
+  FormInput
+} from 'react-native-elements';
+
+import styles from './HomeScreen';
+import AppStyles from '../styles';
 
 export default class HomeScreen extends Component {
   static route = {
-    navigationBar: {
-      title: 'Dr. Gene Badger',
-    }
+    // navigationBar: {
+    //   title: 'Dr. Gene Badger',
+    // }
   }
 
   constructor(props, context) {
     super(props, context)
     this.state = {
-      form: {
-        fullName: 'Marco Polo',
-        tos: false,
-      }
+      input: '',
+      tos: false,
     }
-  }
-
-  handleValueChange(values) {
-    console.log('handleValueChange', values)
-    this.setState({ form: values })
   }
 
   render() {
     return (
-      <View>
-        <Text>Hello</Text>
+      <View style={[AppStyles.container, AppStyles.justifyCenter]}>
+        <View style={[AppStyles.flex1, AppStyles.containerCentered]}>
+          <Icon
+            size={100}
+            name="face"
+            color="#00bcd6"
+            style={styles.next}
+          />
+        </View>
+        <View style={[AppStyles.flex1, styles.geneFormContainer]}>
+          <FormLabel>Gene Symbol</FormLabel>
+          <FormInput
+            style={styles.formInput}
+            placeholder="Enter a gene symbol e.g. AKT1."
+            onChangeText={(input) => this.setState({input: input})}
+            value={this.state.input}
+          />
+          <View style={[AppStyles.flex1, AppStyles.justifyCenter]}>
+            <Button
+              raised
+              iconRight
+              title="Next"
+              icon={{name: "keyboard-arrow-right"}}
+              backgroundColor="#00c28a"
+              onPress={() => console.log('hello')}
+            />
+          </View>
+        </View>
       </View>
     )
   }

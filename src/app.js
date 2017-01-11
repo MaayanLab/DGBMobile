@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import HomeScreen from './HomeScreen';
+import ExpressionScreen from './ExpressionScreen';
 
 import {
   createRouter,
@@ -11,6 +12,7 @@ import {
 
 const Router = createRouter(() => ({
   home: () => HomeScreen,
+  expression: () => ExpressionScreen,
 }));
 
 export default class DGBMobile extends Component {

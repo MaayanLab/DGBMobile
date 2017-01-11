@@ -25,6 +25,7 @@ export default {
   textColor: '#555',
   borderColor: '#E7E7E7',
 
+  blue: '#03A9F4',
   gray: '#8e8e8e',
   lightGray: '#323232',
   white: '#FFFFFF',

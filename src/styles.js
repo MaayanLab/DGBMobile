@@ -26,7 +26,12 @@ export default StyleSheet.create({
   rightAligned: {
     alignItems: 'flex-end',
   },
-
+  justifyCenter: {
+    justifyContent: 'center',
+  },
+  alignCenter: {
+    alignItems: 'center',
+  },
   /* Text Styles */
   baseText: {
     fontFamily: AppConfig.baseFont,
