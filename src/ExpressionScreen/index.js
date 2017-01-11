@@ -26,11 +26,30 @@ export default class HomeScreen extends Component {
     this.props.navigator.pop();
   }
 
+  _goToDatasetSelection = () => {
+    this.props.navigator.push('datasetSelection');
+  }
+
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
-        <View style={[AppStyles.flex3, styles.regulationDirectionContainer]}>
-
+        <View style={[AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer]}>
+          <Button
+            raised
+            title="Up"
+            icon={{name: "keyboard-arrow-up"}}
+            backgroundColor="#00bcd6"
+            onPress={this._goToDatasetSelection}
+            buttonStyle={styles.boxButton}
+          />
+          <Button
+            raised
+            title="Down"
+            icon={{name: "keyboard-arrow-down"}}
+            backgroundColor="#00bcd6"
+            onPress={this._goToDatasetSelection}
+            buttonStyle={styles.boxButton}
+          />
         </View>
         <View style={[AppStyles.flex1, styles.navButtonContainer]}>
           <Button

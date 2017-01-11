@@ -4,7 +4,10 @@ import config from '../config';
 export default StyleSheet.create({
   regulationDirectionContainer: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
+  },
+  boxButton: {
+    height: 100,
+    width: 150,
   },
   navButtonContainer: {
     justifyContent: 'center',
