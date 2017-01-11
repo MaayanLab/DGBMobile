@@ -3,6 +3,6 @@ import {
   AppRegistry,
 } from 'react-native';
 
-import app from './app';
+import app from './src/app';
 
 AppRegistry.registerComponent('DGBMobile', () => app);
