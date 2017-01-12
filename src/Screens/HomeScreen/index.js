@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import { Text, View } from 'react-native';
-import { observer } from 'mobx-react/native';
 import {
   Button,
   Icon,
@@ -14,7 +13,7 @@ import Store from '../../Stores/store';
 import styles from './HomeScreenStyle';
 import AppStyles from '../../styles';
 
-export default @observer class HomeScreen extends Component {
+export default class HomeScreen extends Component {
   static route = {
     // navigationBar: {
     //   title: 'Dr. Gene Badger',
