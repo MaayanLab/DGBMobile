@@ -37,6 +37,11 @@ export default class HomeScreen extends Component {
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
+        <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
+          <Text>
+            In which direction would you like ___ to be expressed?
+          </Text>
+        </View>
         <View style={[AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer]}>
           <Button
             raised
