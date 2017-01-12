@@ -1,10 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+import { Text, View } from 'react-native';
 import { observer } from 'mobx-react/native';
 import {
   Button,
@@ -14,7 +11,7 @@ import {
 } from 'react-native-elements';
 
 import Store from '../../Stores/store';
-import styles from './HomeScreen';
+import styles from './HomeScreenStyle';
 import AppStyles from '../../styles';
 
 export default @observer class HomeScreen extends Component {

@@ -1,10 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  Text,
-  View,
-} from 'react-native';
+import { Text, View } from 'react-native';
 import {
   Button,
   Icon,
@@ -13,7 +10,7 @@ import {
 } from 'react-native-elements';
 
 import Store from '../../Stores/store';
-import styles from './DatasetSelectionScreen';
+import styles from './DatasetSelectionScreenStyle';
 import AppStyles from '../../styles';
 
 export default class HomeScreen extends Component {
