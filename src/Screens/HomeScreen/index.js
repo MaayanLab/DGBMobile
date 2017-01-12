@@ -5,6 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { observer } from 'mobx-react/native';
 import {
   Button,
   Icon,
@@ -12,10 +13,11 @@ import {
   FormInput
 } from 'react-native-elements';
 
+import Store from '../../Stores/store';
 import styles from './HomeScreen';
 import AppStyles from '../../styles';
 
-export default class HomeScreen extends Component {
+export default @observer class HomeScreen extends Component {
   static route = {
     // navigationBar: {
     //   title: 'Dr. Gene Badger',
@@ -24,13 +26,15 @@ export default class HomeScreen extends Component {
 
   constructor(props, context) {
     super(props, context)
+    this.store = Store;
     this.state = {
       input: '',
-      tos: false,
     }
   }
 
   _goToExpression = () => {
+    const gene = this.state.input;
+    this.store.setGene(gene)
     this.props.navigator.push('expression');
   }
 

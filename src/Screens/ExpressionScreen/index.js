@@ -12,6 +12,7 @@ import {
   FormInput
 } from 'react-native-elements';
 
+import Store from '../../Stores/store';
 import styles from './ExpressionScreen';
 import AppStyles from '../../styles';
 
@@ -22,11 +23,17 @@ export default class HomeScreen extends Component {
     // }
   }
 
+  constructor(props) {
+    super(props);
+    this.store = Store;
+  }
+
   _goBackHome = () => {
     this.props.navigator.pop();
   }
 
-  _goToDatasetSelection = () => {
+  _setExpressionAndGoToDataSelection = (direction) => {
+    this.store.setExpression(direction)
     this.props.navigator.push('datasetSelection');
   }
 
@@ -39,7 +46,7 @@ export default class HomeScreen extends Component {
             title="Up"
             icon={{name: "keyboard-arrow-up"}}
             backgroundColor="#00bcd6"
-            onPress={this._goToDatasetSelection}
+            onPress={() => { this._setExpressionAndGoToDataSelection('Up') }}
             buttonStyle={styles.boxButton}
           />
           <Button
@@ -47,7 +54,7 @@ export default class HomeScreen extends Component {
             title="Down"
             icon={{name: "keyboard-arrow-down"}}
             backgroundColor="#00bcd6"
-            onPress={this._goToDatasetSelection}
+            onPress={() => { this._setExpressionAndGoToDataSelection('Down') }}
             buttonStyle={styles.boxButton}
           />
         </View>

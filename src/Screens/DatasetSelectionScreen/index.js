@@ -12,6 +12,7 @@ import {
   FormInput
 } from 'react-native-elements';
 
+import Store from '../../Stores/store';
 import styles from './DatasetSelectionScreen';
 import AppStyles from '../../styles';
 
@@ -19,9 +20,20 @@ export default class HomeScreen extends Component {
   static route = {
   }
 
-  _goBackHome = () => {
+  constructor(props) {
+    super(props);
+    this.store = Store;
+  }
+
+  _goBackToExpression = () => {
     this.props.navigator.pop();
   }
+
+  _setDatasetAndGoToResults = (dataset) => {
+    this.store.setDataset(dataset)
+    this.props.navigator.push('resultsScreen');
+  }
+
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
@@ -33,7 +45,7 @@ export default class HomeScreen extends Component {
             title="Back"
             icon={{name: "keyboard-arrow-left"}}
             backgroundColor="#00c28a"
-            onPress={this._goBackHome}
+            onPress={this._goBackToExpression}
           />
         </View>
       </View>
