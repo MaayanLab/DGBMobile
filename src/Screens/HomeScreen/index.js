@@ -13,7 +13,7 @@ import {
 } from 'react-native-elements';
 
 import styles from './HomeScreen';
-import AppStyles from '../styles';
+import AppStyles from '../../styles';
 
 export default class HomeScreen extends Component {
   static route = {

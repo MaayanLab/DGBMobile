@@ -1,9 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react';
-import HomeScreen from './HomeScreen';
-import ExpressionScreen from './ExpressionScreen';
-import DatasetSelectionScreen from './DatasetSelectionScreen';
+import HomeScreen from './Screens/HomeScreen';
+import ExpressionScreen from './Screens/ExpressionScreen';
+import DatasetSelectionScreen from './Screens/DatasetSelectionScreen';
 
 import {
   createRouter,
