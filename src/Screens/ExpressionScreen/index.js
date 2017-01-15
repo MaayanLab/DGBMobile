@@ -35,14 +35,15 @@ export default class HomeScreen extends Component {
   }
 
   render() {
+    const geneName = this.store.gene;
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
         <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
-          <Text>
-            In which direction would you like ___ to be expressed?
+          <Text style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
+            In which direction would you like {`${geneName}`} to be expressed?
           </Text>
         </View>
-        <View style={[AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer]}>
+        <View style={[AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer]}>
           <Button
             raised
             title="Up"

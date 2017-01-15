@@ -11,5 +11,11 @@ export default StyleSheet.create({
   },
   navButtonContainer: {
     justifyContent: 'center',
-  }
+  },
+  question: {
+    textAlign: 'center',
+    fontFamily: 'Lato-Regular',
+    fontSize: 25,
+    color: '#8e8e8e',
+  },
 });
