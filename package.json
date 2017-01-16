@@ -11,10 +11,12 @@
     "babel-preset-react-native-stage-0": "^1.0.1",
     "es6-promise": "^4.0.5",
     "fetch-everywhere": "^1.0.5",
+    "lodash": "^4.17.4",
     "mobx": "^3.0.0",
     "mobx-react": "^4.1.0",
     "react": "~15.4.0-rc.4",
     "react-native": "0.40.0",
+    "react-native-accordion": "^1.0.1",
     "react-native-elements": "^0.9.2",
     "react-native-icons": "^0.7.1",
     "react-native-vector-icons": "^4.0.0"

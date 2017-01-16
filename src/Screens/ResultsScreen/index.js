@@ -1,13 +1,14 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, ListView } from 'react-native';
 import {
   Button,
   Icon,
   FormLabel,
   FormInput
 } from 'react-native-elements';
+import isEqual from 'lodash/isEqual';
 
 import Store from '../../Stores/store';
 
@@ -27,7 +28,9 @@ export default class ResultsScreen extends Component {
 
   constructor(props, context) {
     super(props, context)
-    this.store = Store;
+    this.state = {
+      results: Store.results.slice()
+    }
   }
 
   _goToHome() {
@@ -35,19 +38,17 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
-    const displayResults = this.store.results;
+    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !isEqual(r1, r2) });
+    const dataSource = ds.cloneWithRows(this.state.results);
+    debugger;
     return (
-      <View style={[AppStyles.container, AppStyles.justifyCenter]}>
-        <View style={[AppStyles.flex1]}>
-          <View style={AppStyles.flex1}>
-            {
-              displayResults.map(res => {
-                return <DrugResultItem key={res.pert_id} entry={res} />
-              })
-            }
-          </View>
-        </View>
+      <View style={[AppStyles.container, AppStyles.flex1]}>
+        <Text>This is the reuslts screen</Text>
+        <ListView
+          dataSource={dataSource}
+          renderRow={rowData => <DrugResultItem entry={rowData} />}
+        />
       </View>
-    )
+    );
   }
 }
