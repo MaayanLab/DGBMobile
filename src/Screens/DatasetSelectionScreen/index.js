@@ -61,7 +61,7 @@ export default class DatasetSelectionScreen extends Component {
             Which dataset would you like to use?
           </Text>
         </View>
-        <View style={[AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer]}>
+        <View style={[AppStyles.containerCentered, AppStyles.flex1, styles.regulationDirectionContainer]}>
           <Button
             raised
             title="L1000"
@@ -78,13 +78,14 @@ export default class DatasetSelectionScreen extends Component {
             onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
             buttonStyle={styles.boxButton}
           />
+        </View>
+        <View style={[AppStyles.containerCentered, AppStyles.flex1, styles.regulationDirectionContainer]}>
           <Button
             raised
             title="Both"
-            icon={{name: "keyboard-arrow-down"}}
             backgroundColor="#00bcd6"
             onPress={() => { this._makeFetchAndGoToResults('Both') }}
-            buttonStyle={styles.boxButton}
+            buttonStyle={styles.both}
           />
         </View>
         <View style={[AppStyles.flex1, styles.navButtonContainer]}>
