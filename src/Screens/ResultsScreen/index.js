@@ -13,7 +13,7 @@ import Store from '../../Stores/store';
 import styles from './ResultsScreenStyle';
 import AppStyles from '../../styles';
 
-export default class ResultScreen extends Component {
+export default class ResultsScreen extends Component {
   static route = {
     // navigationBar: {
     //   title: 'Dr. Gene Badger',
