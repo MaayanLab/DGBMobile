@@ -13,7 +13,7 @@ import Store from '../../Stores/store';
 import styles from './ExpressionScreenStyle';
 import AppStyles from '../../styles';
 
-export default class HomeScreen extends Component {
+export default class ExpressionScreen extends Component {
   static route = {
     // navigationBar: {
     //   title: 'Dr. Gene Badger',
