@@ -10,6 +10,9 @@ import {
 } from 'react-native-elements';
 
 import Store from '../../Stores/store';
+
+import DrugResultItem from '../../Components/DrugResultItem';
+
 import styles from './ResultsScreenStyle';
 import AppStyles from '../../styles';
 
@@ -39,7 +42,7 @@ export default class ResultsScreen extends Component {
           <View style={AppStyles.flex1}>
             {
               displayResults.map(res => {
-                return <Text key={res.pert_id}>{res.pert_id}</Text>
+                return <DrugResultItem key={res.pert_id} entry={res} />
               })
             }
           </View>
