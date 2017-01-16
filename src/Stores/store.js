@@ -15,5 +15,7 @@ export default observable({
   setDataset(dataset) { this.dataset = dataset },
   clearDataset() { this.dataset = '' },
 
-  result: [],
+  results: [],
+  setResults(results) { this.results = results },
+  clearResults() { this.results = [] },
 });
