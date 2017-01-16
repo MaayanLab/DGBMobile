@@ -50,7 +50,7 @@ export default class DatasetSelectionScreen extends Component {
     //   this.store.setResults(results)
     // })
     // .then(() => { this.props.navigator.push('results') })
-    this.props.navigator.push('results')
+    this.props.navigator.push('results', { geneName: this.store.gene.toUpperCase() })
   }
 
   render() {

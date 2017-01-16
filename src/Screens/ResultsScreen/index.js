@@ -15,9 +15,11 @@ import AppStyles from '../../styles';
 
 export default class ResultsScreen extends Component {
   static route = {
-    // navigationBar: {
-    //   title: 'Dr. Gene Badger',
-    // }
+    navigationBar: {
+      title(params) {
+        return `${params.geneName}`
+      },
+    }
   }
 
   constructor(props, context) {
