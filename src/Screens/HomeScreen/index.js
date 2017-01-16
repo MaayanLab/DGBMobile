@@ -47,6 +47,9 @@ export default class HomeScreen extends Component {
             color="#00bcd6"
             style={styles.next}
           />
+          <Text style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.title]}>
+            Dr. Gene Badger
+          </Text>
         </View>
         <View style={[AppStyles.flex1, styles.geneFormContainer]}>
           <View style={AppStyles.flex1}>
