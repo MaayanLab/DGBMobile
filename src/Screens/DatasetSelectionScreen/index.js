@@ -8,7 +8,7 @@ import {
   FormLabel,
   FormInput
 } from 'react-native-elements';
-import "isomorphic-fetch";
+import 'fetch-everywhere';
 
 import Store from '../../Stores/store';
 import styles from './DatasetSelectionScreenStyle';
