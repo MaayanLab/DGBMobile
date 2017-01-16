@@ -31,20 +31,15 @@ export default class ResultScreen extends Component {
 
   render() {
     const displayResults = this.store.results;
-
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
-        <View style={[AppStyles.flex1, AppStyles.containerCentered]}>
-          <Icon
-            size={100}
-            name="face"
-            color="#00bcd6"
-            style={styles.next}
-          />
-        </View>
         <View style={[AppStyles.flex1]}>
           <View style={AppStyles.flex1}>
-            <Text>Hi, this is the result.</Text>
+            {
+              displayResults.map(res => {
+                return <Text key={res.pert_id}>{res.pert_id}</Text>
+              })
+            }
           </View>
         </View>
       </View>
