@@ -9,7 +9,7 @@ import {
   FormInput
 } from 'react-native-elements';
 import isEqual from 'lodash/isEqual';
-
+import mobx from 'mobx';
 import Store from '../../Stores/store';
 
 import DrugResultItem from '../../Components/DrugResultItem';
@@ -30,7 +30,7 @@ export default class ResultsScreen extends Component {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
     super(props, context)
     this.state = {
-      results: Store.results.slice()
+      results: Store.results
     }
   }
 
@@ -39,14 +39,23 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
+    const creedsData = mobx.toJS(this.state.results.creeds);
+    const l1000Data = mobx.toJS(this.state.results.l1000);
+
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !isEqual(r1, r2) });
-    const dataSource = ds.cloneWithRows(this.state.results);
-    debugger;
+    const creedsDataSource = ds.cloneWithRows(creedsData);
+    const l1000DataSource = ds.cloneWithRows(l1000Data);
+
     return (
       <View style={[AppStyles.container, AppStyles.flex1]}>
-        <Text>This is the reuslts screen</Text>
+        <Text>CREEDS</Text>
         <ListView
-          dataSource={dataSource}
+          dataSource={creedsDataSource}
+          renderRow={rowData => <DrugResultItem entry={rowData} />}
+        />
+        <Text>L1000</Text>
+        <ListView
+          dataSource={l1000DataSource}
           renderRow={rowData => <DrugResultItem entry={rowData} />}
         />
       </View>

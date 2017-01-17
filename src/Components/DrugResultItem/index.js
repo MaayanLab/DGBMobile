@@ -9,7 +9,7 @@ export default function DrugResultItem(props) {
 
   const header = (
     <View style={AppStyles.flex1}>
-      <Text>Click to Expand</Text>
+      <Text>{resultItem.drug_name}</Text>
     </View>
   );
 
@@ -19,16 +19,13 @@ export default function DrugResultItem(props) {
     </View>
   );
 
-  // <Accordion
-  //   header={header}
-  //   content={content}
-  //   duration={300}
-  //   easing="easeOutCubic"
-  // />
-  debugger;
+
   return (
-    <Text style={AppStyles.flex1}>
-      Hello
-    </Text>
+    <Accordion
+      header={header}
+      content={content}
+      duration={300}
+      easing="easeOutCubic"
+    />
   );
 }

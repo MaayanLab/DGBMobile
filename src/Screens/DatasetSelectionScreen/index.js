@@ -33,13 +33,13 @@ export default class DatasetSelectionScreen extends Component {
     // otherwise show spinner
     const { gene, expression } = this.store;
     const bodyForm = { symbol: gene, expression, dataset };
-    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
+    const url = 'http://127.0.0.1:5000/DGB/api/v1/';
     fetch(url, {
       // credentials: 'include', //pass cookies, for authentication
       method: 'POST',
       headers: {
       'Accept': 'application/json',
-      'Content-Type': 'application/json; charset=UTF-8'
+      'Content-Type': 'application/json'
       },
       body: JSON.stringify(bodyForm),
     })
@@ -47,11 +47,9 @@ export default class DatasetSelectionScreen extends Component {
       return response.json()
     })
     .then(results => {
-      debugger;
       this.store.setResults(results)
     })
     .then(() => {
-      debugger;
       this.props.navigator.push('results', { geneName: this.store.gene.toUpperCase() })
     })
     .catch(error => {
