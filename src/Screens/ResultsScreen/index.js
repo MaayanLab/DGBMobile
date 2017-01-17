@@ -27,6 +27,7 @@ export default class ResultsScreen extends Component {
   }
 
   constructor(props, context) {
+    // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
     super(props, context)
     this.state = {
       results: Store.results.slice()

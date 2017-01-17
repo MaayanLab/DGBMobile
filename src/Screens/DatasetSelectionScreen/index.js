@@ -31,26 +31,30 @@ export default class DatasetSelectionScreen extends Component {
     this.store.setDataset(dataset)
     // make fetch and navigate to resultsScreen when fetch is successful
     // otherwise show spinner
-    // const { gene, expression } = this.store;
-    // const bodyForm = { symbol: gene, expression, dataset };
-    // const url = 'http://127.0.0.1:5000/DGB/api/v1/';
-    // fetch(url, {
-    //   // credentials: 'include', //pass cookies, for authentication
-    //   method: 'POST',
-    //   headers: {
-    //   'Accept': 'application/json',
-    //   'Content-Type': 'application/json; charset=UTF-8'
-    //   },
-    //   body: JSON.stringify(bodyForm),
-    // })
-    // .then(response => {
-    //   return response.json()
-    // })
-    // .then(results => {
-    //   this.store.setResults(results)
-    // })
-    // .then(() => { this.props.navigator.push('results') })
-    this.props.navigator.push('results', { geneName: this.store.gene.toUpperCase() })
+    const { gene, expression } = this.store;
+    const bodyForm = { symbol: gene, expression, dataset };
+    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
+    fetch(url, {
+      // credentials: 'include', //pass cookies, for authentication
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(bodyForm),
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(results => {
+      this.store.setResults(results)
+      this.props.navigator.push('results', { geneName: this.store.gene.toUpperCase() })
+    })
+    .catch(error => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+     // ADD THIS THROW error
+      throw error;
+    });
   }
 
   render() {
