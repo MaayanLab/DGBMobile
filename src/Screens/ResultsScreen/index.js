@@ -19,7 +19,12 @@ import styles from './ResultsScreenStyle';
 import AppStyles from '../../styles';
 
 const datasetOptions = ['CREEDS', 'L1000', 'Both'];
-const expressionOptions = ['Up', 'Down'];
+const expressionMapping = {
+  'Up-Regulation': 'Up',
+  'Down-Regulation': 'Down',
+  'Down': 'Down-Regulation',
+  'Up': 'Up-Regulation',
+};
 
 export default class ResultsScreen extends Component {
   static route = {
@@ -76,9 +81,9 @@ export default class ResultsScreen extends Component {
         <SegmentedControls
           tint={'#00bcd6'}
           selectedTint= {'white'}
-          options={expressionOptions}
-          onSelection={this._setExpression}
-          selectedOption={this.store.expression}
+          options={['Up-Regulation', 'Down-Regulation']}
+          onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+          selectedOption={expressionMapping[this.store.expression]}
         />
         <View style={AppStyles.spacer_10} />
         <Text>CREEDS</Text>
