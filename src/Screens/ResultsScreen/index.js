@@ -1,10 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
-import Store from '../../Stores/store';
+import AppIntro from 'react-native-app-intro';
 
+import Store from '../../Stores/store';
 import DrugResultContainer from '../../Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
@@ -47,6 +48,7 @@ export default class ResultsScreen extends Component {
 
   render() {
     console.log('resultScreen is re-rendering');
+    // <DrugResultContainer />
     return (
       <View style={[AppStyles.container, AppStyles.flex1]}>
         <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
@@ -66,9 +68,15 @@ export default class ResultsScreen extends Component {
             onSelection={(exp) => this._setExpression(expressionMapping[exp])}
             selectedOption={expressionMapping[this.store.expression]}
           />
-          <View style={AppStyles.spacer_5} />
         </View>
-        <DrugResultContainer />
+        <AppIntro style={AppStyles.flex1}>
+          <View style={[styles.slide,{ backgroundColor: '#fa931d' }]}>
+            <View level={10}><Text style={styles.text}>CREEDS</Text></View>
+          </View>
+          <View style={[styles.slide, { backgroundColor: '#a4b602' }]}>
+            <View level={-10}><Text style={styles.text}>L1000</Text></View>
+          </View>
+        </AppIntro>
       </View>
     );
   }

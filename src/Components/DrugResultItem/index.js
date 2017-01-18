@@ -21,7 +21,6 @@ export default function DrugResultItem(props) {
     </View>
   );
 
-
   return (
     <Accordion
       header={header}
