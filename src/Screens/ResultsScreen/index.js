@@ -27,13 +27,13 @@ const expressionMapping = {
 };
 
 export default class ResultsScreen extends Component {
-  static route = {
-    navigationBar: {
-      title(params) {
-        return `${params.geneName}`
-      },
-    }
-  }
+  // static route = {
+  //   navigationBar: {
+  //     title(params) {
+  //       return `${params.geneName}`
+  //     },
+  //   }
+  // }
 
   constructor(props, context) {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
@@ -70,6 +70,7 @@ export default class ResultsScreen extends Component {
 
     return (
       <View style={[AppStyles.container, AppStyles.flex1, AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
+        <View style={AppStyles.spacer_10} />
         <SegmentedControls
           tint={'#00c28a'}
           selectedTint= {'white'}
