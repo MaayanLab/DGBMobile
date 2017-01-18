@@ -9,7 +9,7 @@ export default function DrugResultItem(props) {
 
   const header = (
     <View style={AppStyles.flex1}>
-      <Text>{resultItem.drug_name}</Text>
+      <Text>{resultItem.drug_name} | {resultItem.p_value} | {resultItem.fold_change}</Text>
     </View>
   );
 
