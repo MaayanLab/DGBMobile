@@ -46,6 +46,7 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
+    console.log('resultScreen is re-rendering');
     return (
       <View style={[AppStyles.container, AppStyles.flex1]}>
         <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
