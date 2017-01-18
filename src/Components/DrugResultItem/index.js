@@ -1,3 +1,5 @@
+'use strict';
+
 import React from 'react';
 import { View, Text } from 'react-native';
 import Accordion from 'react-native-accordion';

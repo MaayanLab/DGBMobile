@@ -1,29 +1,21 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, ListView } from 'react-native';
-import {
-  Button,
-  Icon,
-  FormLabel,
-  FormInput
-} from 'react-native-elements';
-import isEqual from 'lodash/isEqual';
-import mobx from 'mobx';
+import { View } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Store from '../../Stores/store';
 
-import DrugResultItem from '../../Components/DrugResultItem';
+import DrugResultContainer from '../../Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
 import AppStyles from '../../styles';
 
 const datasetOptions = ['CREEDS', 'L1000', 'Both'];
 const expressionMapping = {
-  'Up-Regulation': 'Up',
-  'Down-Regulation': 'Down',
-  'Down': 'Down-Regulation',
-  'Up': 'Up-Regulation',
+  'Up-Regulated': 'Up',
+  'Down-Regulated': 'Down',
+  'Down': 'Down-Regulated',
+  'Up': 'Up-Regulated',
 };
 
 export default class ResultsScreen extends Component {
@@ -39,13 +31,6 @@ export default class ResultsScreen extends Component {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
     super(props, context)
     this.store = Store;
-    this.state = {
-      results: this.store.results
-    }
-  }
-
-  _goToHome() {
-    this.store.clearResults();
   }
 
   _setDataset = (dataset) => {
@@ -61,42 +46,28 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
-    const creedsData = mobx.toJS(this.state.results.creeds);
-    const l1000Data = mobx.toJS(this.state.results.l1000);
-
-    const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !isEqual(r1, r2) });
-    const creedsDataSource = ds.cloneWithRows(creedsData);
-    const l1000DataSource = ds.cloneWithRows(l1000Data);
-
     return (
-      <View style={[AppStyles.container, AppStyles.flex1, AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
-        <View style={AppStyles.spacer_10} />
-        <SegmentedControls
-          tint={'#00c28a'}
-          selectedTint= {'white'}
-          options={datasetOptions}
-          onSelection={this._setDataset}
-          selectedOption={this.store.dataset}
-        />
-        <View style={AppStyles.spacer_5} />
-        <SegmentedControls
-          tint={'#00bcd6'}
-          selectedTint= {'white'}
-          options={['Up-Regulation', 'Down-Regulation']}
-          onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-          selectedOption={expressionMapping[this.store.expression]}
-        />
-        <View style={AppStyles.spacer_5} />
-        <Text>CREEDS</Text>
-        <ListView
-          dataSource={creedsDataSource}
-          renderRow={rowData => <DrugResultItem entry={rowData} />}
-        />
-        <Text>L1000</Text>
-        <ListView
-          dataSource={l1000DataSource}
-          renderRow={rowData => <DrugResultItem entry={rowData} />}
-        />
+      <View style={[AppStyles.container, AppStyles.flex1]}>
+        <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
+          <View style={AppStyles.spacer_5} />
+          <SegmentedControls
+            tint={'#00c28a'}
+            selectedTint= {'white'}
+            options={datasetOptions}
+            onSelection={this._setDataset}
+            selectedOption={this.store.dataset}
+          />
+          <View style={AppStyles.spacer_5} />
+          <SegmentedControls
+            tint={'#00bcd6'}
+            selectedTint= {'white'}
+            options={['Up-Regulated', 'Down-Regulated']}
+            onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+            selectedOption={expressionMapping[this.store.expression]}
+          />
+          <View style={AppStyles.spacer_5} />
+        </View>
+        <DrugResultContainer />
       </View>
     );
   }

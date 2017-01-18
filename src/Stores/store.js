@@ -3,6 +3,8 @@
 import { observable } from 'mobx';
 
 export default observable({
+  // test: 0,
+  // increaseTest() { this.test+= 1},
   gene: '',
   expression: '',
   dataset: '',
