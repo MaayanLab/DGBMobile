@@ -77,7 +77,7 @@ export default class ResultsScreen extends Component {
           onSelection={this._setDataset}
           selectedOption={this.store.dataset}
         />
-        <View style={AppStyles.spacer_10} />
+        <View style={AppStyles.spacer_5} />
         <SegmentedControls
           tint={'#00bcd6'}
           selectedTint= {'white'}
@@ -85,7 +85,7 @@ export default class ResultsScreen extends Component {
           onSelection={(exp) => this._setExpression(expressionMapping[exp])}
           selectedOption={expressionMapping[this.store.expression]}
         />
-        <View style={AppStyles.spacer_10} />
+        <View style={AppStyles.spacer_5} />
         <Text>CREEDS</Text>
         <ListView
           dataSource={creedsDataSource}

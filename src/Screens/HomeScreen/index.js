@@ -57,7 +57,7 @@ export default class HomeScreen extends Component {
             <FormInput
               style={styles.formInput}
               placeholder="Enter a gene symbol e.g. AKT1."
-              onChangeText={(input) => this.setState({input: input})}
+              onChangeText={(input) => this.setState({input: input.toUpperCase()})}
               value={this.state.input}
             />
           </View>
