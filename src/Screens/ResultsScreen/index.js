@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import AppIntro from 'react-native-app-intro';
 
@@ -18,6 +18,8 @@ const expressionMapping = {
   'Down': 'Down-Regulated',
   'Up': 'Up-Regulated',
 };
+
+const windows = Dimensions.get('window');
 
 export default class ResultsScreen extends Component {
   // static route = {
@@ -47,37 +49,43 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
-    console.log('resultScreen is re-rendering');
-    // <DrugResultContainer />
+    // <View style={AppStyles.spacer_5} />
+    // <SegmentedControls
+    //   tint={'#00c28a'}
+    //   selectedTint= {'white'}
+    //   options={datasetOptions}
+    //   onSelection={this._setDataset}
+    //   selectedOption={this.store.dataset}
+    // />
     return (
-      <View style={[AppStyles.container, AppStyles.flex1]}>
-        <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical]}>
-          <View style={AppStyles.spacer_5} />
-          <SegmentedControls
-            tint={'#00c28a'}
-            selectedTint= {'white'}
-            options={datasetOptions}
-            onSelection={this._setDataset}
-            selectedOption={this.store.dataset}
-          />
-          <View style={AppStyles.spacer_5} />
-          <SegmentedControls
-            tint={'#00bcd6'}
-            selectedTint= {'white'}
-            options={['Up-Regulated', 'Down-Regulated']}
-            onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-            selectedOption={expressionMapping[this.store.expression]}
-          />
+      <AppIntro style={[AppStyles.container, AppStyles.flex1]}>
+        <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
+          <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: windows.width, height: windows.height}]} level={10}>
+            <Text style={styles.text}>{this.props.geneName} | CREEDS</Text>
+              <SegmentedControls
+                tint={'#00bcd6'}
+                selectedTint= {'white'}
+                options={['Up-Regulated', 'Down-Regulated']}
+                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                selectedOption={expressionMapping[this.store.expression]}
+              />
+            <DrugResultContainer dataset="CREEDS" />
+          </View>
         </View>
-        <AppIntro style={AppStyles.flex1}>
-          <View style={[styles.slide,{ backgroundColor: '#fa931d' }]}>
-            <View level={10}><Text style={styles.text}>CREEDS</Text></View>
+        <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
+          <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: windows.width, height: windows.height}]} level={-10}>
+            <Text style={styles.text}>{this.props.geneName} | L1000</Text>
+              <SegmentedControls
+                tint={'#00bcd6'}
+                selectedTint= {'white'}
+                options={['Up-Regulated', 'Down-Regulated']}
+                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                selectedOption={expressionMapping[this.store.expression]}
+              />
+            <DrugResultContainer dataset="L1000" />
           </View>
-          <View style={[styles.slide, { backgroundColor: '#a4b602' }]}>
-            <View level={-10}><Text style={styles.text}>L1000</Text></View>
-          </View>
-        </AppIntro>
-      </View>
+        </View>
+      </AppIntro>
     );
   }
 }

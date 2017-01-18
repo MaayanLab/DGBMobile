@@ -16,23 +16,22 @@ export default @observer class DrugResultsContainer extends Component {
     super(props, context)
     this.store = Store;
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !isEqual(r1, r2) });
-    const creedsData = mobx.toJS(Store.results.creeds);
-    this.creedsDataSource = ds.cloneWithRows(creedsData);
-    const l1000Data = mobx.toJS(Store.results.l1000);
-    this.l1000DataSource = ds.cloneWithRows(l1000Data);
+
+    if (props.dataset === 'CREEDS') {
+      const creedsData = mobx.toJS(Store.results.creeds);
+      this.dataSource = ds.cloneWithRows(creedsData);
+
+    } else {
+      const l1000Data = mobx.toJS(Store.results.l1000);
+      this.dataSource = ds.cloneWithRows(l1000Data);
+    }
   }
 
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.flex1]}>
-        <Text>CREEDS</Text>
         <ListView
-          dataSource={this.creedsDataSource}
-          renderRow={rowData => <DrugResultItem entry={rowData} />}
-        />
-        <Text>L1000</Text>
-        <ListView
-          dataSource={this.l1000DataSource}
+          dataSource={this.dataSource}
           renderRow={rowData => <DrugResultItem entry={rowData} />}
         />
       </View>
