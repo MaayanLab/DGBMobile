@@ -16,7 +16,7 @@ import AppStyles from '../../styles';
 export default class ExpressionScreen extends Component {
   static route = {
     // navigationBar: {
-    //   title: 'Dr. Gene Badger',
+    //   title: 'Drug-Gene Badger',
     // }
   }
 

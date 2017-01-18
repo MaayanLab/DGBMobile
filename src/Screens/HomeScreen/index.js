@@ -16,7 +16,7 @@ import AppStyles from '../../styles';
 export default class HomeScreen extends Component {
   static route = {
     // navigationBar: {
-    //   title: 'Dr. Gene Badger',
+    //   title: 'Drug-Gene Badger',
     // }
   }
 
@@ -48,7 +48,7 @@ export default class HomeScreen extends Component {
             style={styles.next}
           />
           <Text style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.title]}>
-            Dr. Gene Badger
+            Drug-Gene Badger
           </Text>
         </View>
         <View style={[AppStyles.flex1, styles.geneFormContainer]}>
