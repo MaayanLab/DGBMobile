@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
-import AppIntro from 'react-native-app-intro';
+import Swiper from 'react-native-swiper';
 
 import Store from '../../Stores/store';
 import DrugResultContainer from '../../Containers/DrugResultsContainer'
@@ -58,7 +58,7 @@ export default class ResultsScreen extends Component {
     //   selectedOption={this.store.dataset}
     // />
     return (
-      <AppIntro style={[AppStyles.container, AppStyles.flex1]}>
+      <Swiper showButtons={false} loop={false}>
         <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
           <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: windows.width, height: windows.height}]} level={10}>
             <Text style={styles.text}>{this.props.geneName} | CREEDS</Text>
@@ -85,7 +85,7 @@ export default class ResultsScreen extends Component {
             <DrugResultContainer dataset="L1000" />
           </View>
         </View>
-      </AppIntro>
+      </Swiper>
     );
   }
 }
