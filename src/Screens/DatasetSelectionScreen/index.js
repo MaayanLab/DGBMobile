@@ -33,7 +33,7 @@ export default class DatasetSelectionScreen extends Component {
     // otherwise show spinner
     const { gene, expression } = this.store;
     const bodyForm = { symbol: gene, expression, dataset };
-    const url = 'http://127.0.0.1:5000/DGB/api/v1/';
+    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
     fetch(url, {
       // credentials: 'include', //pass cookies, for authentication
       method: 'POST',
