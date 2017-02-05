@@ -37,6 +37,7 @@
 		C781B056C4974004A9A26480 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 147D6E5254CF41728A003F90 /* Foundation.ttf */; };
 		CE8374581E2BB5F40091C5F6 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE83743C1E2BB5BB0091C5F6 /* Lato-Light.ttf */; };
 		CE8374591E2BB5F70091C5F6 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8374571E2BB5C40091C5F6 /* Lato-Regular.ttf */; };
+		CE8FFC4A1E46F93D00A56DDF /* JosefinSlab-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE8FFC2D1E46F93300A56DDF /* JosefinSlab-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +267,7 @@
 		BEF0CFDB208B410CBB6785C3 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		CE83743C1E2BB5BB0091C5F6 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Light.ttf"; path = "../../Downloads/Lato2OFL/Lato-Light.ttf"; sourceTree = "<group>"; };
 		CE8374571E2BB5C40091C5F6 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Lato-Regular.ttf"; path = "../../Downloads/Lato2OFL/Lato-Regular.ttf"; sourceTree = "<group>"; };
+		CE8FFC2D1E46F93300A56DDF /* JosefinSlab-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "JosefinSlab-SemiBold.ttf"; path = "../../Downloads/josefin-slab/JosefinSlab-SemiBold.ttf"; sourceTree = "<group>"; };
 		E9254B5F46184A50B25444EB /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		EAFDF6CBB243444E86B94EFD /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -456,6 +458,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				CE8FFC2D1E46F93300A56DDF /* JosefinSlab-SemiBold.ttf */,
 				CE83743C1E2BB5BB0091C5F6 /* Lato-Light.ttf */,
 				CE8374571E2BB5C40091C5F6 /* Lato-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* DGBMobile */,
@@ -822,6 +825,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE8FFC4A1E46F93D00A56DDF /* JosefinSlab-SemiBold.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				CE8374581E2BB5F40091C5F6 /* Lato-Light.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,

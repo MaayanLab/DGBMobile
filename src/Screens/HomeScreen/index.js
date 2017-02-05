@@ -48,7 +48,7 @@ export default class HomeScreen extends Component {
           <Text style={[styles.title]}>
             Dr. Gene Budger
           </Text>
-          <Text style={[AppStyles.paddingHorizontal, styles.paddingTop]}>
+          <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
             Search for drugs to maximally change the expression of a target mammalian gene.
           </Text>
         </View>

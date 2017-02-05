@@ -39,7 +39,7 @@ export default class ExpressionScreen extends Component {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
         <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
-          <Text style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
+          <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
             In which direction would you like {`${geneName}`} to be expressed?
           </Text>
         </View>

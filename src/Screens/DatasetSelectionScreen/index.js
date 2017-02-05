@@ -63,7 +63,7 @@ export default class DatasetSelectionScreen extends Component {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]}>
         <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
-          <Text style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
+          <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
             Which dataset would you like to use?
           </Text>
         </View>

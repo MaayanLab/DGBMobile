@@ -21,6 +21,12 @@ export default StyleSheet.create({
     height: AppConfig.windowHeight,
     width: AppConfig.windowWidth,
   },
+  defaultFont: {
+    fontFamily: 'Lato-Regular',
+  },
+  defaultFontLight: {
+    fontFamily: 'Lato-Light',
+  },
 
   /* Aligning items */
   rightAligned: {

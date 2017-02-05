@@ -14,7 +14,6 @@ export default StyleSheet.create({
   },
   question: {
     textAlign: 'center',
-    fontFamily: 'Lato-Regular',
     fontSize: 25,
     color: '#8e8e8e',
   },
