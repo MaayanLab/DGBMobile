@@ -3,7 +3,7 @@ import config from '../../config';
 
 export default StyleSheet.create({
   title: {
-    fontSize: 30,
+    fontSize: 40,
     fontFamily: 'JosefinSlab-SemiBold',
     color: 'gray',
   },
@@ -17,15 +17,18 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
   },
   logo: {
-    width: 100,
-    height: 120,
+    width: 120,
+    height: 140,
     resizeMode: 'contain',
   },
   paddingTop: {
-    paddingTop: 10,
+    // paddingTop: 10,
   },
   topFlex: {
-    flex: 1.,
+    flex: 1,
+  },
+  midFlex: {
+    flex: 0.2,
   },
   bottomFlex: {
     flex: 1,
