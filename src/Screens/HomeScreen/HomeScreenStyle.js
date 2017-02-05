@@ -14,6 +14,35 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   geneFormContainer: {
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
+  logo: {
+    width: 100,
+    height: 120,
+    resizeMode: 'contain',
+  },
+  paddingTop: {
+    paddingTop: 10,
+  },
+  topFlex: {
+    flex: 1.,
+  },
+  bottomFlex: {
+    flex: 1,
+  },
+//   centerLogoWrapper: {
+//   height: 25,
+//   width: 25,
+//   borderRadius: 12,
+//   backgroundColor: 'white',
+//   flexDirection: 'row',
+//   justifyContent: 'center',
+//   alignItems: 'center',
+//   overflow: 'hidden',
+// },
+// centerLogo: {
+//   height: 20,
+//   width: 20,
+//   resizeMode: 'contain',
+// },
 });
