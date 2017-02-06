@@ -75,7 +75,7 @@ export default class HomeScreen extends Component {
           </Text>
         </View>
         {
-          currWidth < currHeight ?
+          currHeight > currWidth  ?
           (<View style={[styles.midFlex, AppStyles.containerCentered]}>
             <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
               Search for drugs to maximally change the expression of a target mammalian gene.
