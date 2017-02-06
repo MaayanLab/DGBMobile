@@ -3,11 +3,18 @@ import config from '../../config';
 
 export default StyleSheet.create({
   regulationDirectionContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+  },
+  landscape: {
     flexDirection: 'row',
   },
   boxButton: {
-    height: 100,
-    width: 150,
+    height: 150,
+    width: 200,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   navButtonContainer: {
     justifyContent: 'center',

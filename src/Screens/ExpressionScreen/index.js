@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import {
   Button,
   Icon,
@@ -13,6 +13,8 @@ import Store from '../../Stores/store';
 import styles from './ExpressionScreenStyle';
 import AppStyles from '../../styles';
 
+const { width, height } = Dimensions.get('window');
+
 export default class ExpressionScreen extends Component {
   static route = {
     // navigationBar: {
@@ -23,6 +25,9 @@ export default class ExpressionScreen extends Component {
   constructor(props) {
     super(props);
     this.store = Store;
+    this.state = {
+      layout: { height, width }
+    }
   }
 
   _goBackHome = () => {
@@ -34,28 +39,45 @@ export default class ExpressionScreen extends Component {
     this.props.navigator.push('datasetSelection');
   }
 
+  _onLayout = (event) => {
+    this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width: event.nativeEvent.layout.width,
+      },
+    });
+  }
+
   render() {
+    const currHeight = this.state.layout.height;
+    const currWidth = this.state.layout.width;
     const geneName = this.store.gene;
+    const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer];
+    if (currHeight < currWidth) {
+      buttonOrientationClasses.push(styles.landscape);
+    }
     return (
-      <View style={[AppStyles.container, AppStyles.justifyCenter]}>
+      <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
           <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
-            How would you like {`${geneName}`} to be affected?
+            How would you like to affect {`${geneName}`}?
           </Text>
         </View>
-        <View style={[AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer]}>
+        <View style={buttonOrientationClasses}>
           <Button
             raised
-            title="Up"
-            icon={{name: "keyboard-arrow-up"}}
+            large
+            title="Up-Regulate"
+            icon={{name: "keyboard-arrow-up", size: 55, style: {marginRight: 0} }}
             backgroundColor="#00bcd6"
             onPress={() => { this._setExpressionAndGoToDataSelection('Up') }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
-            title="Down"
-            icon={{name: "keyboard-arrow-down"}}
+            large
+            title="Down-Regulate"
+            icon={{name: "keyboard-arrow-down", size: 55, style: {marginRight: 0} }}
             backgroundColor="#00bcd6"
             onPress={() => { this._setExpressionAndGoToDataSelection('Down') }}
             buttonStyle={styles.boxButton}
