@@ -7,6 +7,10 @@ export default StyleSheet.create({
     fontFamily: 'JosefinSlab-SemiBold',
     color: 'gray',
   },
+  formContainer: {
+    flexDirection: 'column',
+    marginTop: 25,
+  },
   formInput: {
     flex: 1,
     height: 40,

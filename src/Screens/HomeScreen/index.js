@@ -27,6 +27,7 @@ export default class HomeScreen extends Component {
     this.store = Store;
     this.state = {
       input: '',
+      atHome: true,
       layout: { height, width },
     }
   }
@@ -72,32 +73,43 @@ export default class HomeScreen extends Component {
 
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
-        <View style={[styles.topFlex, AppStyles.containerCentered, AppStyles.justifyBottom]}>
-          <Image
-            source={dgbLogo}
-            style={styles.logo}
+        {
+          this.state.atHome ?
+          (<View
+              style={[styles.topFlex, AppStyles.containerCentered, AppStyles.justifyBottom]}
+            >
+            <Image
+              source={dgbLogo}
+              style={[styles.logo]}
+            />
+            <Text style={[styles.title]}>
+              Dr. Gene Budger
+            </Text>
+          </View>) :
+          null
+        }
+        <View style={[styles.formContainer, { justifyContent: this.state.atHome ? 'flex-start' : 'center' }]}>
+          <FormInput
+            style={styles.formInput}
+            placeholder="Which gene you would like to budge?"
+            onChangeText={(input) => this.setState({atHome: false, input: input.toUpperCase()})}
+            value={this.state.input}
           />
-          <Text style={[styles.title]}>
-            Dr. Gene Budger
-          </Text>
         </View>
-        <FormInput
-          style={styles.formInput}
-          placeholder="Which gene you would like to budge?"
-          onChangeText={(input) => this.setState({input: input.toUpperCase()})}
-          value={this.state.input}
-        />
-        <View style={[styles.bottomFlex, styles.geneFormContainer]}>
-          <Button
-            raised
-            iconRight
-            title="Next"
-            icon={{name: "keyboard-arrow-right"}}
-            backgroundColor="#00c28a"
-            onPress={this._goToExpression}
-          />
-
-        </View>
+        {
+          this.state.atHome ?
+          (<View style={[styles.bottomFlex, styles.geneFormContainer]}>
+            <Button
+              raised
+              iconRight
+              title="Next"
+              icon={{name: "keyboard-arrow-right"}}
+              backgroundColor="#00c28a"
+              onPress={this._goToExpression}
+            />
+          </View>) :
+          <View style={styles.bottomFlex} />
+        }
       </View>
     )
   }
