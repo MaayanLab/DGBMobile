@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, Dimensions } from 'react-native';
 import {
   Button,
   Icon,
@@ -12,6 +12,8 @@ import dgbLogo from '../../resources/dgb_logo.png';
 import Store from '../../Stores/store';
 import styles from './HomeScreenStyle';
 import AppStyles from '../../styles';
+
+const { width, height } = Dimensions.get('window');
 
 export default class HomeScreen extends Component {
   static route = {
@@ -25,6 +27,7 @@ export default class HomeScreen extends Component {
     this.store = Store;
     this.state = {
       input: '',
+      layout: { height, width },
     }
   }
 
@@ -34,12 +37,34 @@ export default class HomeScreen extends Component {
     this.props.navigator.push('expression');
   }
 
+  _renderSubTitle = () => {
+    return (
+      <View style={[styles.midFlex, AppStyles.containerCentered]}>
+        <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
+          Search for drugs to maximally change the expression of a target mammalian gene.
+        </Text>
+      </View>
+    );
+  }
+
+  _onLayout = (event) => {
+    this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width: event.nativeEvent.layout.width,
+      },
+    });
+  }
+
   render() {
     // Perhaps remove next button and go forward when autocomplete is working.
     // Leave button there for now for simple navigation
     // Also add error handling
+    const currHeight = this.state.layout.height;
+    const currWidth = this.state.layout.width;
+
     return (
-      <View style={[AppStyles.container, AppStyles.justifyCenter]}>
+      <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         <View style={[styles.topFlex, AppStyles.containerCentered, AppStyles.justifyBottom]}>
           <Image
             source={dgbLogo}
@@ -49,11 +74,15 @@ export default class HomeScreen extends Component {
             Dr. Gene Budger
           </Text>
         </View>
-        <View style={[styles.midFlex, AppStyles.containerCentered]}>
-          <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
-            Search for drugs to maximally change the expression of a target mammalian gene.
-          </Text>
-        </View>
+        {
+          currWidth < currHeight ?
+          (<View style={[styles.midFlex, AppStyles.containerCentered]}>
+            <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
+              Search for drugs to maximally change the expression of a target mammalian gene.
+            </Text>
+          </View>) :
+          null
+        }
         <View style={[styles.bottomFlex, styles.geneFormContainer]}>
           <View>
             <FormLabel>Gene Symbol</FormLabel>
