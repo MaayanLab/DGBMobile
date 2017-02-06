@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Dimensions } from 'react-native';
 import {
   Button,
   Icon,
@@ -14,6 +14,8 @@ import Store from '../../Stores/store';
 import styles from './DatasetSelectionScreenStyle';
 import AppStyles from '../../styles';
 
+const { width, height } = Dimensions.get('window');
+
 export default class DatasetSelectionScreen extends Component {
   static route = {
   }
@@ -21,6 +23,9 @@ export default class DatasetSelectionScreen extends Component {
   constructor(props) {
     super(props);
     this.store = Store;
+    this.state = {
+      layout: { height, width }
+    }
   }
 
   _goBackToExpression = () => {
@@ -59,39 +64,46 @@ export default class DatasetSelectionScreen extends Component {
     });
   }
 
+  _onLayout = (event) => {
+    this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width: event.nativeEvent.layout.width,
+      },
+    });
+  }
+
+
   render() {
+    const currHeight = this.state.layout.height;
+    const currWidth = this.state.layout.width;
+    const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer];
+    if (currHeight < currWidth) {
+      buttonOrientationClasses.push(styles.landscape);
+    }
     return (
-      <View style={[AppStyles.container, AppStyles.justifyCenter]}>
+      <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
           <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
             Which dataset would you like to use?
           </Text>
         </View>
-        <View style={[AppStyles.containerCentered, AppStyles.flex1, styles.regulationDirectionContainer]}>
+        <View style={buttonOrientationClasses}>
           <Button
             raised
+            large
             title="L1000"
-            icon={{name: "keyboard-arrow-up"}}
             backgroundColor="#00bcd6"
             onPress={() => { this._makeFetchAndGoToResults('L1000') }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
+            large
             title="CREEDS"
-            icon={{name: "keyboard-arrow-down"}}
             backgroundColor="#00bcd6"
             onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
             buttonStyle={styles.boxButton}
-          />
-        </View>
-        <View style={[AppStyles.containerCentered, AppStyles.flex1, styles.regulationDirectionContainer]}>
-          <Button
-            raised
-            title="Both"
-            backgroundColor="#00bcd6"
-            onPress={() => { this._makeFetchAndGoToResults('Both') }}
-            buttonStyle={styles.both}
           />
         </View>
         <View style={[AppStyles.flex1, styles.navButtonContainer]}>

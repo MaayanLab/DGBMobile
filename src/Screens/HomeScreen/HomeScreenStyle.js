@@ -3,7 +3,7 @@ import config from '../../config';
 
 export default StyleSheet.create({
   title: {
-    fontSize: 40,
+    fontSize: 35,
     fontFamily: 'JosefinSlab-SemiBold',
     color: 'gray',
   },
@@ -14,7 +14,8 @@ export default StyleSheet.create({
     borderWidth: 1,
   },
   geneFormContainer: {
-    justifyContent: 'space-around',
+    paddingVertical: 30,
+    // justifyContent: 'space-around',
   },
   logo: {
     width: 120,
@@ -31,6 +32,6 @@ export default StyleSheet.create({
     flex: 0.2,
   },
   bottomFlex: {
-    flex: 1,
+    flex: 0.9,
   },
 });

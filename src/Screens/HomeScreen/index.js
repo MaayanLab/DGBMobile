@@ -62,6 +62,13 @@ export default class HomeScreen extends Component {
     // Also add error handling
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
+    // {
+    //   currHeight > currWidth  ?
+    //   (<Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
+    //     Search for drugs to maximally change the expression of a target mammalian gene.
+    //   </Text>) :
+    //   null
+    // }
 
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
@@ -74,25 +81,13 @@ export default class HomeScreen extends Component {
             Dr. Gene Budger
           </Text>
         </View>
-        {
-          currHeight > currWidth  ?
-          (<View style={[styles.midFlex, AppStyles.containerCentered]}>
-            <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
-              Search for drugs to maximally change the expression of a target mammalian gene.
-            </Text>
-          </View>) :
-          null
-        }
+        <FormInput
+          style={styles.formInput}
+          placeholder="Which gene you would like to budge?"
+          onChangeText={(input) => this.setState({input: input.toUpperCase()})}
+          value={this.state.input}
+        />
         <View style={[styles.bottomFlex, styles.geneFormContainer]}>
-          <View>
-            <FormLabel>Gene Symbol</FormLabel>
-            <FormInput
-              style={styles.formInput}
-              placeholder="Which gene you would like to budge?"
-              onChangeText={(input) => this.setState({input: input.toUpperCase()})}
-              value={this.state.input}
-            />
-          </View>
           <Button
             raised
             iconRight
@@ -101,6 +96,7 @@ export default class HomeScreen extends Component {
             backgroundColor="#00c28a"
             onPress={this._goToExpression}
           />
+
         </View>
       </View>
     )

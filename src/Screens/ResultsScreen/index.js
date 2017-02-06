@@ -19,7 +19,8 @@ const expressionMapping = {
   'Up': 'Up-Regulated',
 };
 
-const windows = Dimensions.get('window');
+// const windows = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default class ResultsScreen extends Component {
   // static route = {
@@ -34,6 +35,9 @@ export default class ResultsScreen extends Component {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
     super(props, context)
     this.store = Store;
+    this.state = {
+      layout: { height, width },
+    }
   }
 
   _setDataset = (dataset) => {
@@ -48,6 +52,15 @@ export default class ResultsScreen extends Component {
     }
   }
 
+  _onLayout = (event) => {
+    this.setState({
+      layout: {
+        height: event.nativeEvent.layout.height,
+        width: event.nativeEvent.layout.width,
+      },
+    });
+  }
+
   render() {
     // <View style={AppStyles.spacer_5} />
     // <SegmentedControls
@@ -57,35 +70,41 @@ export default class ResultsScreen extends Component {
     //   onSelection={this._setDataset}
     //   selectedOption={this.store.dataset}
     // />
+
+    const currHeight = this.state.layout.height;
+    const currWidth = this.state.layout.width;
+    const swiperOrientationStyle = [AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: currWidth, height: currHeight}];
     return (
-      <Swiper showButtons={false} loop={false}>
-        <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
-          <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: windows.width, height: windows.height}]} level={10}>
-            <Text style={styles.text}>{this.props.geneName} | CREEDS</Text>
-              <SegmentedControls
-                tint={'#00bcd6'}
-                selectedTint= {'white'}
-                options={['Up-Regulated', 'Down-Regulated']}
-                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                selectedOption={expressionMapping[this.store.expression]}
-              />
-            <DrugResultContainer dataset="CREEDS" />
+      <View>
+        <Swiper showButtons={false} loop={false}>
+          <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
+            <View style={swiperOrientationStyle} level={10}>
+              <Text style={styles.text}>{this.props.geneName} | CREEDS</Text>
+                <SegmentedControls
+                  tint={'#00bcd6'}
+                  selectedTint= {'white'}
+                  options={['Up-Regulated', 'Down-Regulated']}
+                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                  selectedOption={expressionMapping[this.store.expression]}
+                />
+              <DrugResultContainer dataset="CREEDS" />
+            </View>
           </View>
-        </View>
-        <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
-          <View style={[AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: windows.width, height: windows.height}]} level={-10}>
-            <Text style={styles.text}>{this.props.geneName} | L1000</Text>
-              <SegmentedControls
-                tint={'#00bcd6'}
-                selectedTint= {'white'}
-                options={['Up-Regulated', 'Down-Regulated']}
-                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                selectedOption={expressionMapping[this.store.expression]}
-              />
-            <DrugResultContainer dataset="L1000" />
+          <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
+            <View style={swiperOrientationStyle} level={-10}>
+              <Text style={styles.text}>{this.props.geneName} | L1000</Text>
+                <SegmentedControls
+                  tint={'#00bcd6'}
+                  selectedTint= {'white'}
+                  options={['Up-Regulated', 'Down-Regulated']}
+                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                  selectedOption={expressionMapping[this.store.expression]}
+                />
+              <DrugResultContainer dataset="L1000" />
+            </View>
           </View>
-        </View>
-      </Swiper>
+        </Swiper>
+      </View>
     );
   }
 }
