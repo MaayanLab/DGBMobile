@@ -31,7 +31,7 @@ export default class ExpressionScreen extends Component {
   }
 
   _goBackHome = () => {
-    // this.props.navigator.pop();
+    this.props.navigation.goBack();
   }
 
   _setExpressionAndGoToDataSelection = (direction) => {

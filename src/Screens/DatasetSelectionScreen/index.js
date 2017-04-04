@@ -32,7 +32,7 @@ export default class DatasetSelectionScreen extends Component {
   }
 
   _goBackToExpression = () => {
-    // this.props.navigator.pop();
+    this.props.navigation.goBack();
   }
 
   _makeFetchAndGoToResults = (dataset) => {
