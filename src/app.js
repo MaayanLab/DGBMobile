@@ -1,30 +1,20 @@
 'use strict';
 
 import React, { Component } from 'react';
+import { StackNavigator } from 'react-navigation';
 import HomeScreen from './Screens/HomeScreen';
 import ExpressionScreen from './Screens/ExpressionScreen';
 import DatasetSelectionScreen from './Screens/DatasetSelectionScreen';
 import ResultsScreen from './Screens/ResultsScreen';
 
-import {
-  createRouter,
-  NavigationProvider,
-  StackNavigation,
-} from '@expo/ex-navigation';
+const DGBMobile = StackNavigator(
+  {
+    Home: { screen: HomeScreen },
+    Expression: { screen: ExpressionScreen },
+    DatasetSelection: { screen: DatasetSelectionScreen },
+    Results: { screen: ResultsScreen },
+  },
+  { headerMode: 'screen' }
+);
 
-const Router = createRouter(() => ({
-  home: () => HomeScreen,
-  expression: () => ExpressionScreen,
-  datasetSelection: () => DatasetSelectionScreen,
-  results: () => ResultsScreen,
-}));
-
-export default class DGBMobile extends Component {
-  render() {
-    return (
-      <NavigationProvider router={Router}>
-        <StackNavigation initialRoute={Router.getRoute('home')} />
-      </NavigationProvider>
-    );
-  }
-}
+export default DGBMobile;

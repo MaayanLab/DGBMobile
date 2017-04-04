@@ -19,6 +19,12 @@ import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 const { width, height } = Dimensions.get('window');
 
 export default class HomeScreen extends Component {
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
+  }
+
   constructor(props, context) {
     super(props, context)
     this.store = Store;
@@ -53,8 +59,9 @@ export default class HomeScreen extends Component {
   }
 
   _goToExpression = (gene) => {
+    const { navigate } = this.props.navigation;
     this.store.setGene(gene)
-    this.props.navigator.push('expression');
+    navigate('Expression');
     // this.setState({ input: "" });
   }
 

@@ -19,17 +19,14 @@ const expressionMapping = {
   'Up': 'Up-Regulated',
 };
 
-// const windows = Dimensions.get('window');
 const { width, height } = Dimensions.get('window');
 
 export default class ResultsScreen extends Component {
-  // static route = {
-  //   navigationBar: {
-  //     title(params) {
-  //       return `${params.geneName}`
-  //     },
-  //   }
-  // }
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
+  }
 
   constructor(props, context) {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif

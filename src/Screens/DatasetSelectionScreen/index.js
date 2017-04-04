@@ -17,7 +17,10 @@ import AppStyles from 'DGBMobile/src/styles';
 const { width, height } = Dimensions.get('window');
 
 export default class DatasetSelectionScreen extends Component {
-  static route = {
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
   }
 
   constructor(props) {
@@ -29,10 +32,11 @@ export default class DatasetSelectionScreen extends Component {
   }
 
   _goBackToExpression = () => {
-    this.props.navigator.pop();
+    // this.props.navigator.pop();
   }
 
   _makeFetchAndGoToResults = (dataset) => {
+    const { navigate } = this.props.navigation;
     this.store.setDataset(dataset)
     // make fetch and navigate to resultsScreen when fetch is successful
     // otherwise show spinner
@@ -55,7 +59,7 @@ export default class DatasetSelectionScreen extends Component {
       this.store.setResults(results)
     })
     .then(() => {
-      this.props.navigator.push('results', { geneName: this.store.gene.toUpperCase() })
+      navigate('Results', { geneName: this.store.gene.toUpperCase() })
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);

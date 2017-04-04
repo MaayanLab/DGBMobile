@@ -16,10 +16,10 @@ import AppStyles from 'DGBMobile/src/styles';
 const { width, height } = Dimensions.get('window');
 
 export default class ExpressionScreen extends Component {
-  static route = {
-    // navigationBar: {
-    //   title: 'Drug-Gene Badger',
-    // }
+  static navigationOptions = {
+    header: {
+      visible: false,
+    }
   }
 
   constructor(props) {
@@ -31,12 +31,13 @@ export default class ExpressionScreen extends Component {
   }
 
   _goBackHome = () => {
-    this.props.navigator.pop();
+    // this.props.navigator.pop();
   }
 
   _setExpressionAndGoToDataSelection = (direction) => {
+    const { navigate } = this.props.navigation;
     this.store.setExpression(direction)
-    this.props.navigator.push('datasetSelection');
+    navigate('DatasetSelection');
   }
 
   _onLayout = (event) => {
