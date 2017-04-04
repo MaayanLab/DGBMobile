@@ -67,7 +67,7 @@ export default class ResultsScreen extends Component {
     //   onSelection={this._setDataset}
     //   selectedOption={this.props.store.dataset}
     // />
-
+    const store = this.props.store;
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     const swiperOrientationStyle = [AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: currWidth, height: currHeight}];
@@ -82,7 +82,7 @@ export default class ResultsScreen extends Component {
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[this.props.store.expression]}
+                  selectedOption={expressionMapping[store.expression]}
                 />
               <DrugResultContainer dataset="CREEDS" />
             </View>
@@ -95,7 +95,7 @@ export default class ResultsScreen extends Component {
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[this.props.store.expression]}
+                  selectedOption={expressionMapping[store.expression]}
                 />
               <DrugResultContainer dataset="L1000" />
             </View>

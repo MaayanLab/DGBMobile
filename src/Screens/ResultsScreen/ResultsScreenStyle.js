@@ -13,12 +13,9 @@ export default StyleSheet.create({
   },
   slide: {
     flex: 1,
-    // paddingHorizontal: 20,
-    // paddingVertical: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
-    // padding: 15,
   },
   text: {
     color: '#fff',

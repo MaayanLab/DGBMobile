@@ -36,11 +36,12 @@ export default class DatasetSelectionScreen extends Component {
   }
 
   _makeFetchAndGoToResults = (dataset) => {
-    const { navigate } = this.props.navigation;
-    this.props.store.setDataset(dataset)
+    const { navigation, store } = this.props
+    const { navigate } = navigation;
+    store.setDataset(dataset)
     // make fetch and navigate to resultsScreen when fetch is successful
     // otherwise show spinner
-    const { gene, expression } = this.props.store;
+    const { gene, expression } = store;
     const bodyForm = { symbol: gene, expression, dataset };
     const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
     fetch(url, {
@@ -56,10 +57,10 @@ export default class DatasetSelectionScreen extends Component {
       return response.json()
     })
     .then(results => {
-      this.props.store.setResults(results)
+      store.setResults(results)
     })
     .then(() => {
-      navigate('Results', { geneName: this.props.store.gene.toUpperCase() })
+      navigate('Results', { geneName: store.gene.toUpperCase() })
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);

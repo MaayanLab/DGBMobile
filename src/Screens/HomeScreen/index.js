@@ -88,7 +88,6 @@ export default class HomeScreen extends Component {
     // Perhaps remove next button and go forward when autocomplete is working.
     // Leave button there for now for simple navigation
     // Also add error handling
-    console.log(this.props.store)
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     // {
