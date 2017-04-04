@@ -10,7 +10,7 @@ import {
   createRouter,
   NavigationProvider,
   StackNavigation,
-} from '@exponent/ex-navigation';
+} from '@expo/ex-navigation';
 
 const Router = createRouter(() => ({
   home: () => HomeScreen,

@@ -12,24 +12,43 @@ import dgbLogo from '../../resources/dgb_logo.png';
 import Store from '../../Stores/store';
 import styles from './HomeScreenStyle';
 import AppStyles from '../../styles';
+import { fuzzySearch } from '../../utils';
+import genesList from '../../resources/genes_list.json';
 
 const { width, height } = Dimensions.get('window');
 
 export default class HomeScreen extends Component {
-  static route = {
-    // navigationBar: {
-    //   title: 'Drug-Gene Badger',
-    // }
-  }
-
   constructor(props, context) {
     super(props, context)
     this.store = Store;
     this.state = {
       input: '',
-      atHome: true,
       layout: { height, width },
+      matchingGenes: [],
     }
+  }
+
+  returnMatchingGenes = (genesList, targetGeneString) => {
+    const input = targetGeneString.replace(/\./g, '\\\.').replace('\\', '\\\\');
+    let inpRegEx;
+    try {
+      inpRegEx = new RegExp(input, 'i');
+    } catch(e) {
+      console.log(e);
+      return [];
+    }
+    const matches = [];
+    const maxResults = 6;
+    for (let i = 0; i < genesList.length; i++) {
+      const currGene = genesList[i];
+      if (inpRegEx.test(currGene) && input.length) {
+        matches.push(currGene);
+      }
+      if (matches.length >= maxResults) {
+        return matches;
+      }
+    }
+    return matches;
   }
 
   _goToExpression = () => {
@@ -70,11 +89,12 @@ export default class HomeScreen extends Component {
     //   </Text>) :
     //   null
     // }
-
+    const userTyped = this.state.input.length > 0;
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         {
-          this.state.atHome ?
+          userTyped ?
+          null :
           (<View
               style={[styles.topFlex, AppStyles.containerCentered, AppStyles.justifyBottom]}
             >
@@ -85,19 +105,33 @@ export default class HomeScreen extends Component {
             <Text style={[styles.title]}>
               Dr. Gene Budger
             </Text>
-          </View>) :
-          null
+          </View>)
         }
-        <View style={[styles.formContainer, { justifyContent: this.state.atHome ? 'flex-start' : 'center' }]}>
+        <View style={[styles.formContainer, { justifyContent: userTyped ? 'center' : 'flex-start' }]}>
           <FormInput
             style={styles.formInput}
             placeholder="Which gene you would like to budge?"
-            onChangeText={(input) => this.setState({atHome: false, input: input.toUpperCase()})}
+            onChangeText={(input) => this.setState(
+              {
+                input: input.toUpperCase(),
+                matchingGenes: this.returnMatchingGenes(genesList, input),
+              }
+            )}
             value={this.state.input}
           />
         </View>
         {
-          this.state.atHome ?
+          userTyped ?
+            <View>
+              {this.state.matchingGenes.map(gene => {
+                return (<Text key={gene}>{gene}</Text>)
+              })}
+            </View> :
+          null
+        }
+        {
+          userTyped ?
+          <View style={styles.bottomFlex} /> :
           (<View style={[styles.bottomFlex, styles.geneFormContainer]}>
             <Button
               raised
@@ -107,8 +141,7 @@ export default class HomeScreen extends Component {
               backgroundColor="#00c28a"
               onPress={this._goToExpression}
             />
-          </View>) :
-          <View style={styles.bottomFlex} />
+          </View>)
         }
       </View>
     )
