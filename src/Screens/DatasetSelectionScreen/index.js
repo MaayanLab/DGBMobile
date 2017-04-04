@@ -10,12 +10,13 @@ import {
 } from 'react-native-elements';
 import 'fetch-everywhere';
 
-import Store from 'DGBMobile/src/Stores/store';
+import { observer } from 'mobx-react/native';
 import styles from './DatasetSelectionScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 
+@observer(['store'])
 export default class DatasetSelectionScreen extends Component {
   static navigationOptions = {
     header: {
@@ -25,7 +26,6 @@ export default class DatasetSelectionScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.store = Store;
     this.state = {
       layout: { height, width }
     }
@@ -37,10 +37,10 @@ export default class DatasetSelectionScreen extends Component {
 
   _makeFetchAndGoToResults = (dataset) => {
     const { navigate } = this.props.navigation;
-    this.store.setDataset(dataset)
+    this.props.store.setDataset(dataset)
     // make fetch and navigate to resultsScreen when fetch is successful
     // otherwise show spinner
-    const { gene, expression } = this.store;
+    const { gene, expression } = this.props.store;
     const bodyForm = { symbol: gene, expression, dataset };
     const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
     fetch(url, {
@@ -56,10 +56,10 @@ export default class DatasetSelectionScreen extends Component {
       return response.json()
     })
     .then(results => {
-      this.store.setResults(results)
+      this.props.store.setResults(results)
     })
     .then(() => {
-      navigate('Results', { geneName: this.store.gene.toUpperCase() })
+      navigate('Results', { geneName: this.props.store.gene.toUpperCase() })
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);

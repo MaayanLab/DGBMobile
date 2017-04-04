@@ -2,13 +2,13 @@
 
 import React, { Component } from 'react';
 import { Text, View, Image, Dimensions } from 'react-native';
+import { observer } from 'mobx-react/native';
 import {
   Button,
   Icon,
   FormLabel,
   FormInput
 } from 'react-native-elements';
-import Store from 'DGBMobile/src/Stores/store';
 import GeneSearchMatchItem from 'DGBMobile/src/Components/GeneSearchMatchItem';
 import AppStyles from 'DGBMobile/src/styles';
 
@@ -18,6 +18,7 @@ import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 
+@observer(['store'])
 export default class HomeScreen extends Component {
   static navigationOptions = {
     header: {
@@ -27,7 +28,6 @@ export default class HomeScreen extends Component {
 
   constructor(props, context) {
     super(props, context)
-    this.store = Store;
     this.state = {
       input: '',
       layout: { height, width },
@@ -60,7 +60,7 @@ export default class HomeScreen extends Component {
 
   _goToExpression = (gene) => {
     const { navigate } = this.props.navigation;
-    this.store.setGene(gene)
+    this.props.store.setGene(gene)
     navigate('Expression');
     // this.setState({ input: "" });
   }
@@ -88,6 +88,7 @@ export default class HomeScreen extends Component {
     // Perhaps remove next button and go forward when autocomplete is working.
     // Leave button there for now for simple navigation
     // Also add error handling
+    console.log(this.props.store)
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     // {

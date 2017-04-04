@@ -5,7 +5,7 @@ import { Text, View, Dimensions } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
 
-import Store from 'DGBMobile/src/Stores/store';
+import { observer } from 'mobx-react/native';
 import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
@@ -21,6 +21,7 @@ const expressionMapping = {
 
 const { width, height } = Dimensions.get('window');
 
+@observer(['store'])
 export default class ResultsScreen extends Component {
   static navigationOptions = {
     header: {
@@ -31,21 +32,20 @@ export default class ResultsScreen extends Component {
   constructor(props, context) {
     // HelveticaNeue-Light,Helvetica-Light,HelveticaNeue,Helvetica,Arial,sans-serif
     super(props, context)
-    this.store = Store;
     this.state = {
       layout: { height, width },
     }
   }
 
   _setDataset = (dataset) => {
-    if (this.store.dataset !== dataset) {
-      this.store.setDataset(dataset);
+    if (this.props.store.dataset !== dataset) {
+      this.props.store.setDataset(dataset);
     }
   }
 
   _setExpression = (expression) => {
-    if (this.store.expression !== expression) {
-      this.store.setExpression(expression);
+    if (this.props.store.expression !== expression) {
+      this.props.store.setExpression(expression);
     }
   }
 
@@ -65,7 +65,7 @@ export default class ResultsScreen extends Component {
     //   selectedTint= {'white'}
     //   options={datasetOptions}
     //   onSelection={this._setDataset}
-    //   selectedOption={this.store.dataset}
+    //   selectedOption={this.props.store.dataset}
     // />
 
     const currHeight = this.state.layout.height;
@@ -82,7 +82,7 @@ export default class ResultsScreen extends Component {
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[this.store.expression]}
+                  selectedOption={expressionMapping[this.props.store.expression]}
                 />
               <DrugResultContainer dataset="CREEDS" />
             </View>
@@ -95,7 +95,7 @@ export default class ResultsScreen extends Component {
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[this.store.expression]}
+                  selectedOption={expressionMapping[this.props.store.expression]}
                 />
               <DrugResultContainer dataset="L1000" />
             </View>

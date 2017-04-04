@@ -9,12 +9,13 @@ import {
   FormInput
 } from 'react-native-elements';
 
-import Store from 'DGBMobile/src/Stores/store';
+import { observer } from 'mobx-react/native';
 import styles from './ExpressionScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 
+@observer(['store'])
 export default class ExpressionScreen extends Component {
   static navigationOptions = {
     header: {
@@ -24,7 +25,6 @@ export default class ExpressionScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.store = Store;
     this.state = {
       layout: { height, width }
     }
@@ -36,7 +36,7 @@ export default class ExpressionScreen extends Component {
 
   _setExpressionAndGoToDataSelection = (direction) => {
     const { navigate } = this.props.navigation;
-    this.store.setExpression(direction)
+    this.props.store.setExpression(direction)
     navigate('DatasetSelection');
   }
 
@@ -52,7 +52,7 @@ export default class ExpressionScreen extends Component {
   render() {
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
-    const geneName = this.store.gene;
+    const geneName = this.props.store.gene;
     const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer];
     if (currHeight < currWidth) {
       buttonOrientationClasses.push(styles.landscape);
