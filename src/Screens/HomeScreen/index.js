@@ -8,11 +8,13 @@ import {
   FormLabel,
   FormInput
 } from 'react-native-elements';
-import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 import Store from 'DGBMobile/src/Stores/store';
+import GeneSearchMatchItem from 'DGBMobile/src/Components/GeneSearchMatchItem';
 import AppStyles from 'DGBMobile/src/styles';
-import genesList from 'DGBMobile/src/resources/genes_list.json';
+
 import styles from './HomeScreenStyle';
+import genesList from 'DGBMobile/src/resources/genes_list.json';
+import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 
@@ -50,10 +52,10 @@ export default class HomeScreen extends Component {
     return matches;
   }
 
-  _goToExpression = () => {
-    const gene = this.state.input;
+  _goToExpression = (gene) => {
     this.store.setGene(gene)
     this.props.navigator.push('expression');
+    // this.setState({ input: "" });
   }
 
   _renderSubTitle = () => {
@@ -121,14 +123,14 @@ export default class HomeScreen extends Component {
         </View>
         {
           userTyped ?
-            <View>
-              {this.state.matchingGenes.map(gene => {
-                return (
-                  <Text key={gene}>
-                    {gene}
-                  </Text>
-                )
-              })}
+            <View style={[AppStyles.paddingHorizontal]}>
+              {this.state.matchingGenes.map(gene =>
+                <GeneSearchMatchItem
+                  key={gene}
+                  geneName={gene}
+                  goToExpression={this._goToExpression}
+                />
+              )}
             </View> :
           null
         }
