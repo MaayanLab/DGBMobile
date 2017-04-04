@@ -5,11 +5,11 @@ import { Text, View, Dimensions } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
 
-import Store from '../../Stores/store';
-import DrugResultContainer from '../../Containers/DrugResultsContainer'
+import Store from 'DGBMobile/src/Stores/store';
+import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
-import AppStyles from '../../styles';
+import AppStyles from 'DGBMobile/src/styles';
 
 const datasetOptions = ['CREEDS', 'L1000', 'Both'];
 const expressionMapping = {

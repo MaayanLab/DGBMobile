@@ -9,9 +9,9 @@ import {
   FormInput
 } from 'react-native-elements';
 
-import Store from '../../Stores/store';
+import Store from 'DGBMobile/src/Stores/store';
 import styles from './ExpressionScreenStyle';
-import AppStyles from '../../styles';
+import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 

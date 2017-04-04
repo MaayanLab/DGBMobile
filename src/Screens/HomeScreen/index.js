@@ -8,12 +8,11 @@ import {
   FormLabel,
   FormInput
 } from 'react-native-elements';
-import dgbLogo from '../../resources/dgb_logo.png';
-import Store from '../../Stores/store';
+import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
+import Store from 'DGBMobile/src/Stores/store';
+import AppStyles from 'DGBMobile/src/styles';
+import genesList from 'DGBMobile/src/resources/genes_list.json';
 import styles from './HomeScreenStyle';
-import AppStyles from '../../styles';
-import { fuzzySearch } from '../../utils';
-import genesList from '../../resources/genes_list.json';
 
 const { width, height } = Dimensions.get('window');
 
@@ -124,7 +123,11 @@ export default class HomeScreen extends Component {
           userTyped ?
             <View>
               {this.state.matchingGenes.map(gene => {
-                return (<Text key={gene}>{gene}</Text>)
+                return (
+                  <Text key={gene}>
+                    {gene}
+                  </Text>
+                )
               })}
             </View> :
           null

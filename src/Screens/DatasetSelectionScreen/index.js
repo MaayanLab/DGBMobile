@@ -10,9 +10,9 @@ import {
 } from 'react-native-elements';
 import 'fetch-everywhere';
 
-import Store from '../../Stores/store';
+import Store from 'DGBMobile/src/Stores/store';
 import styles from './DatasetSelectionScreenStyle';
-import AppStyles from '../../styles';
+import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 
