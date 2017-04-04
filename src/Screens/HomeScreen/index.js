@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
     const { navigate } = this.props.navigation;
     this.props.store.setGene(gene)
     navigate('Expression');
-    // this.setState({ input: "" });
+    this.setState({ input: "" });
   }
 
   _renderSubTitle = () => {
