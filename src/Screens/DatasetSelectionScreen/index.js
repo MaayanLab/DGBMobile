@@ -110,6 +110,14 @@ export default class DatasetSelectionScreen extends Component {
             onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
             buttonStyle={styles.boxButton}
           />
+          <Button
+            raised
+            large
+            title="CMAP"
+            backgroundColor="#00bcd6"
+            onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
+            buttonStyle={styles.boxButton}
+          />
         </View>
         <View style={[AppStyles.flex1, styles.navButtonContainer]}>
           <Button

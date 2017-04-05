@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 import { Provider } from 'mobx-react';
+import codePush from 'react-native-code-push';
 
 import store from './Stores';
 import HomeScreen from './Screens/HomeScreen';
@@ -10,24 +11,27 @@ import ExpressionScreen from './Screens/ExpressionScreen';
 import DatasetSelectionScreen from './Screens/DatasetSelectionScreen';
 import ResultsScreen from './Screens/ResultsScreen';
 
-const DGBMobileWithNavigation = StackNavigator(
+let codePushOptions = {};
+
+const AppWithRoutes = StackNavigator(
   {
     Home: { screen: HomeScreen },
     Expression: { screen: ExpressionScreen },
     DatasetSelection: { screen: DatasetSelectionScreen },
     Results: { screen: ResultsScreen },
   },
-  { headerMode: 'screen' }
+  { headerMode: 'screen' } // Allows removal of header
 );
 
+@codePush
 class DGBMobile extends Component {
   render() {
     return (
       <Provider store={store}>
-        <DGBMobileWithNavigation />
+        <AppWithRoutes />
       </Provider>
     )
   }
 }
 
-export default DGBMobile;
+export default codePush(codePushOptions)(DGBMobile);

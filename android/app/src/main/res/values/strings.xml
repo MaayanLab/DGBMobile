@@ -1,3 +1,4 @@
 <resources>
+    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">9_8cAKChoGd8rRckA4zCOkenlrSeVJaG7o0KM</string>
     <string name="app_name">DGBMobile</string>
 </resources>

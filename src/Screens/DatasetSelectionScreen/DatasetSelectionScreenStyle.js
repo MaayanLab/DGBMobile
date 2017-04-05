@@ -10,8 +10,8 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   boxButton: {
-    height: 150,
-    width: 200,
+    height: 100,
+    width: 300,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',

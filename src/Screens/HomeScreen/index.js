@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Image, Dimensions } from 'react-native';
+import { Text, View, Image, Dimensions, StatusBar } from 'react-native';
 import { observer } from 'mobx-react/native';
 import {
   Button,
@@ -100,6 +100,7 @@ export default class HomeScreen extends Component {
     const userTyped = this.state.input.length > 0;
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
+        <StatusBar hidden />
         {
           userTyped ?
           null :
