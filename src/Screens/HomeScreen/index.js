@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { Text, View, Image, Dimensions, StatusBar } from 'react-native';
-import { observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 import {
   Button,
   Icon,
@@ -18,7 +18,8 @@ import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 
-@observer(['store'])
+@inject('store')
+@observer
 export default class HomeScreen extends Component {
   static navigationOptions = {
     header: {

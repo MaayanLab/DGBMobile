@@ -5,7 +5,7 @@ import { Text, View, Dimensions } from 'react-native';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
 
-import { observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
@@ -21,7 +21,8 @@ const expressionMapping = {
 
 const { width, height } = Dimensions.get('window');
 
-@observer(['store'])
+@inject('store')
+@observer
 export default class ResultsScreen extends Component {
   static navigationOptions = {
     header: {

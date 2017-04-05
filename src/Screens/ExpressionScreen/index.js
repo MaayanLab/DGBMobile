@@ -9,13 +9,14 @@ import {
   FormInput
 } from 'react-native-elements';
 
-import { observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 import styles from './ExpressionScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 
-@observer(['store'])
+@inject('store')
+@observer
 export default class ExpressionScreen extends Component {
   static navigationOptions = {
     header: {

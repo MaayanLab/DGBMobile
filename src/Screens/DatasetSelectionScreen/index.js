@@ -10,13 +10,14 @@ import {
 } from 'react-native-elements';
 import 'fetch-everywhere';
 
-import { observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 import styles from './DatasetSelectionScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
 const { width, height } = Dimensions.get('window');
 
-@observer(['store'])
+@inject('store')
+@observer
 export default class DatasetSelectionScreen extends Component {
   static navigationOptions = {
     header: {

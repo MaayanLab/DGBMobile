@@ -4,13 +4,14 @@ import React, { Component } from 'react';
 import { Text, View, ListView } from 'react-native';
 import isEqual from 'lodash/isEqual';
 import mobx from 'mobx';
-import { observer } from 'mobx-react/native';
+import { inject, observer } from 'mobx-react/native';
 
 import DrugResultItem from '../../Components/DrugResultItem';
 
 import AppStyles from '../../styles';
 
-@observer(['store'])
+@inject('store')
+@observer
 export default class DrugResultsContainer extends Component {
   constructor(props, context) {
     super(props, context)
