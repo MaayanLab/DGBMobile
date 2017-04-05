@@ -124,7 +124,7 @@ export default class DatasetSelectionScreen extends Component {
           <Button
             raised
             title="Back"
-            icon={{name: "keyboard-arrow-left"}}
+            icon={{name: 'keyboard-arrow-left'}}
             backgroundColor="#00c28a"
             onPress={this._goBackToExpression}
           />

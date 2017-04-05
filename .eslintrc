@@ -12,6 +12,7 @@
 
   "plugins": [
     "babel",
+    "react",
     "react-native"
   ],
 
