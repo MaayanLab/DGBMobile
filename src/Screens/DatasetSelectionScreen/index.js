@@ -36,38 +36,47 @@ export default class DatasetSelectionScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  _makeFetchAndGoToResults = (dataset) => {
-    const { navigate } = this.props.navigation;
-    const userInput = this.props.store.userInput;
-    userInput.setDataset(dataset)
-    // make fetch and navigate to resultsScreen when fetch is successful
-    // otherwise show spinner
-    const { gene, expression } = userInput;
-    const bodyForm = { symbol: gene, expression, dataset };
-    const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
-    fetch(url, {
-      // credentials: 'include', //pass cookies, for authentication
-      method: 'POST',
-      headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(bodyForm),
-    })
-    .then(response => {
-      return response.json()
-    })
-    .then(results => {
-      userInput.setResults(results)
-    })
-    .then(() => {
-      navigate('Results', { geneName: userInput.gene.toUpperCase() })
-    })
-    .catch(error => {
-      console.log('There has been a problem with your fetch operation: ' + error.message);
-     // ADD THIS THROW error
-      throw error;
-    });
+  // _makeFetchAndGoToResults = () => {
+  //   const { navigate } = this.props.navigation;
+  //   const userInput = this.props.store.userInput;
+  //   userInput.setDataset(dataset)
+  //   // make fetch and navigate to resultsScreen when fetch is successful
+  //   // otherwise show spinner
+  //   const { gene, expression } = userInput;
+  //   const bodyForm = { symbol: gene, expression, dataset };
+  //   const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
+  //   fetch(url, {
+  //     // credentials: 'include', //pass cookies, for authentication
+  //     method: 'POST',
+  //     headers: {
+  //     'Accept': 'application/json',
+  //     'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(bodyForm),
+  //   })
+  //   .then(response => {
+  //     return response.json()
+  //   })
+  //   .then(results => {
+  //     userInput.setResults(results)
+  //   })
+  //   .then(() => {
+  //     navigate('Results', { geneName: userInput.gene.toUpperCase() })
+  //   })
+  //   .catch(error => {
+  //     console.log('There has been a problem with your fetch operation: ' + error.message);
+  //    // ADD THIS THROW error
+  //     throw error;
+  //   });
+  // }
+
+  _goToResults = () => {
+    const internalState = this.props.store.internalState;
+    if (internalState.isFetching) {
+      // load some spinner
+    } else {
+      this.props.navigation.navigate('Results');
+    }
   }
 
   _onLayout = (event) => {
@@ -99,7 +108,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="L1000"
             backgroundColor="#00bcd6"
-            onPress={() => { this._makeFetchAndGoToResults('L1000') }}
+            onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
           <Button
@@ -107,7 +116,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="CREEDS"
             backgroundColor="#00bcd6"
-            onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
+            onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
           <Button
@@ -115,7 +124,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="CMAP"
             backgroundColor="#00bcd6"
-            onPress={() => { this._makeFetchAndGoToResults('CREEDS') }}
+            onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
         </View>

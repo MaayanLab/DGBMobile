@@ -59,12 +59,47 @@ export default class HomeScreen extends Component {
     return matches;
   }
 
+  _makeFetch = (gene) => {
+    const { userInput, internalState } = this.props.store;
+    const bodyForm = { symbol: gene };
+    const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
+    userInput.setGene(gene)
+    internalState.beginFetch()
+    fetch(url, {
+      // credentials: 'include', //pass cookies, for authentication
+      method: 'POST',
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bodyForm),
+    })
+    .then(response => {
+      return response.json()
+    })
+    .then(results => {
+      userInput.setResults(results)
+      internalState.endFetch()
+      console.log("Fetch succss, you can now safely press your dataset")
+    })
+    .catch(error => {
+      console.log('There has been a problem with your fetch operation: ' + error.message);
+     // ADD THIS THROW error
+      throw error;
+    });
+  }
+
   _goToExpression = (gene) => {
     const { navigate } = this.props.navigation;
     const userInput = this.props.store.userInput;
-    userInput.setGene(gene)
+    // userInput.setGene(gene)
     navigate('Expression');
     this.setState({ input: "" });
+  }
+
+  _makeFetchAndGoToExpression = (gene) => {
+    this._makeFetch(gene);
+    this._goToExpression(gene);
   }
 
   _renderSubTitle = () => {
@@ -138,7 +173,7 @@ export default class HomeScreen extends Component {
                 <GeneSearchMatchItem
                   key={gene}
                   geneName={gene}
-                  goToExpression={this._goToExpression}
+                  makeFetchAndGoToExpression={this._makeFetchAndGoToExpression}
                 />
               )}
             </View> :
