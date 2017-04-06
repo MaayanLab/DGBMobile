@@ -75,9 +75,23 @@ export default class ResultsScreen extends Component {
     return (
       <View>
         <Swiper showButtons={false} loop={false}>
+          <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
+            <View style={swiperOrientationStyle} level={-10}>
+              <Text style={styles.text}>{store.gene} | L1000</Text>
+                <SegmentedControls
+                  tint={'#00bcd6'}
+                  selectedTint= {'white'}
+                  options={['Up-Regulated', 'Down-Regulated']}
+                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                  selectedOption={expressionMapping[store.expression]}
+                />
+              <DrugResultContainer dataset="L1000" />
+            </View>
+          </View>
+
           <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
             <View style={swiperOrientationStyle} level={10}>
-              <Text style={styles.text}>{this.props.geneName} | CREEDS</Text>
+              <Text style={styles.text}>{store.gene} | CREEDS</Text>
                 <SegmentedControls
                   tint={'#00bcd6'}
                   selectedTint= {'white'}
@@ -88,9 +102,10 @@ export default class ResultsScreen extends Component {
               <DrugResultContainer dataset="CREEDS" />
             </View>
           </View>
+
           <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
             <View style={swiperOrientationStyle} level={-10}>
-              <Text style={styles.text}>{this.props.geneName} | L1000</Text>
+              <Text style={styles.text}>{store.gene} | CMAP</Text>
                 <SegmentedControls
                   tint={'#00bcd6'}
                   selectedTint= {'white'}
@@ -98,7 +113,7 @@ export default class ResultsScreen extends Component {
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
                   selectedOption={expressionMapping[store.expression]}
                 />
-              <DrugResultContainer dataset="L1000" />
+              <DrugResultContainer dataset="CMAP" />
             </View>
           </View>
         </Swiper>

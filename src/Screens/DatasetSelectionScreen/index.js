@@ -44,7 +44,7 @@ export default class DatasetSelectionScreen extends Component {
     // otherwise show spinner
     const { gene, expression } = store;
     const bodyForm = { symbol: gene, expression, dataset };
-    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
+    const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
     fetch(url, {
       // credentials: 'include', //pass cookies, for authentication
       method: 'POST',

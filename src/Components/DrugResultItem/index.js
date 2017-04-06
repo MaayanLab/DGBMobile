@@ -7,11 +7,11 @@ import Accordion from 'react-native-accordion';
 import AppStyles from '../../styles';
 
 export default function DrugResultItem(props) {
-  const resultItem = props.entry;
-
+  const resultItem = JSON.parse(props.entry);
+  const { signature } = resultItem;
   const header = (
     <View style={AppStyles.flex1}>
-      <Text>{resultItem.drug_name} | {resultItem.p_value} | {resultItem.fold_change}</Text>
+      <Text>{signature.drug_name} | {resultItem.p_value} | {resultItem.fold_change}</Text>
     </View>
   );
 

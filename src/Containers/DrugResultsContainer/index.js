@@ -21,9 +21,12 @@ export default class DrugResultsContainer extends Component {
       const creedsData = mobx.toJS(props.store.results.creeds);
       this.dataSource = ds.cloneWithRows(creedsData);
 
-    } else {
+    } else if (props.dataset === 'L1000') {
       const l1000Data = mobx.toJS(props.store.results.l1000);
       this.dataSource = ds.cloneWithRows(l1000Data);
+    } else {
+      const cmapData = mobx.toJS(props.store.results.cmap);
+      this.dataSource = ds.cloneWithRows(cmapData);
     }
   }
 
