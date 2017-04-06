@@ -37,7 +37,8 @@ export default class ExpressionScreen extends Component {
 
   _setExpressionAndGoToDataSelection = (direction) => {
     const { navigate } = this.props.navigation;
-    this.props.store.setExpression(direction)
+    const userInput = this.props.store.userInput;
+    userInput.setExpression(direction)
     navigate('DatasetSelection');
   }
 
@@ -53,7 +54,7 @@ export default class ExpressionScreen extends Component {
   render() {
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
-    const geneName = this.props.store.gene;
+    const geneName = this.props.store.userInput.gene;
     const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer];
     if (currHeight < currWidth) {
       buttonOrientationClasses.push(styles.landscape);

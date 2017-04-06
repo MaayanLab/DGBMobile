@@ -39,14 +39,16 @@ export default class ResultsScreen extends Component {
   }
 
   _setDataset = (dataset) => {
-    if (this.props.store.dataset !== dataset) {
-      this.props.store.setDataset(dataset);
+    const userInput = this.props.store.userInput;
+    if (userInput.dataset !== dataset) {
+      userInput.setDataset(dataset);
     }
   }
 
   _setExpression = (expression) => {
-    if (this.props.store.expression !== expression) {
-      this.props.store.setExpression(expression);
+    const userInput = this.props.store.userInput;
+    if (userInput.expression !== expression) {
+      userInput.setExpression(expression);
     }
   }
 
@@ -77,13 +79,13 @@ export default class ResultsScreen extends Component {
         <Swiper showButtons={false} loop={false}>
           <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
             <View style={swiperOrientationStyle} level={-10}>
-              <Text style={styles.text}>{store.gene} | L1000</Text>
+              <Text style={styles.text}>{store.userInput.gene} | L1000</Text>
                 <SegmentedControls
                   tint={'#00bcd6'}
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.expression]}
+                  selectedOption={expressionMapping[store.userInput.expression]}
                 />
               <DrugResultContainer dataset="L1000" />
             </View>
@@ -91,13 +93,13 @@ export default class ResultsScreen extends Component {
 
           <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
             <View style={swiperOrientationStyle} level={10}>
-              <Text style={styles.text}>{store.gene} | CREEDS</Text>
+              <Text style={styles.text}>{store.userInput.gene} | CREEDS</Text>
                 <SegmentedControls
                   tint={'#00bcd6'}
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.expression]}
+                  selectedOption={expressionMapping[store.userInput.expression]}
                 />
               <DrugResultContainer dataset="CREEDS" />
             </View>
@@ -105,13 +107,13 @@ export default class ResultsScreen extends Component {
 
           <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
             <View style={swiperOrientationStyle} level={-10}>
-              <Text style={styles.text}>{store.gene} | CMAP</Text>
+              <Text style={styles.text}>{store.userInput.gene} | CMAP</Text>
                 <SegmentedControls
                   tint={'#00bcd6'}
                   selectedTint= {'white'}
                   options={['Up-Regulated', 'Down-Regulated']}
                   onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.expression]}
+                  selectedOption={expressionMapping[store.userInput.expression]}
                 />
               <DrugResultContainer dataset="CMAP" />
             </View>

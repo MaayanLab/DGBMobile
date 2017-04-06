@@ -61,7 +61,8 @@ export default class HomeScreen extends Component {
 
   _goToExpression = (gene) => {
     const { navigate } = this.props.navigation;
-    this.props.store.setGene(gene)
+    const userInput = this.props.store.userInput;
+    userInput.setGene(gene)
     navigate('Expression');
     this.setState({ input: "" });
   }

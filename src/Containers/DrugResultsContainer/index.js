@@ -15,17 +15,18 @@ import AppStyles from '../../styles';
 export default class DrugResultsContainer extends Component {
   constructor(props, context) {
     super(props, context)
+    const userInput = this.props.store.userInput;
     const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => !isEqual(r1, r2) });
 
     if (props.dataset === 'CREEDS') {
-      const creedsData = mobx.toJS(props.store.results.creeds);
+      const creedsData = mobx.toJS(userInput.results.creeds);
       this.dataSource = ds.cloneWithRows(creedsData);
 
     } else if (props.dataset === 'L1000') {
-      const l1000Data = mobx.toJS(props.store.results.l1000);
+      const l1000Data = mobx.toJS(userInput.results.l1000);
       this.dataSource = ds.cloneWithRows(l1000Data);
     } else {
-      const cmapData = mobx.toJS(props.store.results.cmap);
+      const cmapData = mobx.toJS(userInput.results.cmap);
       this.dataSource = ds.cloneWithRows(cmapData);
     }
   }
