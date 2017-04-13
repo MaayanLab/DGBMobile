@@ -136,7 +136,7 @@ export default class HomeScreen extends Component {
     // }
     const userTyped = this.state.input.length > 0;
     return (
-      <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
+      <View style={[AppStyles.container]} onLayout={this._onLayout}>
         <StatusBar hidden />
         {
           userTyped ?
@@ -153,7 +153,13 @@ export default class HomeScreen extends Component {
             </Text>
           </View>)
         }
-        <View style={[styles.formContainer, { justifyContent: userTyped ? 'center' : 'flex-start' }]}>
+        <View style={[
+            styles.formContainer,
+            {
+              justifyContent: 'flex-start',
+              flex: userTyped ? 0 : 1,
+            }
+        ]}>
           <FormInput
             style={styles.formInput}
             placeholder="Which gene you would like to budge?"
@@ -180,18 +186,18 @@ export default class HomeScreen extends Component {
           null
         }
         {
-          userTyped ?
-          <View style={styles.bottomFlex} /> :
-          (<View style={[styles.bottomFlex, styles.geneFormContainer]}>
-            <Button
-              raised
-              iconRight
-              title="Next"
-              icon={{name: "keyboard-arrow-right"}}
-              backgroundColor="#00c28a"
-              onPress={this._goToExpression}
-            />
-          </View>)
+          // userTyped ?
+          // <View style={styles.bottomFlex} /> :
+          // (<View style={[styles.bottomFlex, styles.geneFormContainer]}>
+          //   <Button
+          //     raised
+          //     iconRight
+          //     title="Next"
+          //     icon={{name: "keyboard-arrow-right"}}
+          //     backgroundColor="#00c28a"
+          //     onPress={this._goToExpression}
+          //   />
+          // </View>)
         }
       </View>
     )
