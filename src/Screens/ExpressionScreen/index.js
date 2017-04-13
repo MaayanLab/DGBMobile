@@ -38,7 +38,7 @@ export default class ExpressionScreen extends Component {
   _setExpressionAndGoToDataSelection = (direction) => {
     const { navigate } = this.props.navigation;
     const userInput = this.props.store.userInput;
-    userInput.setExpression(direction)
+    userInput.setExpression(direction.toUpperCase());
     navigate('DatasetSelection');
   }
 

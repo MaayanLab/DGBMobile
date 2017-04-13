@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
   _makeFetch = (gene) => {
     const { userInput, internalState } = this.props.store;
     const bodyForm = { symbol: gene };
-    const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
+    const url = 'http://127.0.0.1:5000/DGB/api/v1/';
     userInput.setGene(gene)
     internalState.beginFetch()
     fetch(url, {
@@ -122,9 +122,7 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    // Perhaps remove next button and go forward when autocomplete is working.
-    // Leave button there for now for simple navigation
-    // Also add error handling
+    // Add error handling
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     // {
@@ -184,20 +182,6 @@ export default class HomeScreen extends Component {
               )}
             </View> :
           null
-        }
-        {
-          // userTyped ?
-          // <View style={styles.bottomFlex} /> :
-          // (<View style={[styles.bottomFlex, styles.geneFormContainer]}>
-          //   <Button
-          //     raised
-          //     iconRight
-          //     title="Next"
-          //     icon={{name: "keyboard-arrow-right"}}
-          //     backgroundColor="#00c28a"
-          //     onPress={this._goToExpression}
-          //   />
-          // </View>)
         }
       </View>
     )

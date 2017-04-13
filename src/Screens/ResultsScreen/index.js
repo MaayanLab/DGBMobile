@@ -13,10 +13,10 @@ import AppStyles from 'DGBMobile/src/styles';
 
 const datasetOptions = ['CREEDS', 'L1000', 'Both'];
 const expressionMapping = {
-  'Up-Regulated': 'Up',
-  'Down-Regulated': 'Down',
-  'Down': 'Down-Regulated',
-  'Up': 'Up-Regulated',
+  'Up-Regulated': 'UP',
+  'Down-Regulated': 'DOWN',
+  'DOWN': 'Down-Regulated',
+  'UP': 'Up-Regulated',
 };
 
 const { width, height } = Dimensions.get('window');
@@ -47,6 +47,7 @@ export default class ResultsScreen extends Component {
 
   _setExpression = (expression) => {
     const userInput = this.props.store.userInput;
+    console.log("changing expression to ", expression);
     if (userInput.expression !== expression) {
       userInput.setExpression(expression);
     }
