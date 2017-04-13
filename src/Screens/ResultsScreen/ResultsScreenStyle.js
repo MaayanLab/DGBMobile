@@ -17,9 +17,16 @@ export default StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#9DD6EB',
   },
+  headerWrap: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 3,
+  },
   text: {
     color: '#fff',
     fontSize: 30,
+  },
+  gene: {
     fontWeight: 'bold',
   },
 });

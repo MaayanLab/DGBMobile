@@ -74,48 +74,60 @@ export default class ResultsScreen extends Component {
     const store = this.props.store;
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
-    const swiperOrientationStyle = [AppStyles.paddingHorizontal, AppStyles.paddingVertical, {width: currWidth, height: currHeight}];
+    const swiperOrientationStyle = [
+      AppStyles.paddingHorizontal,
+      {width: currWidth, height: currHeight, paddingTop: 10, paddingBottom: 20},
+    ];
     return (
       <View>
         <Swiper showButtons={false} loop={false}>
           <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
             <View style={swiperOrientationStyle} level={-10}>
-              <Text style={styles.text}>{store.userInput.gene} | L1000</Text>
-                <SegmentedControls
-                  tint={'#00bcd6'}
-                  selectedTint= {'white'}
-                  options={['Up-Regulated', 'Down-Regulated']}
-                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.userInput.expression]}
-                />
+              <View style={styles.headerWrap}>
+                <Text style={styles.text}>L1000</Text>
+                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
+              </View>
+              <SegmentedControls
+                tint={'#00bcd6'}
+                selectedTint= {'white'}
+                options={['Up-Regulated', 'Down-Regulated']}
+                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                selectedOption={expressionMapping[store.userInput.expression]}
+              />
               <DrugResultContainer dataset="L1000" />
             </View>
           </View>
 
           <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
             <View style={swiperOrientationStyle} level={10}>
-              <Text style={styles.text}>{store.userInput.gene} | CREEDS</Text>
-                <SegmentedControls
-                  tint={'#00bcd6'}
-                  selectedTint= {'white'}
-                  options={['Up-Regulated', 'Down-Regulated']}
-                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.userInput.expression]}
-                />
+              <View style={styles.headerWrap}>
+                <Text style={styles.text}>CREEDS</Text>
+                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
+              </View>
+              <SegmentedControls
+                tint={'#00bcd6'}
+                selectedTint= {'white'}
+                options={['Up-Regulated', 'Down-Regulated']}
+                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                selectedOption={expressionMapping[store.userInput.expression]}
+              />
               <DrugResultContainer dataset="CREEDS" />
             </View>
           </View>
 
           <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
             <View style={swiperOrientationStyle} level={-10}>
-              <Text style={styles.text}>{store.userInput.gene} | CMAP</Text>
-                <SegmentedControls
-                  tint={'#00bcd6'}
-                  selectedTint= {'white'}
-                  options={['Up-Regulated', 'Down-Regulated']}
-                  onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                  selectedOption={expressionMapping[store.userInput.expression]}
-                />
+              <View style={styles.headerWrap}>
+                <Text style={styles.text}>CMAP</Text>
+                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
+              </View>
+              <SegmentedControls
+                tint={'#00bcd6'}
+                selectedTint= {'white'}
+                options={['Up-Regulated', 'Down-Regulated']}
+                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                selectedOption={expressionMapping[store.userInput.expression]}
+              />
               <DrugResultContainer dataset="CMAP" />
             </View>
           </View>

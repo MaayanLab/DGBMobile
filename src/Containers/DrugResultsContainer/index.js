@@ -7,6 +7,7 @@ import mobx from 'mobx';
 import { inject, observer } from 'mobx-react/native';
 
 import DrugResultItem from '../../Components/DrugResultItem';
+import styles from './DrugResultsContainerStyle';
 
 import AppStyles from '../../styles';
 
@@ -39,7 +40,7 @@ export default class DrugResultsContainer extends Component {
     }
     console.log("rerendering");
     return (
-      <View style={[AppStyles.container, AppStyles.flex1]}>
+      <View style={[AppStyles.container, AppStyles.flex1, styles.marginTop]}>
         <ListView
           dataSource={dataSource}
           renderRow={rowData => <DrugResultItem entry={rowData} />}
