@@ -19,12 +19,13 @@ export default StyleSheet.create({
   },
   headerWrap: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    // justifyContent: 'space-between',
     marginBottom: 3,
   },
   text: {
     color: '#fff',
     fontSize: 30,
+    marginRight: 10,
   },
   gene: {
     fontWeight: 'bold',
