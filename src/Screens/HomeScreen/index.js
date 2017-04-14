@@ -102,15 +102,15 @@ export default class HomeScreen extends Component {
     this._goToExpression(gene);
   }
 
-  _renderSubTitle = () => {
-    return (
-      <View style={[styles.midFlex, AppStyles.containerCentered]}>
-        <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
-          Search for drugs to maximally change the expression of a target mammalian gene.
-        </Text>
-      </View>
-    );
-  }
+  // _renderSubTitle = () => {
+  //   return (
+  //     <View style={[styles.midFlex, AppStyles.containerCentered]}>
+  //       <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, styles.paddingTop]}>
+  //         Search for drugs to maximally change the expression of a target mammalian gene.
+  //       </Text>
+  //     </View>
+  //   );
+  // }
 
   _onLayout = (event) => {
     this.setState({

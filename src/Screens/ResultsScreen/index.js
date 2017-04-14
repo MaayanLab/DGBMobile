@@ -11,7 +11,20 @@ import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
 import styles from './ResultsScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
-const datasetOptions = ['CREEDS', 'L1000', 'Both'];
+const datasetOptions = {
+  CREEDS: {
+    dataset: 'CREEDS',
+    backgroundColor: '#C39BD3',
+  },
+  L1000: {
+    dataset: 'L1000',
+    backgroundColor: '#82E0AA',
+  },
+  CMAP: {
+    dataset: 'CMAP',
+    backgroundColor: '#85C1E9',
+  },
+};
 const expressionMapping = {
   'Up-Regulated': 'UP',
   'Down-Regulated': 'DOWN',
@@ -63,14 +76,6 @@ export default class ResultsScreen extends Component {
   }
 
   render() {
-    // <View style={AppStyles.spacer_5} />
-    // <SegmentedControls
-    //   tint={'#00c28a'}
-    //   selectedTint= {'white'}
-    //   options={datasetOptions}
-    //   onSelection={this._setDataset}
-    //   selectedOption={this.props.store.dataset}
-    // />
     const store = this.props.store;
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
@@ -81,56 +86,33 @@ export default class ResultsScreen extends Component {
     return (
       <View>
         <Swiper showButtons={false} loop={false}>
-          <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
-            <View style={swiperOrientationStyle} level={-10}>
-              <View style={styles.headerWrap}>
-                <Text style={styles.text}>L1000</Text>
-                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
-              </View>
-              <SegmentedControls
-                tint={'#00bcd6'}
-                selectedTint= {'white'}
-                options={['Up-Regulated', 'Down-Regulated']}
-                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                selectedOption={expressionMapping[store.userInput.expression]}
-              />
-              <DrugResultContainer dataset="L1000" />
-            </View>
-          </View>
-
-          <View style={[styles.slide, { backgroundColor: '#fa931d'}]}>
-            <View style={swiperOrientationStyle} level={10}>
-              <View style={styles.headerWrap}>
-                <Text style={styles.text}>CREEDS</Text>
-                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
-              </View>
-              <SegmentedControls
-                tint={'#00bcd6'}
-                selectedTint= {'white'}
-                options={['Up-Regulated', 'Down-Regulated']}
-                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                selectedOption={expressionMapping[store.userInput.expression]}
-              />
-              <DrugResultContainer dataset="CREEDS" />
-            </View>
-          </View>
-
-          <View style={[styles.slide, { backgroundColor: '#a4b602'}]}>
-            <View style={swiperOrientationStyle} level={-10}>
-              <View style={styles.headerWrap}>
-                <Text style={styles.text}>CMAP</Text>
-                <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
-              </View>
-              <SegmentedControls
-                tint={'#00bcd6'}
-                selectedTint= {'white'}
-                options={['Up-Regulated', 'Down-Regulated']}
-                onSelection={(exp) => this._setExpression(expressionMapping[exp])}
-                selectedOption={expressionMapping[store.userInput.expression]}
-              />
-              <DrugResultContainer dataset="CMAP" />
-            </View>
-          </View>
+          {
+            Object.keys(datasetOptions).map(datasetObjKey => {
+              const datasetObj = datasetOptions[datasetObjKey];
+              return (
+                <View
+                  key={datasetObj.dataset}
+                  style={[styles.slide,
+                  { backgroundColor: datasetObj.backgroundColor}]}
+                >
+                  <View style={swiperOrientationStyle} level={-10}>
+                    <View style={styles.headerWrap}>
+                      <Text style={styles.text}>{datasetObj.dataset}</Text>
+                      <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
+                    </View>
+                    <SegmentedControls
+                      tint={'#00bcd6'}
+                      selectedTint= {'white'}
+                      options={['Up-Regulated', 'Down-Regulated']}
+                      onSelection={(exp) => this._setExpression(expressionMapping[exp])}
+                      selectedOption={expressionMapping[store.userInput.expression]}
+                    />
+                  <DrugResultContainer dataset={datasetObj.dataset} />
+                  </View>
+                </View>
+              )
+            })
+          }
         </Swiper>
       </View>
     );
