@@ -2,6 +2,17 @@ import { StyleSheet } from 'react-native';
 import config from '../../config';
 
 export default StyleSheet.create({
+  logo: {
+    // flex: 1,
+    width: 120,
+    height: 140,
+    resizeMode: 'contain',
+  },
+  title: {
+    fontSize: 35,
+    fontFamily: 'JosefinSlab-SemiBold',
+    color: 'gray',
+  },
   regulationDirectionContainer: {
     flexDirection: 'column',
     justifyContent: 'space-around',
@@ -10,7 +21,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   boxButton: {
-    height: 100,
+    height: 70,
     width: 300,
     flexDirection: 'column',
     justifyContent: 'center',

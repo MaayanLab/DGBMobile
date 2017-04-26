@@ -18,16 +18,16 @@ export default StyleSheet.create({
     backgroundColor: '#9DD6EB',
   },
   headerWrap: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     // justifyContent: 'space-between',
     marginBottom: 3,
   },
   text: {
     color: '#fff',
-    fontSize: 30,
-    marginRight: 10,
+    fontSize: 19,
   },
   gene: {
     fontWeight: 'bold',
+    fontSize: 25,
   },
 });

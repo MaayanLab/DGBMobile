@@ -75,12 +75,11 @@ export default class HomeScreen extends Component {
       body: JSON.stringify(bodyForm),
     })
     .then(response => {
-      return response.json()
+      return response.json();
     })
     .then(results => {
-      userInput.setResults(results)
-      internalState.endFetch()
-      console.log("Fetch succss, you can now safely press your dataset")
+      userInput.setResults(results);
+      internalState.endFetch();
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
@@ -160,7 +159,7 @@ export default class HomeScreen extends Component {
         ]}>
           <FormInput
             style={styles.formInput}
-            placeholder="Which gene you would like to budge?"
+            placeholder="Enter gene to budge here..."
             onChangeText={(input) => this.setState(
               {
                 input: input.toUpperCase(),

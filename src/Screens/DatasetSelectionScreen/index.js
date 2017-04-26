@@ -1,18 +1,20 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Image, Dimensions } from 'react-native';
 import {
   Button,
   Icon,
   FormLabel,
   FormInput
 } from 'react-native-elements';
+import Spinner from 'react-native-loading-spinner-overlay';
 import 'fetch-everywhere';
 
 import { inject, observer } from 'mobx-react/native';
 import styles from './DatasetSelectionScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
+import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 
@@ -28,6 +30,7 @@ export default class DatasetSelectionScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      spinnerVisible: false,
       layout: { height, width }
     }
   }
@@ -73,7 +76,7 @@ export default class DatasetSelectionScreen extends Component {
   _goToResults = () => {
     const internalState = this.props.store.internalState;
     if (internalState.isFetching) {
-      // load some spinner
+      this.setState({spinnerVisible: true})
     } else {
       this.props.navigation.navigate('Results');
     }
@@ -91,39 +94,54 @@ export default class DatasetSelectionScreen extends Component {
   render() {
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
-    const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex2, styles.regulationDirectionContainer];
+    const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer];
     if (currHeight < currWidth) {
       buttonOrientationClasses.push(styles.landscape);
     }
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
-        <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'flex-end' }]}>
+        <Spinner
+          visible={this.state.spinnerVisible}
+          textContent={"Loading..."}
+          textStyle={{color: '#FFF'}}
+        />
+        <View style={[AppStyles.alignCenter, AppStyles.flex3, { justifyContent: 'center' }]}>
+          <Image
+            source={dgbLogo}
+            style={[styles.logo]}
+          />
+          <Text style={[styles.title]}>
+            Dr. Gene Budger
+          </Text>
+        </View>
+
+        <View style={[AppStyles.alignCenter, AppStyles.flex1, { justifyContent: 'center' }]}>
           <Text style={[AppStyles.defaultFont, AppStyles.paddingHorizontal, AppStyles.paddingVertical, styles.question]}>
-            Which dataset would you like to use?
+            Select dataset to query:
           </Text>
         </View>
         <View style={buttonOrientationClasses}>
           <Button
             raised
             large
-            title="L1000"
-            backgroundColor="#00bcd6"
+            title="CREEDS: GEO Signatures"
+            backgroundColor="#23a8ec"
             onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
             large
-            title="CREEDS"
-            backgroundColor="#00bcd6"
+            title="LINCS L1000 Phase 1"
+            backgroundColor="#23a8ec"
             onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
             large
-            title="CMAP"
-            backgroundColor="#00bcd6"
+            title="Original Connectivity Map 02"
+            backgroundColor="#23a8ec"
             onPress={() => { this._goToResults() }}
             buttonStyle={styles.boxButton}
           />
@@ -133,7 +151,7 @@ export default class DatasetSelectionScreen extends Component {
             raised
             title="Back"
             icon={{name: 'keyboard-arrow-left'}}
-            backgroundColor="#00c28a"
+            backgroundColor="#8e8e8e"
             onPress={this._goBackToExpression}
           />
         </View>

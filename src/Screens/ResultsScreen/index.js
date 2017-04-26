@@ -11,20 +11,20 @@ import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
 import styles from './ResultsScreenStyle';
 import AppStyles from 'DGBMobile/src/styles';
 
-const datasetOptions = {
-  CREEDS: {
-    dataset: 'CREEDS',
+const datasetsOptions = [
+  {
+    dataset: 'Original Connectivity Map 02',
     backgroundColor: '#C39BD3',
   },
-  L1000: {
-    dataset: 'L1000',
+  {
+    dataset: 'LINCS L1000 Phase 1',
     backgroundColor: '#82E0AA',
   },
-  CMAP: {
-    dataset: 'CMAP',
+  {
+    dataset: 'CREEDS: GEO Signatures',
     backgroundColor: '#85C1E9',
   },
-};
+];
 const expressionMapping = {
   'Up-Regulated': 'UP',
   'Down-Regulated': 'DOWN',
@@ -75,10 +75,20 @@ export default class ResultsScreen extends Component {
     });
   }
 
+  orderDatasetDisplayOrder = (datasetList, targetDataset) => {
+    const dsClone = datasetList.slice();
+    const targetIdx = dsClone.findIndex(ds => ds.dataset === targetDataset);
+    const splicedDs = dsClone.splice(targetIdx, 1);
+    return [splicedDs[0], ...dsClone];
+  }
+
   render() {
     const store = this.props.store;
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
+    const firstDataset = store.userInput.dataset;
+    const datasets = this.orderDatasetDisplayOrder(datasetsOptions, firstDataset);
+    console.log(datasets);
     const swiperOrientationStyle = [
       AppStyles.paddingHorizontal,
       {width: currWidth, height: currHeight, paddingTop: 10, paddingBottom: 20},
@@ -87,8 +97,7 @@ export default class ResultsScreen extends Component {
       <View>
         <Swiper showButtons={false} loop={false}>
           {
-            Object.keys(datasetOptions).map(datasetObjKey => {
-              const datasetObj = datasetOptions[datasetObjKey];
+            datasets.map(datasetObj => {
               return (
                 <View
                   key={datasetObj.dataset}
@@ -97,8 +106,8 @@ export default class ResultsScreen extends Component {
                 >
                   <View style={swiperOrientationStyle} level={-10}>
                     <View style={styles.headerWrap}>
-                      <Text style={styles.text}>{datasetObj.dataset}</Text>
                       <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
+                      <Text style={styles.text}>{datasetObj.dataset}</Text>
                     </View>
                     <SegmentedControls
                       tint={'#00bcd6'}
