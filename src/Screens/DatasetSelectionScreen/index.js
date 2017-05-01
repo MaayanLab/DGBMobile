@@ -34,6 +34,18 @@ export default class DatasetSelectionScreen extends Component {
     }
   }
 
+  componentWillReact() {
+    const internalState = this.props.store.internalState;
+    const userInput = this.props.store.userInput;
+    if (!internalState.fetching && userInput.dataset) {
+      this.setState({spinnerVisible: false});
+      // Not the best plan but works for now.
+      setTimeout(() => {
+        this.props.navigation.navigate('Results');
+      }, 0);
+    }
+  }
+
   _goBackToExpression = () => {
     this.props.navigation.goBack();
   }
@@ -72,14 +84,17 @@ export default class DatasetSelectionScreen extends Component {
   //   });
   // }
 
-  _goToResults = () => {
+  _goToResults = (datasetInput) => {
     const internalState = this.props.store.internalState;
+    const userInput = this.props.store.userInput;
+
+    userInput.setDataset(datasetInput.toUpperCase());
     if (internalState.fetching) {
+      // This is happening because spinner
       this.setState({spinnerVisible: true});
     } else {
-      // this.setState({spinnerVisible: false});
-      // debugger;
-      this.props.navigation.navigate('Results');
+      this.setState({spinnerVisible: false});
+      // this.props.navigation.navigate('Results');
     }
   }
 
@@ -93,9 +108,9 @@ export default class DatasetSelectionScreen extends Component {
   }
 
   render() {
-
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
+    const test = this.props.store.internalState.fetching;
     const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer];
     if (currHeight < currWidth) {
       buttonOrientationClasses.push(styles.landscape);
@@ -104,7 +119,6 @@ export default class DatasetSelectionScreen extends Component {
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         <Spinner
           visible={this.state.spinnerVisible}
-          textContent={"Loading..."}
           textStyle={{color: '#FFF'}}
         />
         <View style={[AppStyles.alignCenter, AppStyles.flex3, { justifyContent: 'center' }]}>
@@ -128,7 +142,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="CREEDS: GEO Signatures"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults() }}
+            onPress={() => { this._goToResults('CREEDS: GEO Signatures') }}
             buttonStyle={styles.boxButton}
           />
           <Button
@@ -136,7 +150,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="LINCS L1000 Phase 1"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults() }}
+            onPress={() => { this._goToResults('LINCS L1000 Phase 1') }}
             buttonStyle={styles.boxButton}
           />
           <Button
@@ -144,7 +158,7 @@ export default class DatasetSelectionScreen extends Component {
             large
             title="Original Connectivity Map 02"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults() }}
+            onPress={() => { this._goToResults('Original Connectivity Map 02') }}
             buttonStyle={styles.boxButton}
           />
         </View>
