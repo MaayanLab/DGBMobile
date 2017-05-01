@@ -3,9 +3,8 @@ import config from '../../config';
 
 export default StyleSheet.create({
   box: {
-    flexDirection: 'column',
-    flex: 1,
-    paddingTop: 20,
+    flexDirection: 'row',
+    padding: 10,
   },
   drugName: {
     flex: 1,
@@ -23,5 +22,11 @@ export default StyleSheet.create({
   paddingHorizontal25: {
     paddingLeft: 25,
     paddingRight: 25,
+  },
+  moreInfoButton: {
+    alignSelf: 'flex-end',
+  },
+  drugInfo: {
+
   }
 })
