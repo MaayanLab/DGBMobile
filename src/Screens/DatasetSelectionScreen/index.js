@@ -9,7 +9,6 @@ import {
   FormInput
 } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
-import 'fetch-everywhere';
 
 import { inject, observer } from 'mobx-react/native';
 import styles from './DatasetSelectionScreenStyle';
@@ -75,9 +74,11 @@ export default class DatasetSelectionScreen extends Component {
 
   _goToResults = () => {
     const internalState = this.props.store.internalState;
-    if (internalState.isFetching) {
-      this.setState({spinnerVisible: true})
+    if (internalState.fetching) {
+      this.setState({spinnerVisible: true});
     } else {
+      // this.setState({spinnerVisible: false});
+      // debugger;
       this.props.navigation.navigate('Results');
     }
   }
@@ -92,6 +93,7 @@ export default class DatasetSelectionScreen extends Component {
   }
 
   render() {
+
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer];

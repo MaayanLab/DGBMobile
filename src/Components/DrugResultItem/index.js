@@ -10,13 +10,17 @@ export default function DrugResultItem(props) {
   const resultItem = JSON.parse(props.entry);
   const { signature } = resultItem;
   const header = (
-    <View style={AppStyles.flex1}>
-      <Text>{signature.drug_name} | {resultItem.p_value} | {resultItem.fold_change}</Text>
+    <View>
+      <Text>
+        {signature.drug_name} |
+        {resultItem.p_value} |
+        {resultItem.fold_change}
+      </Text>
     </View>
   );
 
   const content = (
-    <View style={AppStyles.flex1}>
+    <View>
       <Text>This content is hidden in the accordion</Text>
     </View>
   );

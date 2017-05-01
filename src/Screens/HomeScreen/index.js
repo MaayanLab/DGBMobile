@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
   _makeFetch = (gene) => {
     const { userInput, internalState } = this.props.store;
     const bodyForm = { symbol: gene };
-    const url = 'http://127.0.0.1:5000/DGB/api/v1/';
+    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
     userInput.setGene(gene)
     internalState.beginFetch()
     fetch(url, {
@@ -80,6 +80,7 @@ export default class HomeScreen extends Component {
     .then(results => {
       userInput.setResults(results);
       internalState.endFetch();
+      console.log("Fetch success")
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);

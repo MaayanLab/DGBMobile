@@ -14,15 +14,15 @@ import AppStyles from 'DGBMobile/src/styles';
 const datasetsOptions = [
   {
     dataset: 'Original Connectivity Map 02',
-    backgroundColor: '#C39BD3',
+    backgroundColor: '#a2a9ac',
   },
   {
     dataset: 'LINCS L1000 Phase 1',
-    backgroundColor: '#82E0AA',
+    backgroundColor: '#999b9b',
   },
   {
     dataset: 'CREEDS: GEO Signatures',
-    backgroundColor: '#85C1E9',
+    backgroundColor: '#b4b8ba',
   },
 ];
 const expressionMapping = {
@@ -60,7 +60,6 @@ export default class ResultsScreen extends Component {
 
   _setExpression = (expression) => {
     const userInput = this.props.store.userInput;
-    console.log("changing expression to ", expression);
     if (userInput.expression !== expression) {
       userInput.setExpression(expression);
     }
@@ -88,7 +87,6 @@ export default class ResultsScreen extends Component {
     const currWidth = this.state.layout.width;
     const firstDataset = store.userInput.dataset;
     const datasets = this.orderDatasetDisplayOrder(datasetsOptions, firstDataset);
-    console.log(datasets);
     const swiperOrientationStyle = [
       AppStyles.paddingHorizontal,
       {width: currWidth, height: currHeight, paddingTop: 10, paddingBottom: 20},
@@ -110,7 +108,7 @@ export default class ResultsScreen extends Component {
                       <Text style={styles.text}>{datasetObj.dataset}</Text>
                     </View>
                     <SegmentedControls
-                      tint={'#00bcd6'}
+                      tint={'#23a8ec'}
                       selectedTint= {'white'}
                       options={['Up-Regulated', 'Down-Regulated']}
                       onSelection={(exp) => this._setExpression(expressionMapping[exp])}
