@@ -4,7 +4,7 @@ import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 
 import AppStyles from 'DGBMobile/src/styles';
-import styles from './GeneSearchMatchItem';
+import styles from './GeneSearchMatchItemStyle';
 
 export default function GeneSearchMatchItem(props) {
   const { geneName, makeFetchAndGoToExpression } = props;
