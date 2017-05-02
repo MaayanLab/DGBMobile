@@ -13,14 +13,10 @@ export default StyleSheet.create({
     flex: 1,
   },
   hiddenAccordion: {
-    // flex: 1,
     flexDirection: 'row',
-    // paddingLeft: 15,
-    // paddingRight: 15,
   },
   property: {
     fontWeight: '400',
-    fontSize: 12,
   },
   fontSize12: {
     fontSize: 12,
@@ -32,7 +28,8 @@ export default StyleSheet.create({
   moreInfoButton: {
     alignSelf: 'flex-end',
   },
-  padLeft10: {
+  padHorizontal10: {
     paddingLeft: 10,
+    paddingRight: 10,
   },
 })

@@ -232,6 +232,12 @@ export default StyleSheet.create({
   flex6: {
     flex: 6,
   },
+  flex7: {
+    flex: 7,
+  },
+  flex8: {
+    flex: 8,
+  },
 
   /* Forms */
   formLabel: {

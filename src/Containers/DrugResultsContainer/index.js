@@ -46,16 +46,22 @@ export default class DrugResultsContainer extends Component {
 
     return (
       <View style={[AppStyles.container, AppStyles.flex1, styles.marginTop]}>
-        <ListView
-          dataSource={dataSource}
-          renderRow={rowData => (
-            <DrugResultItem
-              inputSet={inputSet}
-              navigation={this.props.navigation}
-              entry={rowData}
-            />)
-          }
-        />
+        {
+          dataSource._dataBlob.s1.length > 0 ?
+          (<ListView
+              dataSource={dataSource}
+              renderRow={rowData => (
+                <DrugResultItem
+                  inputSet={inputSet}
+                  navigation={this.props.navigation}
+                  entry={rowData}
+                />)
+              }
+           />) :
+           <Text>
+             No results found.
+           </Text>
+        }
       </View>
     );
   }

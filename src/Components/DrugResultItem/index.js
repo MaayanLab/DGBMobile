@@ -43,7 +43,7 @@ export default class DrugResultItem extends Component {
 
     return (
       <View style={styles.box}>
-        <View style={[AppStyles.flex1, AppStyles.alignCenter]}>
+        <View style={[AppStyles.flex2, AppStyles.alignCenter]}>
           <Icon
             raised
             reverse
@@ -54,12 +54,12 @@ export default class DrugResultItem extends Component {
             textStyle={{textAlign: 'right'}}
             onPress={buttonPress}
           />
-      </View>
-      <View style={[styles.padLeft10, AppStyles.flex6]}>
+        </View>
+        <View style={AppStyles.flex8}>
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
-          <Text style={[AppStyles.defaultFontLight, AppStyles.flex1]}>
-            <Text style={styles.property}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}
+          <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+            <Text style={[styles.property]}>p-value:</Text>&nbsp;
+            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
           </Text>
         </View>
       </View>
@@ -68,22 +68,26 @@ export default class DrugResultItem extends Component {
 
   _renderCreedsHiddenContent(resultItem) {
     const { signature } = resultItem;
+
     return (
-      <View style={[styles.hiddenAccordion, styles.paddingHorizontal25]}>
-        {
-          (resultItem.q_value || resultItem.q_value === 0) &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>q-value:</Text>&nbsp;
-            {resultItem.q_value.toExponential(3)}
-          </Text>
-        }
-        {
-          (resultItem.fold_change || resultItem.fold_change === 0) &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>fold-change:</Text>&nbsp;
-            {resultItem.fold_change.toFixed(3)}
-          </Text>
-        }
+      <View style={[styles.hiddenAccordion]}>
+        <View style={AppStyles.flex2}></View>
+        <View style={AppStyles.flex8}>
+          {
+            (resultItem.q_value || resultItem.q_value === 0) &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>q-value:</Text>&nbsp;
+              {resultItem.q_value.toExponential(3)}
+            </Text>
+          }
+          {
+            (resultItem.fold_change || resultItem.fold_change === 0) &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>fold-change:</Text>&nbsp;
+              {resultItem.fold_change.toFixed(3)}
+            </Text>
+          }
+        </View>
       </View>
     );
   }
@@ -104,11 +108,16 @@ export default class DrugResultItem extends Component {
           //   onPress={() => this._goToAboutDrug(signature.drug_name, signature.pert_id)}
           // />
         }
-        <View style={[styles.padLeft10, AppStyles.flex6]}>
+        <View style={[styles.padHorizontal10, AppStyles.flex6]}>
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, AppStyles.flex1]}>
             <Text style={styles.property}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}
+            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <Text style={[AppStyles.defaultFontLight]}>
+              <Text style={styles.property}>cell-line:</Text>&nbsp;
+              {resultItem.signature.cell_name}
+            </Text>
           </Text>
         </View>
       </View>
@@ -118,94 +127,8 @@ export default class DrugResultItem extends Component {
   _renderCmapHiddenContent(resultItem) {
     const { signature } = resultItem;
     return (
-      <View style={[styles.hiddenAccordion, styles.paddingHorizontal25]}>
-        {
-          (resultItem.q_value || resultItem.q_value === 0) &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>q-value:</Text>&nbsp;
-            {resultItem.q_value.toExponential(3)}
-          </Text>
-        }
-        {
-          resultItem.signature && resultItem.signature.cell_name &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>cell-line:</Text>&nbsp;
-            {resultItem.signature.cell_name}
-          </Text>
-        }
-        {
-          (resultItem.fold_change || resultItem.fold_change === 0) &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>fold-change:</Text>&nbsp;
-            {resultItem.fold_change.toFixed(3)}
-          </Text>
-        }
-        {
-          (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
-          resultItem.signature.pert_time_unit &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>pert-time:</Text>&nbsp;
-            {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
-          </Text>
-        }
-        {
-          (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
-          resultItem.signature.pert_dose_unit &&
-          <Text style={[AppStyles.defaultFontLight]}>
-            <Text style={styles.property}>pert-dose:</Text>&nbsp;
-            {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
-          </Text>
-        }
-      </View>
-    );
-  }
-
-  _renderL1000MainContent(resultItem) {
-    const { signature } = resultItem;
-    console.log(signature.pert_id)
-    let buttonPress, buttonColor;
-    if (!signature.pert_id) {
-      buttonPress = null;
-      buttonColor = 'gray';
-    } else {
-      buttonPress = () => this._goToDMOA(signature.pert_id);
-      buttonColor = '#00aced';
-    }
-
-    return (
-      <View style={styles.box}>
-        <View style={[AppStyles.flex1, AppStyles.alignCenter]}>
-          <Icon
-            raised
-            reverse
-            name='info'
-            type='font-awesome'
-            size={10}
-            color={buttonColor}
-            textStyle={{textAlign: 'right'}}
-            onPress={buttonPress}
-          />
-        </View>
-        <View style={[AppStyles.flex6]}>
-          <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
-          <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-            <Text style={[styles.property]}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;
-
-            <Text style={[styles.property, styles.fontSize12]}>cell-line:</Text>&nbsp;
-            {resultItem.signature.sig_id.split("_")[1]}
-          </Text>
-        </View>
-      </View>
-    );
-  }
-
-  _renderL1000HiddenContent(resultItem) {
-    const { signature } = resultItem;
-    return (
-      <View style={[styles.hiddenAccordion]}>
-        <View style={AppStyles.flex1}></View>
-        <View style={AppStyles.flex6}>
+      <View style={[styles.padHorizontal10, styles.hiddenAccordion]}>
+        <View>
           {
             (resultItem.q_value || resultItem.q_value === 0) &&
             <Text style={[AppStyles.defaultFontLight]}>
@@ -214,10 +137,10 @@ export default class DrugResultItem extends Component {
             </Text>
           }
           {
-            // resultItem.signature && resultItem.signature.sig_id &&
+            // resultItem.signature && resultItem.signature.cell_name &&
             // <Text style={[AppStyles.defaultFontLight]}>
             //   <Text style={styles.property}>cell-line:</Text>&nbsp;
-            //   {resultItem.signature.sig_id.split("_")[1]}
+            //   {resultItem.signature.cell_name}
             // </Text>
           }
           {
@@ -239,6 +162,93 @@ export default class DrugResultItem extends Component {
             (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
             resultItem.signature.pert_dose_unit &&
             <Text style={[AppStyles.defaultFontLight]}>
+              <Text style={styles.property}>pert-dose:</Text>&nbsp;
+              {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
+            </Text>
+          }
+        </View>
+      </View>
+    );
+  }
+
+  _renderL1000MainContent(resultItem) {
+    const { signature } = resultItem;
+    let buttonPress, buttonColor;
+    if (!signature.pert_id) {
+      buttonPress = null;
+      buttonColor = 'gray';
+    } else {
+      buttonPress = () => this._goToDMOA(signature.pert_id);
+      buttonColor = '#00aced';
+    }
+
+    return (
+      <View style={styles.box}>
+        <View style={[AppStyles.flex2, AppStyles.alignCenter]}>
+          <Icon
+            raised
+            reverse
+            name='info'
+            type='font-awesome'
+            size={10}
+            color={buttonColor}
+            textStyle={{textAlign: 'right'}}
+            onPress={buttonPress}
+          />
+        </View>
+        <View style={AppStyles.flex8}>
+          <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
+          <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+            <Text style={[styles.property]}>p-value:</Text>&nbsp;
+            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <Text style={[styles.property, styles.fontSize12]}>cell-line:</Text>&nbsp;
+            {resultItem.signature.sig_id.split("_")[1]}
+          </Text>
+        </View>
+      </View>
+    );
+  }
+
+  _renderL1000HiddenContent(resultItem) {
+    const { signature } = resultItem;
+    return (
+      <View style={[styles.hiddenAccordion]}>
+        <View style={AppStyles.flex2}></View>
+        <View style={AppStyles.flex8}>
+          {
+            (resultItem.q_value || resultItem.q_value === 0) &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>q-value:</Text>&nbsp;
+              {resultItem.q_value.toExponential(3)}
+            </Text>
+          }
+          {
+            // resultItem.signature && resultItem.signature.sig_id &&
+            // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+            //   <Text style={styles.property}>cell-line:</Text>&nbsp;
+            //   {resultItem.signature.sig_id.split("_")[1]}
+            // </Text>
+          }
+          {
+            (resultItem.fold_change || resultItem.fold_change === 0) &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>fold-change:</Text>&nbsp;
+              {resultItem.fold_change.toFixed(3)}
+            </Text>
+          }
+          {
+            (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
+            resultItem.signature.pert_time_unit &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>pert-time:</Text>&nbsp;
+              {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
+            </Text>
+          }
+          {
+            (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
+            resultItem.signature.pert_dose_unit &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>pert-dose:</Text>&nbsp;
               {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
             </Text>
