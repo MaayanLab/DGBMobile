@@ -58,7 +58,7 @@ export default class DrugResultsContainer extends Component {
                 />)
               }
            />) :
-           <Text>
+           <Text style={styles.noResults}>
              No results found.
            </Text>
         }

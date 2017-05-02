@@ -188,12 +188,11 @@ export default class DrugResultItem extends Component {
           <Icon
             raised
             reverse
-            name='info'
-            type='font-awesome'
+            name='chevron-down'
+            type='material-community'
             size={10}
             color={buttonColor}
             textStyle={{textAlign: 'right'}}
-            onPress={buttonPress}
           />
         </View>
         <View style={AppStyles.flex8}>
@@ -214,45 +213,59 @@ export default class DrugResultItem extends Component {
     const { signature } = resultItem;
     return (
       <View style={[styles.hiddenAccordion]}>
-        <View style={AppStyles.flex2}></View>
-        <View style={AppStyles.flex8}>
-          {
-            (resultItem.q_value || resultItem.q_value === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>q-value:</Text>&nbsp;
-              {resultItem.q_value.toExponential(3)}
-            </Text>
-          }
-          {
-            // resultItem.signature && resultItem.signature.sig_id &&
-            // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-            //   <Text style={styles.property}>cell-line:</Text>&nbsp;
-            //   {resultItem.signature.sig_id.split("_")[1]}
-            // </Text>
-          }
-          {
-            (resultItem.fold_change || resultItem.fold_change === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>fold-change:</Text>&nbsp;
-              {resultItem.fold_change.toFixed(3)}
-            </Text>
-          }
-          {
-            (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
-            resultItem.signature.pert_time_unit &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>pert-time:</Text>&nbsp;
-              {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
-            </Text>
-          }
-          {
-            (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
-            resultItem.signature.pert_dose_unit &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>pert-dose:</Text>&nbsp;
-              {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
-            </Text>
-          }
+        <View style={[styles.drugInfo]}>
+          <View style={AppStyles.flex2}></View>
+          <View style={[AppStyles.flex8]}>
+            {
+              (resultItem.q_value || resultItem.q_value === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>q-value:</Text>&nbsp;
+                {resultItem.q_value.toExponential(3)}
+              </Text>
+            }
+            {
+              // resultItem.signature && resultItem.signature.sig_id &&
+              // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              //   <Text style={styles.property}>cell-line:</Text>&nbsp;
+              //   {resultItem.signature.sig_id.split("_")[1]}
+              // </Text>
+            }
+            {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>fold-change:</Text>&nbsp;
+                {resultItem.fold_change.toFixed(3)}
+              </Text>
+            }
+            {
+              (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
+              resultItem.signature.pert_time_unit &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>pert-time:</Text>&nbsp;
+                {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
+              </Text>
+            }
+            {
+              (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
+              resultItem.signature.pert_dose_unit &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>pert-dose:</Text>&nbsp;
+                {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
+              </Text>
+            }
+          </View>
+        </View>
+        <View style={[styles.externalLinks]}>
+          <View style={[AppStyles.flex1]}>
+            <Icon name='bookmark-border' size={20} color='gray' />
+          </View>
+          <View style={[AppStyles.flex1]}>
+            <Icon name='build' size={20} color='gray' />
+          </View>
+          <View style={[AppStyles.flex1]}>
+            <Icon name='code' size={20} color='gray' />
+          </View>
+
         </View>
       </View>
     );

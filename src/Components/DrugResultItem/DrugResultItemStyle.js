@@ -13,7 +13,17 @@ export default StyleSheet.create({
     flex: 1,
   },
   hiddenAccordion: {
+    // flexWrap: 'wrap',
+  },
+  drugInfo: {
     flexDirection: 'row',
+    // flex: 3,
+  },
+  externalLinks: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   property: {
     fontWeight: '400',
