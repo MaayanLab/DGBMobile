@@ -93,7 +93,7 @@ export default class ResultsScreen extends Component {
     ];
     return (
       <View>
-        <Swiper showButtons={false} loop={false}>
+        <Swiper showButtons={false} loop={false} >
           {
             datasets.map(datasetObj => {
               return (
@@ -114,7 +114,7 @@ export default class ResultsScreen extends Component {
                       onSelection={(exp) => this._setExpression(expressionMapping[exp])}
                       selectedOption={expressionMapping[store.userInput.expression]}
                     />
-                  <DrugResultContainer dataset={datasetObj.dataset} />
+                  <DrugResultContainer navigation={this.props.navigation} dataset={datasetObj.dataset} />
                   </View>
                 </View>
               )

@@ -10,6 +10,7 @@ import HomeScreen from './Screens/HomeScreen';
 import ExpressionScreen from './Screens/ExpressionScreen';
 import DatasetSelectionScreen from './Screens/DatasetSelectionScreen';
 import ResultsScreen from './Screens/ResultsScreen';
+import WebViewContainer from './Screens/WebViewContainer';
 
 let codePushOptions = {};
 
@@ -19,6 +20,7 @@ const AppWithRoutes = StackNavigator(
     Expression: { screen: ExpressionScreen },
     DatasetSelection: { screen: DatasetSelectionScreen },
     Results: { screen: ResultsScreen },
+    WebViewContainer: { screen: WebViewContainer },
   },
   { headerMode: 'screen' } // Allows removal of header
 );
