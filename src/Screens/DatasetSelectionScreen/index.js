@@ -50,40 +50,6 @@ export default class DatasetSelectionScreen extends Component {
     this.props.navigation.goBack();
   }
 
-  // _makeFetchAndGoToResults = () => {
-  //   const { navigate } = this.props.navigation;
-  //   const userInput = this.props.store.userInput;
-  //   userInput.setDataset(dataset)
-  //   // make fetch and navigate to resultsScreen when fetch is successful
-  //   // otherwise show spinner
-  //   const { gene, expression } = userInput;
-  //   const bodyForm = { symbol: gene, expression, dataset };
-  //   const url = 'https://amp.pharm.mssm.edu/DGB/api/v1/';
-  //   fetch(url, {
-  //     // credentials: 'include', //pass cookies, for authentication
-  //     method: 'POST',
-  //     headers: {
-  //     'Accept': 'application/json',
-  //     'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(bodyForm),
-  //   })
-  //   .then(response => {
-  //     return response.json()
-  //   })
-  //   .then(results => {
-  //     userInput.setResults(results)
-  //   })
-  //   .then(() => {
-  //     navigate('Results', { geneName: userInput.gene.toUpperCase() })
-  //   })
-  //   .catch(error => {
-  //     console.log('There has been a problem with your fetch operation: ' + error.message);
-  //    // ADD THIS THROW error
-  //     throw error;
-  //   });
-  // }
-
   _goToResults = (datasetInput) => {
     const internalState = this.props.store.internalState;
     const userInput = this.props.store.userInput;
@@ -94,7 +60,7 @@ export default class DatasetSelectionScreen extends Component {
       this.setState({spinnerVisible: true});
     } else {
       this.setState({spinnerVisible: false});
-      // this.props.navigation.navigate('Results');
+      this.props.navigation.navigate('Results');
     }
   }
 
