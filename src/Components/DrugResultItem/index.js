@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { View, Text, WebView } from 'react-native';
+import { View, Text, WebView, TouchableOpacity } from 'react-native';
 import Accordion from 'react-native-accordion';
 import { Icon } from 'react-native-elements';
 
@@ -282,31 +282,49 @@ export default class DrugResultItem extends Component {
             }
           </View>
         </View>
-        <View style={[styles.externalLinks]}>
-          <View style={[AppStyles.flex1]}>
-            <Icon
-              name='code'
-              size={20}
-              color={lifeButtonColor}
-              onPress={lifeButtonOnPress}
-            />
-          </View>
-          <View style={[AppStyles.flex1]}>
-            <Icon
-              name='build'
-              size={20}
-              color={pubChemButtonColor}
-              onPress={pubChemButtonOnPress}
-            />
-          </View>
-          <View style={[AppStyles.flex1]}>
-            <Icon
-              name='bookmark-border'
-              size={20}
-              color={drugBankButtonColor}
-              onPress={drugBankButtonOnPress}
-            />
-          </View>
+        <View style={[AppStyles.flex1, styles.externalLinks]}>
+          <TouchableOpacity
+            style={[styles.boxAround, { backgroundColor: lifeButtonColor }]}
+            onPress={lifeButtonOnPress}
+          >
+            <Text style={styles.buttonText}>LIFE</Text>
+            {
+            // <Icon
+            //   name='code'
+            //   size={20}
+            //   color={lifeButtonColor}
+            //   onPress={lifeButtonOnPress}
+            // />
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.boxAround, { backgroundColor: pubChemButtonColor }]}
+            onPress={pubChemButtonOnPress}
+          >
+            <Text style={styles.buttonText}>PubChem</Text>
+            {
+            // <Icon
+            //   name='build'
+            //   size={20}
+            //   color={pubChemButtonColor}
+            //   onPress={pubChemButtonOnPress}
+            // />
+            }
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[styles.boxAround, { backgroundColor: drugBankButtonColor }]}
+            onPress={drugBankButtonOnPress}
+          >
+            <Text style={styles.buttonText}>DrugBank</Text>
+            {
+            // <Icon
+            //   name='bookmark-border'
+            //   size={20}
+            //   color={drugBankButtonColor}
+            //   onPress={drugBankButtonOnPress}
+            // />
+            }
+          </TouchableOpacity>
         </View>
       </View>
     );

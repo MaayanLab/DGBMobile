@@ -4,7 +4,7 @@ import config from '../../config';
 export default StyleSheet.create({
   box: {
     flexDirection: 'row',
-    paddingTop: 15,
+    marginTop: 15,
     // paddingLeft: 15,
     // paddingRight: 15,
   },
@@ -20,9 +20,21 @@ export default StyleSheet.create({
     // flex: 3,
   },
   externalLinks: {
-    paddingTop: 10,
+    marginTop: 10,
+    marginBottom: 10,
     flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  boxAround: {
+    width: 75,
+    height: 20,
+    borderRadius: 3,
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 12,
   },
   property: {
     fontWeight: '400',
