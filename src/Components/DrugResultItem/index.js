@@ -282,49 +282,37 @@ export default class DrugResultItem extends Component {
             }
           </View>
         </View>
-        <View style={[AppStyles.flex1, styles.externalLinks]}>
-          <TouchableOpacity
-            style={[styles.boxAround, { backgroundColor: lifeButtonColor }]}
-            onPress={lifeButtonOnPress}
-          >
-            <Text style={styles.buttonText}>LIFE</Text>
-            {
-            // <Icon
-            //   name='code'
-            //   size={20}
-            //   color={lifeButtonColor}
-            //   onPress={lifeButtonOnPress}
-            // />
-            }
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.boxAround, { backgroundColor: pubChemButtonColor }]}
-            onPress={pubChemButtonOnPress}
-          >
-            <Text style={styles.buttonText}>PubChem</Text>
-            {
-            // <Icon
-            //   name='build'
-            //   size={20}
-            //   color={pubChemButtonColor}
-            //   onPress={pubChemButtonOnPress}
-            // />
-            }
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.boxAround, { backgroundColor: drugBankButtonColor }]}
-            onPress={drugBankButtonOnPress}
-          >
-            <Text style={styles.buttonText}>DrugBank</Text>
-            {
-            // <Icon
-            //   name='bookmark-border'
-            //   size={20}
-            //   color={drugBankButtonColor}
-            //   onPress={drugBankButtonOnPress}
-            // />
-            }
-          </TouchableOpacity>
+        <View style={[styles.externalLinks]}>
+          {
+            signature.pert_id && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: lifeButtonColor }]}
+                onPress={lifeButtonOnPress}
+              >
+                <Text style={styles.buttonText}>LIFE</Text>
+              </TouchableOpacity>
+            )
+          }
+          {
+            signature.pubchem_cid && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: pubChemButtonColor }]}
+                onPress={pubChemButtonOnPress}
+              >
+                <Text style={styles.buttonText}>PubChem</Text>
+              </TouchableOpacity>
+            )
+          }
+          {
+            signature.drugbank_id && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: drugBankButtonColor }]}
+                onPress={drugBankButtonOnPress}
+              >
+                <Text style={styles.buttonText}>DrugBank</Text>
+              </TouchableOpacity>
+            )
+          }
         </View>
       </View>
     );

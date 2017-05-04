@@ -26,8 +26,8 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
   },
   boxAround: {
-    width: 75,
-    height: 20,
+    width: 80,
+    height: 22,
     borderRadius: 3,
     justifyContent: 'center',
     alignItems: 'center',
