@@ -35,18 +35,17 @@ export default class DrugResultItem extends Component {
     );
   }
 
+  _goToGeo(geo_id) {
+    const { navigate } = this.props.navigation;
+    navigate('WebViewContainer',
+      {uri: `https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=${geo_id}`}
+    );
+  }
+
   // https://www.drugbank.ca/drugs/DB00783
 
   _renderCreedsMainContent(resultItem) {
     const { signature } = resultItem;
-    let buttonPress, buttonColor;
-    if (signature.drugbank_id === null) {
-      buttonPress = null;
-      buttonColor = 'gray';
-    } else {
-      buttonPress = () => this._goToDrugBank(signature.drugbank_id);
-      buttonColor = '#00aced';
-    }
 
     return (
       <View style={styles.box}>
@@ -54,12 +53,11 @@ export default class DrugResultItem extends Component {
           <Icon
             raised
             reverse
-            name='info'
-            type='font-awesome'
+            name='chevron-down'
+            type='material-community'
             size={10}
-            color={buttonColor}
+            color='#00aced'
             textStyle={{textAlign: 'right'}}
-            onPress={buttonPress}
           />
         </View>
         <View style={AppStyles.flex8}>
@@ -76,23 +74,84 @@ export default class DrugResultItem extends Component {
   _renderCreedsHiddenContent(resultItem) {
     const { signature } = resultItem;
 
+    let pubChemButtonOnPress, pubChemButtonColor;
+    if (signature.pubchem_id) {
+      pubChemButtonOnPress = () => { this._goToPubChem(signature.pubchem_id) };
+      pubChemButtonColor = '#00aced';
+    } else {
+      pubChemButtonOnPress = null;
+      pubChemButtonColor = 'gray';
+    }
+
+    let drugBankButtonOnPress, drugBankButtonColor;
+    if (signature.drugbank_id) {
+      drugBankButtonOnPress = () => { this._goToDrugBank(signature.drugbank_id) };
+      drugBankButtonColor = '#00aced';
+    } else {
+      drugBankButtonOnPress = null;
+      drugBankButtonColor = 'gray';
+    }
+
+    let geoButtonOnPress, geoButtonColor;
+    if (signature.geo_id) {
+      geoButtonOnPress = () => { this._goToGeo(signature.geo_id) };
+      geoButtonColor = '#00aced';
+    } else {
+      geoButtonOnPress = null;
+      geoButtonColor = 'gray';
+    }
+
     return (
       <View style={[styles.hiddenAccordion]}>
-        <View style={AppStyles.flex2}></View>
-        <View style={AppStyles.flex8}>
+        <View style={[styles.drugInfo]}>
+          <View style={AppStyles.flex2}></View>
+          <View style={AppStyles.flex8}>
+            {
+              (resultItem.q_value || resultItem.q_value === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>q-value:</Text>&nbsp;
+                {resultItem.q_value.toExponential(3)}
+              </Text>
+            }
+            {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>fold-change:</Text>&nbsp;
+                {resultItem.fold_change.toFixed(3)}
+              </Text>
+            }
+          </View>
+        </View>
+        <View style={[styles.externalLinks]}>
           {
-            (resultItem.q_value || resultItem.q_value === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>q-value:</Text>&nbsp;
-              {resultItem.q_value.toExponential(3)}
-            </Text>
+            signature.geo_id && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: geoButtonColor }]}
+                onPress={geoButtonOnPress}
+              >
+                <Text style={styles.buttonText}>GEO</Text>
+              </TouchableOpacity>
+            )
           }
           {
-            (resultItem.fold_change || resultItem.fold_change === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>fold-change:</Text>&nbsp;
-              {resultItem.fold_change.toFixed(3)}
-            </Text>
+            signature.pubchem_id && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: pubChemButtonColor }]}
+                onPress={pubChemButtonOnPress}
+              >
+                <Text style={styles.buttonText}>PubChem</Text>
+              </TouchableOpacity>
+            )
+          }
+          {
+            signature.drugbank_id && (
+              <TouchableOpacity
+                style={[styles.boxAround, { backgroundColor: drugBankButtonColor }]}
+                onPress={drugBankButtonOnPress}
+              >
+                <Text style={styles.buttonText}>DrugBank</Text>
+              </TouchableOpacity>
+            )
           }
         </View>
       </View>
