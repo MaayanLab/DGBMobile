@@ -118,6 +118,17 @@ export default class DrugResultItem extends Component {
                 {resultItem.fold_change.toFixed(3)}
               </Text>
             }
+            {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>specificity:</Text>&nbsp;
+                {
+                  resultItem.fold_change > 0 ?
+                  (1 / signature.n_sig_up_genes).toExponential(3) :
+                  (1 / signature.n_sig_down_genes).toExponential(3)
+                }
+              </Text>
+            }
           </View>
         </View>
         <View style={[styles.externalLinks]}>
@@ -174,11 +185,11 @@ export default class DrugResultItem extends Component {
         }
         <View style={[styles.padHorizontal10, AppStyles.flex6]}>
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
-          <Text style={[AppStyles.defaultFontLight, AppStyles.flex1]}>
+          <Text style={[AppStyles.defaultFontLight, AppStyles.flex1, styles.fontSize12]}>
             <Text style={styles.property}>p-value:</Text>&nbsp;
             {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <Text style={[AppStyles.defaultFontLight]}>
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>cell-line:</Text>&nbsp;
               {resultItem.signature.cell_name}
             </Text>
@@ -195,29 +206,40 @@ export default class DrugResultItem extends Component {
         <View>
           {
             (resultItem.q_value || resultItem.q_value === 0) &&
-            <Text style={[AppStyles.defaultFontLight]}>
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>q-value:</Text>&nbsp;
               {resultItem.q_value.toExponential(3)}
             </Text>
           }
           {
             // resultItem.signature && resultItem.signature.cell_name &&
-            // <Text style={[AppStyles.defaultFontLight]}>
+            // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
             //   <Text style={styles.property}>cell-line:</Text>&nbsp;
             //   {resultItem.signature.cell_name}
             // </Text>
           }
           {
             (resultItem.fold_change || resultItem.fold_change === 0) &&
-            <Text style={[AppStyles.defaultFontLight]}>
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>fold-change:</Text>&nbsp;
               {resultItem.fold_change.toFixed(3)}
             </Text>
           }
           {
+            (resultItem.fold_change || resultItem.fold_change === 0) &&
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+              <Text style={styles.property}>specificity:</Text>&nbsp;
+              {
+                resultItem.fold_change > 0 ?
+                (1 / signature.n_sig_up_genes).toExponential(3) :
+                (1 / signature.n_sig_down_genes).toExponential(3)
+              }
+            </Text>
+          }
+          {
             (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
             resultItem.signature.pert_time_unit &&
-            <Text style={[AppStyles.defaultFontLight]}>
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>pert-time:</Text>&nbsp;
               {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
             </Text>
@@ -225,7 +247,7 @@ export default class DrugResultItem extends Component {
           {
             (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
             resultItem.signature.pert_dose_unit &&
-            <Text style={[AppStyles.defaultFontLight]}>
+            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>pert-dose:</Text>&nbsp;
               {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
             </Text>
@@ -267,7 +289,6 @@ export default class DrugResultItem extends Component {
 
   _renderL1000HiddenContent(resultItem) {
     const { signature } = resultItem;
-
     let lifeButtonOnPress, lifeButtonColor;
     if (signature.pert_id) {
       lifeButtonOnPress = () => { this._goToLife(signature.pert_id) };
@@ -322,6 +343,17 @@ export default class DrugResultItem extends Component {
               </Text>
             }
             {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>specificity:</Text>&nbsp;
+                {
+                  resultItem.fold_change > 0 ?
+                  (1 / signature.n_sig_up_genes).toExponential(3) :
+                  (1 / signature.n_sig_down_genes).toExponential(3)
+                }
+              </Text>
+            }
+            {
               (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
               resultItem.signature.pert_time_unit &&
               <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
@@ -337,6 +369,7 @@ export default class DrugResultItem extends Component {
                 {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
               </Text>
             }
+
           </View>
         </View>
         <View style={[styles.externalLinks]}>
