@@ -171,18 +171,6 @@ export default class DrugResultItem extends Component {
     const { signature } = resultItem;
     return (
       <View style={styles.box}>
-        {
-          // <Icon
-          //   raised
-          //   reverse
-          //   name='info'
-          //   type='font-awesome'
-          //   size={10}
-          //   color='#00aced'
-          //   textStyle={{textAlign: 'right'}}
-          //   onPress={() => this._goToAboutDrug(signature.drug_name, signature.pert_id)}
-          // />
-        }
         <View style={[styles.padHorizontal10, AppStyles.flex6]}>
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, AppStyles.flex1, styles.fontSize12]}>
@@ -210,13 +198,6 @@ export default class DrugResultItem extends Component {
               <Text style={styles.property}>q-value:</Text>&nbsp;
               {resultItem.q_value.toExponential(3)}
             </Text>
-          }
-          {
-            // resultItem.signature && resultItem.signature.cell_name &&
-            // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-            //   <Text style={styles.property}>cell-line:</Text>&nbsp;
-            //   {resultItem.signature.cell_name}
-            // </Text>
           }
           {
             (resultItem.fold_change || resultItem.fold_change === 0) &&
@@ -327,13 +308,6 @@ export default class DrugResultItem extends Component {
                 <Text style={styles.property}>q-value:</Text>&nbsp;
                 {resultItem.q_value.toExponential(3)}
               </Text>
-            }
-            {
-              // resultItem.signature && resultItem.signature.sig_id &&
-              // <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              //   <Text style={styles.property}>cell-line:</Text>&nbsp;
-              //   {resultItem.signature.sig_id.split("_")[1]}
-              // </Text>
             }
             {
               (resultItem.fold_change || resultItem.fold_change === 0) &&
