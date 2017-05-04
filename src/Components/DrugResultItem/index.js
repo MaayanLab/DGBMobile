@@ -42,8 +42,6 @@ export default class DrugResultItem extends Component {
     );
   }
 
-  // https://www.drugbank.ca/drugs/DB00783
-
   _renderCreedsMainContent(resultItem) {
     const { signature } = resultItem;
 
