@@ -76,7 +76,9 @@ export default class ResultsScreen extends Component {
 
   orderDatasetDisplayOrder = (datasetList, targetDataset) => {
     const dsClone = datasetList.slice();
-    const targetIdx = dsClone.findIndex(ds => ds.dataset === targetDataset);
+    const targetIdx = dsClone.findIndex(ds => (
+      ds.dataset.toLowerCase() === targetDataset.toLowerCase()
+    ));
     const splicedDs = dsClone.splice(targetIdx, 1);
     return [splicedDs[0], ...dsClone];
   }
