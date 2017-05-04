@@ -13,9 +13,9 @@ export default class DrugResultItem extends Component {
     super(props);
   }
 
-  _goToDMOA(pert_id) {
+  _goToLife(pert_id) {
     const { navigate } = this.props.navigation;
-    const uri = `http://amp.pharm.mssm.edu/dmoa/report/${pert_id}`;
+    const uri = `http://life.ccs.miami.edu/life/summary?mode=SmallMolecule&source=BROAD&input=${pert_id}`;
     navigate('WebViewContainer',
       { uri }
     );
@@ -25,6 +25,13 @@ export default class DrugResultItem extends Component {
     const { navigate } = this.props.navigation;
     navigate('WebViewContainer',
       {uri: `https://www.drugbank.ca/drugs/${drugbank_id}`}
+    );
+  }
+
+  _goToPubChem(pubchem_cid) {
+    const { navigate } = this.props.navigation;
+    navigate('WebViewContainer',
+      {uri: `https://pubchem.ncbi.nlm.nih.gov/compound/${pubchem_cid}`}
     );
   }
 
@@ -173,14 +180,6 @@ export default class DrugResultItem extends Component {
 
   _renderL1000MainContent(resultItem) {
     const { signature } = resultItem;
-    let buttonPress, buttonColor;
-    if (!signature.pert_id) {
-      buttonPress = null;
-      buttonColor = 'gray';
-    } else {
-      buttonPress = () => this._goToDMOA(signature.pert_id);
-      buttonColor = '#00aced';
-    }
 
     return (
       <View style={styles.box}>
@@ -191,7 +190,7 @@ export default class DrugResultItem extends Component {
             name='chevron-down'
             type='material-community'
             size={10}
-            color={buttonColor}
+            color='#00aced'
             textStyle={{textAlign: 'right'}}
           />
         </View>
@@ -202,7 +201,7 @@ export default class DrugResultItem extends Component {
             {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
 
             <Text style={[styles.property, styles.fontSize12]}>cell-line:</Text>&nbsp;
-            {resultItem.signature.sig_id.split("_")[1]}
+            {signature.sig_id.split("_")[1]}
           </Text>
         </View>
       </View>
@@ -211,6 +210,34 @@ export default class DrugResultItem extends Component {
 
   _renderL1000HiddenContent(resultItem) {
     const { signature } = resultItem;
+
+    let lifeButtonOnPress, lifeButtonColor;
+    if (signature.pert_id) {
+      lifeButtonOnPress = () => { this._goToLife(signature.pert_id) };
+      lifeButtonColor = '#00aced';
+    } else {
+      lifeButtonOnPress = null;
+      lifeButtonColor = 'gray';
+    }
+
+    let drugBankButtonOnPress, drugBankButtonColor;
+    if (signature.drugbank_id) {
+      drugBankButtonOnPress = () => { this._goToDrugBank(signature.drugbank_id) };
+      drugBankButtonColor = '#00aced';
+    } else {
+      drugBankButtonOnPress = null;
+      drugBankButtonColor = 'gray';
+    }
+
+    let pubChemButtonOnPress, pubChemButtonColor;
+    if (signature.pubchem_cid) {
+      pubChemButtonOnPress = () => { this._goToPubChem(signature.pubchem_cid) };
+      pubChemButtonColor = '#00aced';
+    } else {
+      pubChemButtonOnPress = null;
+      pubChemButtonColor = 'gray';
+    }
+
     return (
       <View style={[styles.hiddenAccordion]}>
         <View style={[styles.drugInfo]}>
@@ -257,15 +284,29 @@ export default class DrugResultItem extends Component {
         </View>
         <View style={[styles.externalLinks]}>
           <View style={[AppStyles.flex1]}>
-            <Icon name='bookmark-border' size={20} color='gray' />
+            <Icon
+              name='code'
+              size={20}
+              color={lifeButtonColor}
+              onPress={lifeButtonOnPress}
+            />
           </View>
           <View style={[AppStyles.flex1]}>
-            <Icon name='build' size={20} color='gray' />
+            <Icon
+              name='build'
+              size={20}
+              color={pubChemButtonColor}
+              onPress={pubChemButtonOnPress}
+            />
           </View>
           <View style={[AppStyles.flex1]}>
-            <Icon name='code' size={20} color='gray' />
+            <Icon
+              name='bookmark-border'
+              size={20}
+              color={drugBankButtonColor}
+              onPress={drugBankButtonOnPress}
+            />
           </View>
-
         </View>
       </View>
     );

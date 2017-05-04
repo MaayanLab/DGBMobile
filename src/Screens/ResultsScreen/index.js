@@ -114,7 +114,7 @@ export default class ResultsScreen extends Component {
                       onSelection={(exp) => this._setExpression(expressionMapping[exp])}
                       selectedOption={expressionMapping[store.userInput.expression]}
                     />
-                  <DrugResultContainer navigation={this.props.navigation} dataset={datasetObj.dataset} />
+                    <DrugResultContainer navigation={this.props.navigation} dataset={datasetObj.dataset} />
                   </View>
                 </View>
               )
