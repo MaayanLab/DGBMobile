@@ -13,13 +13,13 @@ export default class DrugResultItem extends Component {
     super(props);
   }
 
-  _goToLife(pert_id) {
-    const { navigate } = this.props.navigation;
-    const uri = `http://life.ccs.miami.edu/life/summary?mode=SmallMolecule&source=BROAD&input=${pert_id}`;
-    navigate('WebViewContainer',
-      { uri }
-    );
-  }
+  // _goToLife(pert_id) {
+  //   const { navigate } = this.props.navigation;
+  //   const uri = `http://life.ccs.miami.edu/life/summary?mode=SmallMolecule&source=BROAD&input=${pert_id}`;
+  //   navigate('WebViewContainer',
+  //     { uri }
+  //   );
+  // }
 
   _goToDrugBank(drugbank_id) {
     const { navigate } = this.props.navigation;
@@ -270,14 +270,14 @@ export default class DrugResultItem extends Component {
 
   _renderL1000HiddenContent(resultItem) {
     const { signature } = resultItem;
-    let lifeButtonOnPress, lifeButtonColor;
-    if (signature.pert_id) {
-      lifeButtonOnPress = () => { this._goToLife(signature.pert_id) };
-      lifeButtonColor = '#00aced';
-    } else {
-      lifeButtonOnPress = null;
-      lifeButtonColor = 'gray';
-    }
+    // let lifeButtonOnPress, lifeButtonColor;
+    // if (signature.pert_id) {
+    //   lifeButtonOnPress = () => { this._goToLife(signature.pert_id) };
+    //   lifeButtonColor = '#00aced';
+    // } else {
+    //   lifeButtonOnPress = null;
+    //   lifeButtonColor = 'gray';
+    // }
 
     let drugBankButtonOnPress, drugBankButtonColor;
     if (signature.drugbank_id) {
@@ -348,14 +348,14 @@ export default class DrugResultItem extends Component {
         </View>
         <View style={[styles.externalLinks]}>
           {
-            signature.pert_id && (
-              <TouchableOpacity
-                style={[styles.boxAround, { backgroundColor: lifeButtonColor }]}
-                onPress={lifeButtonOnPress}
-              >
-                <Text style={styles.buttonText}>LIFE</Text>
-              </TouchableOpacity>
-            )
+            // signature.pert_id && (
+            //   <TouchableOpacity
+            //     style={[styles.boxAround, { backgroundColor: lifeButtonColor }]}
+            //     onPress={lifeButtonOnPress}
+            //   >
+            //     <Text style={styles.buttonText}>LIFE</Text>
+            //   </TouchableOpacity>
+            // )
           }
           {
             signature.pubchem_cid && (
