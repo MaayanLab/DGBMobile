@@ -2,10 +2,24 @@ import { StyleSheet } from 'react-native';
 import config from '../../config';
 
 export default StyleSheet.create({
+  text: {
+    fontFamily: 'Lato',
+    marginTop: 5,
+    marginLeft: 10,
+    marginRight: 10,
+    textAlign: 'center',
+  },
+  sample: {
+    color: '#178dc9',
+  },
   title: {
     fontSize: 35,
-    fontFamily: 'JosefinSlab-SemiBold',
     color: 'gray',
+    fontFamily: 'JosefinSlab-SemiBold',
+  },
+  exampleSearches: {
+    flexDirection: 'row',
+    justifyContent: 'center'
   },
   formContainer: {
     flexDirection: 'column',
@@ -19,7 +33,7 @@ export default StyleSheet.create({
   },
   geneFormContainer: {
     paddingVertical: 30,
-    // justifyContent: 'space-around',
+    justifyContent: 'space-around',
   },
   logo: {
     width: 120,
