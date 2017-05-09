@@ -134,7 +134,6 @@ export default class ResultsScreen extends Component {
                           style={[styles.text, styles.gene]}
                           onPress={() => this._visitHarm(store.userInput.gene)}
                           animation="pulse"
-                          iterationCount={1}
                           easing="ease-out"
                           iterationCount="infinite"
                         >

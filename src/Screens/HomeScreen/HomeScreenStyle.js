@@ -26,8 +26,8 @@ export default StyleSheet.create({
     marginTop: 25,
   },
   formInput: {
-    flex: 1,
-    height: 40,
+    // flex: 1,
+    // height: 60,
     borderColor: 'gray',
     borderWidth: 1,
   },

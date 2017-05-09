@@ -160,7 +160,7 @@ export default class HomeScreen extends Component {
         ]}>
           <FormInput
             style={styles.formInput}
-            inputStyle={{ fontSize: 19 }}
+            inputStyle={{ fontSize: 16 }}
             placeholder="Enter gene to budge here..."
             onChangeText={(input) => this.setState(
               {
