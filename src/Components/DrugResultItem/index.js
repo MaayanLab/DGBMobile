@@ -11,6 +11,9 @@ import styles from './DrugResultItemStyle';
 export default class DrugResultItem extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      active: false,
+    };
   }
 
   // _goToLife(pert_id) {
@@ -20,6 +23,10 @@ export default class DrugResultItem extends Component {
   //     { uri }
   //   );
   // }
+
+  accordionActive = () => {
+    this.setState({ active: !this.state.active });
+  }
 
   _goToDrugBank(drugbank_id) {
     const { navigate } = this.props.navigation;
@@ -51,7 +58,7 @@ export default class DrugResultItem extends Component {
           <Icon
             raised
             reverse
-            name='chevron-down'
+            name={ this.state.active ? 'chevron-down' : 'chevron-right'}
             type='material-community'
             size={10}
             color='#00aced'
@@ -247,7 +254,7 @@ export default class DrugResultItem extends Component {
           <Icon
             raised
             reverse
-            name='chevron-down'
+            name={ this.state.active ? 'chevron-down' : 'chevron-right'}
             type='material-community'
             size={10}
             color='#00aced'
@@ -401,6 +408,7 @@ export default class DrugResultItem extends Component {
       <Accordion
         header={mainContent}
         content={hiddenContent}
+        onPress={() => { this.accordionActive() }}
         duration={300}
         easing="easeOutCubic"
       />
