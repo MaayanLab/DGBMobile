@@ -13,11 +13,11 @@ import AppStyles from 'DGBMobile/src/styles';
 
 const datasetsOptions = [
   {
-    dataset: 'Original Connectivity Map 02',
+    dataset: 'Affy Connectivity Map 02',
     backgroundColor: '#a2a9ac',
   },
   {
-    dataset: 'LINCS L1000 Phase 1',
+    dataset: 'LINCS L1000 Phase I',
     backgroundColor: '#999b9b',
   },
   {

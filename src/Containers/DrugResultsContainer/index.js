@@ -28,13 +28,13 @@ export default class DrugResultsContainer extends Component {
       dataSource = userInput.expression === 'UP' ?
         ds.cloneWithRows(creedsData.up):
         ds.cloneWithRows(creedsData.down);
-    } else if (this.props.dataset === 'LINCS L1000 Phase 1') {
+    } else if (this.props.dataset === 'LINCS L1000 Phase I') {
       inputSet = 'l1000';
       const l1000Data = mobx.toJS(userInput.results.l1000);
       dataSource = userInput.expression === 'UP' ?
         ds.cloneWithRows(l1000Data.up):
         ds.cloneWithRows(l1000Data.down);
-    } else if (this.props.dataset === 'Original Connectivity Map 02') {
+    } else if (this.props.dataset === 'Affy Connectivity Map 02') {
       inputSet = 'cmap';
       const cmapData = mobx.toJS(userInput.results.cmap);
       dataSource = userInput.expression === 'UP' ?

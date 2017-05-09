@@ -114,17 +114,17 @@ export default class DatasetSelectionScreen extends Component {
           <Button
             raised
             large
-            title="LINCS L1000 Phase 1"
+            title="LINCS L1000 Phase I"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults('LINCS L1000 Phase 1') }}
+            onPress={() => { this._goToResults('LINCS L1000 Phase I') }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
             large
-            title="Original Connectivity Map 02"
+            title="Affy Connectivity Map 02"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults('Original Connectivity Map 02') }}
+            onPress={() => { this._goToResults('Affy Connectivity Map 02') }}
             buttonStyle={styles.boxButton}
           />
         </View>

@@ -228,7 +228,7 @@ export default class DrugResultItem extends Component {
             (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
             resultItem.signature.pert_time_unit &&
             <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>pert-time:</Text>&nbsp;
+              <Text style={styles.property}>time-point:</Text>&nbsp;
               {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
             </Text>
           }
@@ -236,7 +236,7 @@ export default class DrugResultItem extends Component {
             (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
             resultItem.signature.pert_dose_unit &&
             <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>pert-dose:</Text>&nbsp;
+              <Text style={styles.property}>dose:</Text>&nbsp;
               {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
             </Text>
           }
@@ -338,7 +338,7 @@ export default class DrugResultItem extends Component {
               (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
               resultItem.signature.pert_time_unit &&
               <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-                <Text style={styles.property}>pert-time:</Text>&nbsp;
+                <Text style={styles.property}>time-point:</Text>&nbsp;
                 {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
               </Text>
             }
@@ -346,7 +346,7 @@ export default class DrugResultItem extends Component {
               (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
               resultItem.signature.pert_dose_unit &&
               <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-                <Text style={styles.property}>pert-dose:</Text>&nbsp;
+                <Text style={styles.property}>dose:</Text>&nbsp;
                 {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
               </Text>
             }

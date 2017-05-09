@@ -169,31 +169,35 @@ export default class HomeScreen extends Component {
             )}
             value={this.state.input}
           />
-        <View>
-          <View style={AppStyles.spacer_20} />
-          <Text style={styles.text}>Example Searches</Text>
+          {
+            userTyped ?
+            null :
+            <View>
+              <View style={AppStyles.spacer_20} />
+              <Text style={styles.text}>Example Searches</Text>
 
-          <View style={styles.exampleSearches}>
-            <Text
-              style={[styles.text, styles.sample]}
-              onPress={() => this._makeFetchAndGoToExpression('AKT1')}
-            >
-              AKT1
-            </Text>
-            <Text
-              style={[styles.text, styles.sample]}
-              onPress={() => this._makeFetchAndGoToExpression('RNF14')}
-            >
-              RNF14
-            </Text>
-            <Text
-              style={[styles.text, styles.sample]}
-              onPress={() => this._makeFetchAndGoToExpression('STAT3')}
-            >
-              STAT3
-            </Text>
-          </View>
-        </View>
+              <View style={styles.exampleSearches}>
+                <Text
+                  style={[styles.text, styles.sample]}
+                  onPress={() => this._makeFetchAndGoToExpression('AKT1')}
+                >
+                  AKT1
+                </Text>
+                <Text
+                  style={[styles.text, styles.sample]}
+                  onPress={() => this._makeFetchAndGoToExpression('RNF14')}
+                >
+                  RNF14
+                </Text>
+                <Text
+                  style={[styles.text, styles.sample]}
+                  onPress={() => this._makeFetchAndGoToExpression('STAT3')}
+                >
+                  STAT3
+                </Text>
+              </View>
+            </View>
+          }
         </View>
         {
           userTyped ?
