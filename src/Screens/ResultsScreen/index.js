@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Text, View, Dimensions } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
 
@@ -14,11 +15,11 @@ import AppStyles from 'DGBMobile/src/styles';
 const datasetsOptions = [
   {
     dataset: 'Affy Connectivity Map 02',
-    backgroundColor: '#a2a9ac',
+    backgroundColor: '#adb2b4',
   },
   {
     dataset: 'LINCS L1000 Phase I',
-    backgroundColor: '#999b9b',
+    backgroundColor: '#a2a9ac',
   },
   {
     dataset: 'CREEDS: GEO Signatures',
@@ -74,6 +75,13 @@ export default class ResultsScreen extends Component {
     });
   }
 
+  _visitHarm = (gene) => {
+    const { navigate } = this.props.navigation;
+    navigate('WebViewContainer',
+      {uri: `http://amp.pharm.mssm.edu/Harmonizome/gene/${gene}`}
+    );
+  }
+
   orderDatasetDisplayOrder = (datasetList, targetDataset) => {
     const dsClone = datasetList.slice();
     const targetIdx = dsClone.findIndex(ds => (
@@ -93,11 +101,15 @@ export default class ResultsScreen extends Component {
       AppStyles.paddingHorizontal,
       {width: currWidth, height: currHeight, paddingTop: 10, paddingBottom: 20},
     ];
+    const firstIdx = 0;
+    const lastIdx = datasets.length - 1;
     return (
       <View>
         <Swiper showButtons={false} loop={false} >
           {
-            datasets.map(datasetObj => {
+            datasets.map((datasetObj, idx) => {
+              const first = idx === firstIdx;
+              const last = idx === lastIdx;
               return (
                 <View
                   key={datasetObj.dataset}
@@ -106,8 +118,35 @@ export default class ResultsScreen extends Component {
                 >
                   <View style={swiperOrientationStyle} level={-10}>
                     <View style={styles.headerWrap}>
-                      <Text style={[styles.text, styles.gene]}>{store.userInput.gene}</Text>
-                      <Text style={styles.text}>{datasetObj.dataset}</Text>
+                      <View style={styles.arrowLeftContainer}>
+                        {
+                          !first && <Icon
+                            name='caret-left'
+                            size={40}
+                            type='font-awesome'
+                            color='#4892cf'
+                          />
+                        }
+                      </View>
+                      <View style={styles.innerHeaderWrap}>
+                        <Text
+                          style={[styles.text, styles.gene]}
+                          onPress={() => this._visitHarm(store.userInput.gene)}
+                        >
+                          {store.userInput.gene}
+                        </Text>
+                        <Text style={styles.text}>{datasetObj.dataset}</Text>
+                      </View>
+                      <View style={styles.arrowRightContainer}>
+                        {
+                          !last && <Icon
+                            name='caret-right'
+                            size={40}
+                            type='font-awesome'
+                            color='#4892cf'
+                          />
+                        }
+                      </View>
                     </View>
                     <SegmentedControls
                       tint={'#23a8ec'}

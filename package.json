@@ -16,6 +16,7 @@
     "react-native-accordion": "git+https://github.com/NedYork/react-native-accordion.git",
     "react-native-app-intro": "^1.1.5",
     "react-native-code-push": "^2.0.1-beta",
+    "react-native-custom-segmented-control": "^3.0.8",
     "react-native-elements": "^0.9.2",
     "react-native-icons": "^0.7.1",
     "react-native-loading-spinner-overlay": "^0.4.4",

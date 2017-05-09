@@ -62,7 +62,7 @@ export default class HomeScreen extends Component {
   _makeFetch = (gene) => {
     const { userInput, internalState } = this.props.store;
     const bodyForm = { symbol: gene };
-    const url = 'http://localhost:5000/DGB/api/v1/';
+    const url = 'http://amp.pharm.mssm.edu/DGB/api/v1/';
     userInput.setGene(gene)
     internalState.beginFetch()
     fetch(url, {
@@ -160,6 +160,7 @@ export default class HomeScreen extends Component {
         ]}>
           <FormInput
             style={styles.formInput}
+            inputStyle={{ fontSize: 19 }}
             placeholder="Enter gene to budge here..."
             onChangeText={(input) => this.setState(
               {

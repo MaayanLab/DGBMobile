@@ -32,7 +32,7 @@ export default StyleSheet.create({
   },
   question: {
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 22,
     color: '#8e8e8e',
   },
 });
