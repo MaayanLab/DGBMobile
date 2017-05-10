@@ -29,22 +29,26 @@ export default class DatasetSelectionScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      spinnerVisible: false,
       layout: { height, width }
     }
   }
 
-  componentWillReact() {
-    const internalState = this.props.store.internalState;
-    const userInput = this.props.store.userInput;
-    if (!internalState.fetching && userInput.dataset) {
-      this.setState({spinnerVisible: false});
-      // Not the best plan but works for now.
-      setTimeout(() => {
-        this.props.navigation.navigate('Results');
-      }, 0);
-    }
-  }
+
+  // componentWillReact() {
+  //   const internalState = this.props.store.internalState;
+  //   const userInput = this.props.store.userInput;
+  //   if (internalState.fetchComplete) {
+  //     this.props.store.internalState.resetFetchState();
+  //     this.setState({spinnerVisible: false});
+  //     this.props.navigation.navigate('Results');
+  //
+  //     // Not the best plan but works for now.
+  //     // setTimeout(() => {
+  //     //   this.props.navigation.navigate('Results');
+  //     // }, 0);
+  //   }
+  // }
+
 
   _goBackToExpression = () => {
     this.props.navigation.goBack();
@@ -57,11 +61,15 @@ export default class DatasetSelectionScreen extends Component {
     userInput.setDataset(datasetInput.toUpperCase());
     if (internalState.fetching) {
       // This is happening because spinner
-      this.setState({spinnerVisible: true});
-    } else {
-      this.setState({spinnerVisible: false});
+      // this.setState({spinnerVisible: true});
+      internalState.turnOnSpinner();
+    } else if (internalState.fetchComplete) {
       this.props.navigation.navigate('Results');
     }
+    // else {
+    //   this.setState({spinnerVisible: false});
+    //   this.props.navigation.navigate('Results');
+    // }
   }
 
   _onLayout = (event) => {
@@ -76,7 +84,7 @@ export default class DatasetSelectionScreen extends Component {
   render() {
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
-    const test = this.props.store.internalState.fetching;
+    // const test = this.props.store.internalState.fetching;
     const buttonOrientationClasses = [AppStyles.containerCentered, AppStyles.flex3, styles.regulationDirectionContainer];
     if (currHeight < currWidth) {
       buttonOrientationClasses.push(styles.landscape);
@@ -84,7 +92,7 @@ export default class DatasetSelectionScreen extends Component {
     return (
       <View style={[AppStyles.container, AppStyles.justifyCenter]} onLayout={this._onLayout}>
         <Spinner
-          visible={this.state.spinnerVisible}
+          visible={this.props.store.internalState.spinnerVisible}
           textStyle={{color: '#FFF'}}
         />
         <View style={[AppStyles.alignCenter, AppStyles.flex3, { justifyContent: 'center' }]}>

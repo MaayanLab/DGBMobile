@@ -6,7 +6,7 @@ class UserInput {
   @observable gene = '';
   @observable expression = '';
   @observable dataset = '';
-  @observable results = [];
+  @observable results = {};
 
   @action setGene(gene) {
     this.gene = gene;

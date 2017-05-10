@@ -80,7 +80,10 @@ export default class HomeScreen extends Component {
     .then(results => {
       userInput.setResults(results);
       internalState.endFetch();
-      console.log("Fetch success")
+      if (userInput.expression && userInput.dataset) {
+        internalState.turnOffSpinner();
+        this.props.navigation.navigate('Results');
+      }
     })
     .catch(error => {
       console.log('There has been a problem with your fetch operation: ' + error.message);
