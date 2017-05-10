@@ -130,15 +130,12 @@ export default class ResultsScreen extends Component {
                         }
                       </View>
                       <View style={styles.innerHeaderWrap}>
-                        <Animatable.Text
+                        <Text
                           style={[styles.text, styles.gene]}
                           onPress={() => this._visitHarm(store.userInput.gene)}
-                          animation="pulse"
-                          easing="ease-out"
-                          iterationCount="infinite"
                         >
                           {store.userInput.gene}
-                        </Animatable.Text>
+                        </Text>
                         <Text style={styles.text}>{datasetObj.dataset}</Text>
                       </View>
                       <View style={styles.arrowRightContainer}>
