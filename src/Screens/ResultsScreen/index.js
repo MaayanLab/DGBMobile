@@ -5,7 +5,6 @@ import { Text, View, Dimensions } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
-import * as Animatable from 'react-native-animatable';
 
 import { inject, observer } from 'mobx-react/native';
 import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
@@ -130,15 +129,12 @@ export default class ResultsScreen extends Component {
                         }
                       </View>
                       <View style={styles.innerHeaderWrap}>
-                        <Animatable.Text
+                        <Text
                           style={[styles.text, styles.gene]}
                           onPress={() => this._visitHarm(store.userInput.gene)}
-                          animation="pulse"
-                          easing="ease-out"
-                          iterationCount="infinite"
                         >
                           {store.userInput.gene}
-                        </Animatable.Text>
+                        </Text>
                         <Text style={styles.text}>{datasetObj.dataset}</Text>
                       </View>
                       <View style={styles.arrowRightContainer}>

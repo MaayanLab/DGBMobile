@@ -33,7 +33,7 @@ export default StyleSheet.create({
     fontSize: 19,
   },
   gene: {
-    color: '#4892cf',
+    color: '#4483b6',
     fontWeight: 'bold',
     fontSize: 25,
   },

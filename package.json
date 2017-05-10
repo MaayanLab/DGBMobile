@@ -14,7 +14,6 @@
     "react": "^15.5.4",
     "react-native": "^0.42.0",
     "react-native-accordion": "git+https://github.com/NedYork/react-native-accordion.git",
-    "react-native-animatable": "^1.2.0",
     "react-native-app-intro": "^1.1.5",
     "react-native-code-push": "^1.17.4-beta",
     "react-native-custom-segmented-control": "^3.0.8",
