@@ -150,7 +150,7 @@ export default class ResultsScreen extends Component {
                     </View>
                     <SegmentedControls
                       tint={'#23a8ec'}
-                      selectedTint= {'white'}
+                      selectedTint= {'#545252'}
                       options={['Up-Regulated', 'Down-Regulated']}
                       onSelection={(exp) => this._setExpression(expressionMapping[exp])}
                       selectedOption={expressionMapping[store.userInput.expression]}
