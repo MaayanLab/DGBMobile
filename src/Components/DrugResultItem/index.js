@@ -410,7 +410,7 @@ export default class DrugResultItem extends Component {
         content={hiddenContent}
         underlayColor="transparent"
         onPress={() => { this.accordionActive() }}
-        duration={300}
+        animationDuration={450}
         easing="easeOutCubic"
       />
     );
