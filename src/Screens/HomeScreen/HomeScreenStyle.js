@@ -25,11 +25,19 @@ export default StyleSheet.create({
     flexDirection: 'column',
     marginTop: 25,
   },
+  formInputContainer: {
+    marginLeft: 25,
+    marginRight: 25,
+    borderBottomWidth: 1,
+    borderColor: 'gray',
+  },
   formInput: {
     // flex: 1,
-    // height: 60,
+    height: 45,
     borderColor: 'gray',
     borderWidth: 1,
+    fontSize: 21,
+    borderColor: 'transparent',
   },
   geneFormContainer: {
     paddingVertical: 30,

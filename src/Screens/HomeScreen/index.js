@@ -1,13 +1,12 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Image, Dimensions, StatusBar } from 'react-native';
+import { Text, View, Image, Dimensions, TextInput, StatusBar } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import {
   Button,
   Icon,
-  FormLabel,
-  FormInput
+  FormLabel
 } from 'react-native-elements';
 import GeneSearchMatchItem from 'DGBMobile/src/Components/GeneSearchMatchItem';
 import AppStyles from 'DGBMobile/src/styles';
@@ -161,18 +160,21 @@ export default class HomeScreen extends Component {
               flex: userTyped ? 0 : 1,
             }
         ]}>
-          <FormInput
-            style={styles.formInput}
-            inputStyle={{ fontSize: 16 }}
-            placeholder="Enter gene to budge here..."
-            onChangeText={(input) => this.setState(
-              {
-                input: input.toUpperCase(),
-                matchingGenes: this.returnMatchingGenes(genesList, input),
-              }
-            )}
-            value={this.state.input}
-          />
+          <View style={styles.formInputContainer}>
+            <TextInput
+              style={styles.formInput}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              inputStyle={{ fontSize: 18 }}
+              placeholder="Enter gene to budge here..."
+              onChangeText={(input) => this.setState(
+                {
+                  input: input.toUpperCase(),
+                  matchingGenes: this.returnMatchingGenes(genesList, input),
+                }
+              )}
+              value={this.state.input}
+            />
+          </View>
           {
             userTyped ?
             null :
