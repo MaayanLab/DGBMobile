@@ -69,7 +69,7 @@ export default class DrugResultItem extends Component {
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
             <Text style={[styles.property]}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
+            {resultItem.p_value === 0 ? 0 : resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
           </Text>
         </View>
       </View>
@@ -115,7 +115,7 @@ export default class DrugResultItem extends Component {
               (resultItem.q_value || resultItem.q_value === 0) &&
               <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
                 <Text style={styles.property}>q-value:</Text>&nbsp;
-                {resultItem.q_value.toExponential(3)}
+                {resultItem.q_value === 0 ? 0 : resultItem.q_value.toExponential(3)}
               </Text>
             }
             {
@@ -182,7 +182,7 @@ export default class DrugResultItem extends Component {
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, AppStyles.flex1, styles.fontSize12]}>
             <Text style={styles.property}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
+            {resultItem.p_value === 0 ? 0 : resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
 
             <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>cell-line:</Text>&nbsp;
@@ -203,7 +203,7 @@ export default class DrugResultItem extends Component {
             (resultItem.q_value || resultItem.q_value === 0) &&
             <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
               <Text style={styles.property}>q-value:</Text>&nbsp;
-              {resultItem.q_value.toExponential(3)}
+              {resultItem.q_value === 0 ? 0 : resultItem.q_value.toExponential(3)}
             </Text>
           }
           {
@@ -265,7 +265,7 @@ export default class DrugResultItem extends Component {
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
             <Text style={[styles.property]}>p-value:</Text>&nbsp;
-            {resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
+            {resultItem.p_value === 0 ? 0 : resultItem.p_value.toExponential(3)}&nbsp;&nbsp;&nbsp;&nbsp;
 
             <Text style={[styles.property, styles.fontSize12]}>cell-line:</Text>&nbsp;
             {signature.sig_id.split("_")[1]}
@@ -313,7 +313,7 @@ export default class DrugResultItem extends Component {
               (resultItem.q_value || resultItem.q_value === 0) &&
               <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
                 <Text style={styles.property}>q-value:</Text>&nbsp;
-                {resultItem.q_value.toExponential(3)}
+                {resultItem.q_value === 0 ? 0 : resultItem.q_value.toExponential(3)}
               </Text>
             }
             {
