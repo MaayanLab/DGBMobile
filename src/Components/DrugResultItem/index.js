@@ -408,6 +408,7 @@ export default class DrugResultItem extends Component {
       <Accordion
         header={mainContent}
         content={hiddenContent}
+        underlayColor="transparent"
         onPress={() => { this.accordionActive() }}
         duration={300}
         easing="easeOutCubic"
