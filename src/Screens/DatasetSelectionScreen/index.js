@@ -114,17 +114,17 @@ export default class DatasetSelectionScreen extends Component {
           <Button
             raised
             large
-            title="CREEDS: GEO Signatures"
+            title="LINCS L1000 Phase I"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults('CREEDS: GEO Signatures') }}
+            onPress={() => { this._goToResults('LINCS L1000 Phase I') }}
             buttonStyle={styles.boxButton}
           />
           <Button
             raised
             large
-            title="LINCS L1000 Phase I"
+            title="CREEDS: GEO Signatures"
             backgroundColor="#23a8ec"
-            onPress={() => { this._goToResults('LINCS L1000 Phase I') }}
+            onPress={() => { this._goToResults('CREEDS: GEO Signatures') }}
             buttonStyle={styles.boxButton}
           />
           <Button

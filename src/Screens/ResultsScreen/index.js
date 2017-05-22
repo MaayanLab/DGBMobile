@@ -14,16 +14,16 @@ import AppStyles from 'DGBMobile/src/styles';
 
 const datasetsOptions = [
   {
-    dataset: 'Affy Connectivity Map 02',
-    backgroundColor: '#adb2b4',
-  },
-  {
     dataset: 'LINCS L1000 Phase I',
     backgroundColor: '#a2a9ac',
   },
   {
     dataset: 'CREEDS: GEO Signatures',
     backgroundColor: '#b4b8ba',
+  },
+  {
+    dataset: 'Affy Connectivity Map 02',
+    backgroundColor: '#adb2b4',
   },
 ];
 const expressionMapping = {
@@ -82,13 +82,10 @@ export default class ResultsScreen extends Component {
     );
   }
 
-  orderDatasetDisplayOrder = (datasetList, targetDataset) => {
-    const dsClone = datasetList.slice();
-    const targetIdx = dsClone.findIndex(ds => (
+  findSwiperIdx = (datasetList, targetDataset) => {
+    return datasetList.findIndex(ds => (
       ds.dataset.toLowerCase() === targetDataset.toLowerCase()
     ));
-    const splicedDs = dsClone.splice(targetIdx, 1);
-    return [splicedDs[0], ...dsClone];
   }
 
   render() {
@@ -96,18 +93,18 @@ export default class ResultsScreen extends Component {
     const currHeight = this.state.layout.height;
     const currWidth = this.state.layout.width;
     const firstDataset = store.userInput.dataset;
-    const datasets = this.orderDatasetDisplayOrder(datasetsOptions, firstDataset);
     const swiperOrientationStyle = [
       AppStyles.paddingHorizontal,
       {width: currWidth, height: currHeight, paddingTop: 10, paddingBottom: 20},
     ];
+    const swiperIdx = this.findSwiperIdx(datasetsOptions, firstDataset);
     const firstIdx = 0;
-    const lastIdx = datasets.length - 1;
+    const lastIdx = datasetsOptions.length - 1;
     return (
       <View>
-        <Swiper showButtons={false} loop={false} >
+        <Swiper showButtons={false} loop={false} index={swiperIdx}>
           {
-            datasets.map((datasetObj, idx) => {
+            datasetsOptions.map((datasetObj, idx) => {
               const first = idx === firstIdx;
               const last = idx === lastIdx;
               return (

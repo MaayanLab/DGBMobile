@@ -49,6 +49,7 @@ export default class DrugResultsContainer extends Component {
         {
           dataSource._dataBlob.s1.length > 0 ?
           (<ListView
+              initialListSize={40}
               dataSource={dataSource}
               renderRow={rowData => (
                 <DrugResultItem
