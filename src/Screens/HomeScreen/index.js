@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Image, Dimensions, TextInput, StatusBar } from 'react-native';
+import { Text, View, Image, Dimensions, TextInput, Keyboard, StatusBar } from 'react-native';
 import { inject, observer } from 'mobx-react/native';
 import {
   Button,
@@ -100,6 +100,7 @@ export default class HomeScreen extends Component {
   }
 
   _makeFetchAndGoToExpression = (gene) => {
+    Keyboard.dismiss();
     this._makeFetch(gene);
     this._goToExpression(gene);
   }
@@ -166,12 +167,12 @@ export default class HomeScreen extends Component {
               underlineColorAndroid='rgba(0,0,0,0)'
               inputStyle={{ fontSize: 18 }}
               placeholder="Enter gene to budge here..."
-              onChangeText={(input) => this.setState(
-                {
-                  input: input.toUpperCase(),
-                  matchingGenes: this.returnMatchingGenes(genesList, input),
-                }
-              )}
+              onChangeText={(input) => {
+                this.setState({
+                  input: input,
+                  matchingGenes: this.returnMatchingGenes(genesList, input.toUpperCase()),
+                })
+              }}
               value={this.state.input}
             />
           </View>
