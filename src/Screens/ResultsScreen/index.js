@@ -1,7 +1,7 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { Text, View, Dimensions } from 'react-native';
+import { Text, View, Dimensions, TouchableOpacity } from 'react-native';
 import { Icon } from 'react-native-elements';
 import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
@@ -102,7 +102,7 @@ export default class ResultsScreen extends Component {
     const lastIdx = datasetsOptions.length - 1;
     return (
       <View>
-        <Swiper showButtons={false} loop={false} index={swiperIdx}>
+        <Swiper ref={instance => { this.swiper = instance }} showButtons={false} loop={false} index={swiperIdx}>
           {
             datasetsOptions.map((datasetObj, idx) => {
               const first = idx === firstIdx;
@@ -117,12 +117,15 @@ export default class ResultsScreen extends Component {
                     <View style={styles.headerWrap}>
                       <View style={styles.arrowLeftContainer}>
                         {
-                          !first && <Icon
-                            name='caret-left'
-                            size={40}
-                            type='font-awesome'
-                            color='#4892cf'
-                          />
+                          !first &&
+                          <TouchableOpacity onPress={() => { this.swiper.scrollBy(-1) }}>
+                            <Icon
+                              name='caret-left'
+                              size={40}
+                              type='font-awesome'
+                              color='#4892cf'
+                            />
+                          </TouchableOpacity>
                         }
                       </View>
                       <View style={styles.innerHeaderWrap}>
@@ -136,12 +139,15 @@ export default class ResultsScreen extends Component {
                       </View>
                       <View style={styles.arrowRightContainer}>
                         {
-                          !last && <Icon
-                            name='caret-right'
-                            size={50}
-                            type='font-awesome'
-                            color='#4892cf'
-                          />
+                          !last &&
+                          <TouchableOpacity onPress={() => { this.swiper.scrollBy(1) }}>
+                            <Icon
+                              name='caret-right'
+                              size={50}
+                              type='font-awesome'
+                              color='#4892cf'
+                            />
+                          </TouchableOpacity>
                         }
                       </View>
                     </View>
