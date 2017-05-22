@@ -178,7 +178,18 @@ export default class DrugResultItem extends Component {
     const { signature } = resultItem;
     return (
       <View style={styles.box}>
-        <View style={[styles.padHorizontal10, AppStyles.flex6]}>
+        <View style={[AppStyles.flex2, AppStyles.alignCenter]}>
+          <Icon
+            raised
+            reverse
+            name={ this.state.active ? 'chevron-down' : 'chevron-right'}
+            type='material-community'
+            size={10}
+            color='#00aced'
+            textStyle={{textAlign: 'right'}}
+          />
+        </View>
+        <View style={[styles.padHorizontal10, AppStyles.flex8]}>
           <Text style={[AppStyles.defaultFont, styles.drugName]}>{signature.drug_name}</Text>
           <Text style={[AppStyles.defaultFontLight, AppStyles.flex1, styles.fontSize12]}>
             <Text style={styles.property}>p-value:</Text>&nbsp;
@@ -198,48 +209,51 @@ export default class DrugResultItem extends Component {
     const { signature } = resultItem;
     return (
       <View style={[styles.padHorizontal10, styles.hiddenAccordion]}>
-        <View>
-          {
-            (resultItem.q_value || resultItem.q_value === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>q-value:</Text>&nbsp;
-              {resultItem.q_value === 0 ? 0 : resultItem.q_value.toExponential(3)}
-            </Text>
-          }
-          {
-            (resultItem.fold_change || resultItem.fold_change === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>fold-change:</Text>&nbsp;
-              {resultItem.fold_change.toFixed(3)}
-            </Text>
-          }
-          {
-            (resultItem.fold_change || resultItem.fold_change === 0) &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>specificity:</Text>&nbsp;
-              {
-                resultItem.fold_change > 0 ?
-                (1 / signature.n_sig_up_genes).toExponential(3) :
-                (1 / signature.n_sig_down_genes).toExponential(3)
-              }
-            </Text>
-          }
-          {
-            (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
-            resultItem.signature.pert_time_unit &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>time-point:</Text>&nbsp;
-              {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
-            </Text>
-          }
-          {
-            (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
-            resultItem.signature.pert_dose_unit &&
-            <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
-              <Text style={styles.property}>dose:</Text>&nbsp;
-              {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
-            </Text>
-          }
+        <View style={[styles.drugInfo]}>
+          <View style={AppStyles.flex2}></View>
+          <View style={[AppStyles.flex8]}>
+            {
+              (resultItem.q_value || resultItem.q_value === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>q-value:</Text>&nbsp;
+                {resultItem.q_value === 0 ? 0 : resultItem.q_value.toExponential(3)}
+              </Text>
+            }
+            {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>fold-change:</Text>&nbsp;
+                {resultItem.fold_change.toFixed(3)}
+              </Text>
+            }
+            {
+              (resultItem.fold_change || resultItem.fold_change === 0) &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>specificity:</Text>&nbsp;
+                {
+                  resultItem.fold_change > 0 ?
+                  (1 / signature.n_sig_up_genes).toExponential(3) :
+                  (1 / signature.n_sig_down_genes).toExponential(3)
+                }
+              </Text>
+            }
+            {
+              (resultItem.signature.pert_time || resultItem.signature.pert_time === 0) &&
+              resultItem.signature.pert_time_unit &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>time-point:</Text>&nbsp;
+                {resultItem.signature.pert_time} {resultItem.signature.pert_time_unit}
+              </Text>
+            }
+            {
+              (resultItem.signature.pert_dose || resultItem.signature.pert_dose === 0) &&
+              resultItem.signature.pert_dose_unit &&
+              <Text style={[AppStyles.defaultFontLight, styles.fontSize12]}>
+                <Text style={styles.property}>dose:</Text>&nbsp;
+                {resultItem.signature.pert_dose} {resultItem.signature.pert_dose_unit}
+              </Text>
+            }
+          </View>
         </View>
       </View>
     );
