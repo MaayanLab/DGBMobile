@@ -3,7 +3,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 
-import AppStyles from 'DGBMobile/src/styles';
+import AppStyles from '../../styles';
 import styles from './GeneSearchMatchItemStyle';
 
 export default function GeneSearchMatchItem(props) {

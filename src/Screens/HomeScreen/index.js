@@ -8,12 +8,12 @@ import {
   Icon,
   FormLabel
 } from 'react-native-elements';
-import GeneSearchMatchItem from 'DGBMobile/src/Components/GeneSearchMatchItem';
-import AppStyles from 'DGBMobile/src/styles';
+import GeneSearchMatchItem from '../../Components/GeneSearchMatchItem';
+import AppStyles from '../../styles';
 
 import styles from './HomeScreenStyle';
-import genesList from 'DGBMobile/src/resources/genes_list.json';
-import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
+import genesList from '../../resources/genes_list.json';
+import dgbLogo from '../../resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 

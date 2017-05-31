@@ -5,4 +5,4 @@ import {
 
 import app from './src/app';
 
-AppRegistry.registerComponent('DGBMobile', () => app);
+AppRegistry.registerComponent('DrGeneBudger', () => app);

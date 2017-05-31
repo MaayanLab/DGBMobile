@@ -7,10 +7,10 @@ import { SegmentedControls } from 'react-native-radio-buttons';
 import Swiper from 'react-native-swiper';
 
 import { inject, observer } from 'mobx-react/native';
-import DrugResultContainer from 'DGBMobile/src/Containers/DrugResultsContainer'
+import DrugResultContainer from '../../Containers/DrugResultsContainer'
 
 import styles from './ResultsScreenStyle';
-import AppStyles from 'DGBMobile/src/styles';
+import AppStyles from '../../styles';
 
 const datasetsOptions = [
   {

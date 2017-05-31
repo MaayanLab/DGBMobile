@@ -12,8 +12,8 @@ import Spinner from 'react-native-loading-spinner-overlay';
 
 import { inject, observer } from 'mobx-react/native';
 import styles from './DatasetSelectionScreenStyle';
-import AppStyles from 'DGBMobile/src/styles';
-import dgbLogo from 'DGBMobile/src/resources/dgb_logo.png';
+import AppStyles from '../../styles';
+import dgbLogo from '../../resources/dgb_logo.png';
 
 const { width, height } = Dimensions.get('window');
 
