@@ -19,6 +19,6 @@ https://facebook.github.io/react-native/docs/signed-apk-android.html
 
 4) Your file should be within {app root}/android/app/outputs/apk/app-release.apk
 
-5) Uninstall any previous versions of this app from Android emulator
+5) Uninstall any previous versions of this app from Android emulator(GenyMotion)
 
 6) Test with: react-native run-android --variant=release
