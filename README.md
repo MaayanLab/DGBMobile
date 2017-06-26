@@ -24,8 +24,8 @@ There are a number of technologies you need to learn in order to manage this web
   - The code is written in ES6, but we use [Babel](https://babeljs.io/) to compile it ES5 for cross-browser support.
   - [Understanding ECMAScript 6](https://leanpub.com/understandinges6/read)
   - [ES6 equivalents in ES6](https://github.com/addyosmani/es6-equivalents-in-es5)
-- React
-  - React is a JavaScript library for modularizing user interfaces into easy-to-manage components. Each component is a combination of JavaScript and HTML, which makes it easy to see the data, behavior, and view all in a single file. React handles rendering the component through the lifecycle of the application.
+- React Native
+  - React/React Native are JavaScript libraries for modularizing user interfaces into easy-to-manage components. Each component is a combination of JavaScript and HTML, which makes it easy to see the data, behavior, and view all in a single file. React handles rendering the component through the lifecycle of the application.
   - [Facebook's React tutorial](https://facebook.github.io/react/docs/tutorial.html) is a good place to start.
 - MobX
   - MobX is a JavaScript library for making the state of an application easier to reason about. Using MobX, the state of an application is represented by a "store". Each time part of the application changes, MobX recomputes the store and React rerenders the application.
@@ -33,9 +33,6 @@ There are a number of technologies you need to learn in order to manage this web
 ### Server side
 
   - Python and Flask (Exists on separate repository and deployed separately)
-
-### Deployment
-  - [Docker](https://www.docker.com/).
 
 ### Deployment:
 iOS -
