@@ -32,7 +32,7 @@ There are a number of technologies you need to learn in order to manage this web
 
 ### Server side
 
-  - Python and Flask
+  - Python and Flask (Exists on separate repository and deployed separately)
 
 ### Deployment
   - [Docker](https://www.docker.com/).
